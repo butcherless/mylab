@@ -16,10 +16,6 @@ public class TemplateRequest implements Serializable {
 
 	private final String dummyProperty;
 
-	public TemplateRequest() {
-		this.dummyProperty = null;
-	}
-
 	public TemplateRequest(String dummyProperty) {
 		this.dummyProperty = dummyProperty;
 	}
