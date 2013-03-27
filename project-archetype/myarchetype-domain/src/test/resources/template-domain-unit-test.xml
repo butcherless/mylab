@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- This will automatically locate any and all property files you have 
+        within your classpath, provided they fall under the META-INF/spring directory. 
+        The located property files are parsed and their values can then be used within 
+        application context files in the form of ${propertyKey}. -->
+    <context:property-placeholder location="classpath:database-unit.properties" />
+
+    <import resource="classpath:/META-INF/spring/template-domain.xml"/>
+
+</beans>
