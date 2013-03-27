@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+<!--Created by yFiles for Java 2.9-->
+<key attr.name="url" attr.type="string" for="edge" id="d0"/>
+<key attr.name="description" attr.type="string" for="edge" id="d1"/>
+<key for="edge" id="d2" yfiles.type="edgegraphics"/>
+<key attr.name="Description" attr.type="string" for="graph" id="d3"/>
+<key for="graphml" id="d4" yfiles.type="resources"/>
+<key for="port" id="d5" yfiles.type="portgraphics"/>
+<key for="port" id="d6" yfiles.type="portgeometry"/>
+<key for="port" id="d7" yfiles.type="portuserdata"/>
+<key attr.name="url" attr.type="string" for="node" id="d8"/>
+<key attr.name="description" attr.type="string" for="node" id="d9"/>
+<key for="node" id="d10" yfiles.type="nodegraphics"/>
+<graph edgedefault="directed" id="G">
+<data key="d3"></data>
+<node id="n0">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
+<y:Geometry height="55.0" width="53.357421875" x="253.05144779265873" y="320.0"/>
+<y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
+<y:BorderStyle color="#123EA2" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="custom" textColor="#000000" visible="true" width="43.357421875" x="5.0" y="10.798828125">core-
+module<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ACTIVITY_TYPE"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.TaskTypeEnum" name="com.yworks.bpmn.taskType" value="TASK_TYPE_ABSTRACT"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.ActivityTypeEnum" name="com.yworks.bpmn.activityType" value="ACTIVITY_TYPE_TASK"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n1">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
+<y:Geometry height="55.0" width="53.357421875" x="160.69867001488095" y="0.0"/>
+<y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
+<y:BorderStyle color="#123EA2" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="custom" textColor="#000000" visible="true" width="43.357421875" x="5.0" y="10.798828125">client-
+module<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ACTIVITY_TYPE"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.TaskTypeEnum" name="com.yworks.bpmn.taskType" value="TASK_TYPE_ABSTRACT"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.ActivityTypeEnum" name="com.yworks.bpmn.activityType" value="ACTIVITY_TYPE_TASK"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n2">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
+<y:Geometry height="55.0" width="55.34375" x="463.7682043650794" y="0.0"/>
+<y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
+<y:BorderStyle color="#123EA2" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="custom" textColor="#000000" visible="true" width="45.34375" x="5.0" y="10.798828125">remote-
+module<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ACTIVITY_TYPE"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.TaskTypeEnum" name="com.yworks.bpmn.taskType" value="TASK_TYPE_ABSTRACT"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.ActivityTypeEnum" name="com.yworks.bpmn.activityType" value="ACTIVITY_TYPE_TASK"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n3">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
+<y:Geometry height="55.0" width="57.353515625" x="489.7649088541667" y="220.0"/>
+<y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
+<y:BorderStyle color="#123EA2" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="custom" textColor="#000000" visible="true" width="47.353515625" x="5.0" y="10.798828125">domain-
+module<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ACTIVITY_TYPE"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.TaskTypeEnum" name="com.yworks.bpmn.taskType" value="TASK_TYPE_ABSTRACT"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.ActivityTypeEnum" name="com.yworks.bpmn.activityType" value="ACTIVITY_TYPE_TASK"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n4">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
+<y:Geometry height="55.0" width="56.005859375" x="251.72722904265873" y="220.0"/>
+<y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
+<y:BorderStyle color="#123EA2" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="46.005859375" x="5.0" y="3.4482421875">service-
+api-
+module<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ACTIVITY_TYPE"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.TaskTypeEnum" name="com.yworks.bpmn.taskType" value="TASK_TYPE_ABSTRACT"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.ActivityTypeEnum" name="com.yworks.bpmn.activityType" value="ACTIVITY_TYPE_TASK"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n5">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Activity.withShadow">
+<y:Geometry height="55.0" width="56.005859375" x="373.7454830109127" y="115.0"/>
+<y:Fill color="#FFFFFFE6" color2="#D4D4D4CC" transparent="false"/>
+<y:BorderStyle color="#123EA2" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="46.005859375" x="5.0" y="3.4482421875">service-
+impl-
+module<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ACTIVITY_TYPE"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.TaskTypeEnum" name="com.yworks.bpmn.taskType" value="TASK_TYPE_ABSTRACT"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.ActivityTypeEnum" name="com.yworks.bpmn.activityType" value="ACTIVITY_TYPE_TASK"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n6">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="136.0390625" x="577.1185639880953" y="232.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="126.0390625" x="5.0" y="5.6494140625">remote-service-context<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n7">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="126.705078125" x="25.000238715277774" y="127.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="116.705078125" x="5.0" y="5.6494140625">service-client-context<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n8">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="75.365234375" x="545.4475415426588" y="407.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="65.365234375" x="5.0" y="5.6494140625">persistence<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n9">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="123.388671875" x="392.0588386656746" y="407.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="113.388671875" x="5.0" y="5.6494140625">template-domain-jpa<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n10">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="103.37890625" x="466.7522135416667" y="332.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="93.37890625" x="5.0" y="5.6494140625">template-domain<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n11">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="36.013671875" x="627.1312593005953" y="127.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="26.013671875" x="5.0" y="5.6494140625">web<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n12">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="102.03125" x="357.73358134920636" y="232.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="92.03125" x="5.0" y="5.6494140625">template-service<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n13">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="63.376953125" x="459.7516028025794" y="127.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="53.376953125" x="5.0" y="5.6494140625">database<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n14">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="39.353515625" x="553.1287977430555" y="127.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="29.353515625" x="5.0" y="5.6494140625">log4j<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n15">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="42.013671875" x="212.3776878720238" y="127.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="32.013671875" x="5.0" y="5.6494140625">client<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<node id="n16">
+<data key="d10">
+<y:GenericNode configuration="com.yworks.bpmn.Artifact.withShadow">
+<y:Geometry height="30.0" width="39.353515625" x="284.39149615575394" y="127.5"/>
+<y:Fill color="#EEEEEE" transparent="false"/>
+<y:BorderStyle color="#000000" type="line" width="1.0"/>
+<y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" height="18.701171875" lineColor="#CCCCCC" modelName="custom" textColor="#000000" visible="true" width="29.353515625" x="5.0" y="5.6494140625">log4j<y:LabelModel>
+<y:SmartNodeLabelModel distance="4.0"/>
+</y:LabelModel>
+<y:ModelParameter>
+<y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+</y:ModelParameter>
+</y:NodeLabel>
+<y:StyleProperties>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4"/>
+<y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="ARTIFACT_TYPE_ANNOTATION"/>
+<y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffff"/>
+</y:StyleProperties>
+</y:GenericNode>
+</data>
+</node>
+<edge id="e0" source="n4" target="n0">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="0.0" sy="27.5" tx="0.0" ty="-27.5"/>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e1" source="n5" target="n0">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="-7.000732421875" sy="27.5" tx="17.785807291666686" ty="-27.5">
+<y:Point x="394.7476802765377" y="202.5"/>
+<y:Point x="332.73333333333335" y="202.5"/>
+<y:Point x="332.73333333333335" y="290.0"/>
+<y:Point x="297.5159660218254" y="290.0"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e2" source="n5" target="n3">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="21.002197265625" sy="27.5" tx="0.0" ty="-27.5">
+<y:Point x="422.7506099640377" y="185.0"/>
+<y:Point x="518.4416666666667" y="185.0"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e3" source="n5" target="n4">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="-21.002197265625" sy="27.5" tx="18.668619791666664" ty="-27.5">
+<y:Point x="380.7462154327877" y="187.5"/>
+<y:Point x="298.3987785218254" y="187.5"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e4" source="n1" target="n4">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="0.0" sy="27.5" tx="-18.668619791666686" ty="-27.5">
+<y:Point x="187.37738095238095" y="172.5"/>
+<y:Point x="261.06153893849205" y="172.5"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e5" source="n1" target="n0">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="-10.671484375000006" sy="27.5" tx="-17.785807291666686" ty="-27.5">
+<y:Point x="176.70555555555555" y="290.0"/>
+<y:Point x="261.94435143849205" y="290.0"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e6" source="n2" target="n4">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="-22.13749999999999" sy="27.5" tx="0.0" ty="-27.5">
+<y:Point x="469.3025793650794" y="70.0"/>
+<y:Point x="348.7452380952381" y="70.0"/>
+<y:Point x="348.7452380952381" y="172.5"/>
+<y:Point x="279.73015873015873" y="172.5"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e7" source="n2" target="n5">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="-11.068750000000001" sy="27.5" tx="0.0" ty="-27.5">
+<y:Point x="480.37132936507936" y="85.0"/>
+<y:Point x="401.7484126984127" y="85.0"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e8" source="n1" target="n7">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="-21.342968749999997" sy="27.5" tx="0.0" ty="-15.0">
+<y:Point x="166.03441220238096" y="70.0"/>
+<y:Point x="88.35277777777777" y="70.0"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e9" source="n3" target="n10">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="0.0" sy="27.5" tx="0.0" ty="-15.0"/>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e10" source="n10" target="n9">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="-25.8447265625" sy="15.0" tx="0.0" ty="-15.0">
+<y:Point x="492.5969401041667" y="377.5"/>
+<y:Point x="453.7531746031746" y="377.5"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e11" source="n10" target="n8">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="25.8447265625" sy="15.0" tx="0.0" ty="-15.0">
+<y:Point x="544.2863932291667" y="377.5"/>
+<y:Point x="583.1301587301588" y="377.5"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e12" source="n5" target="n12">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="7.000732421875" sy="27.5" tx="0.0" ty="-15.0"/>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e13" source="n2" target="n11">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="22.1375" sy="27.5" tx="0.0" ty="-15.0">
+<y:Point x="513.5775793650794" y="70.0"/>
+<y:Point x="645.1380952380953" y="70.0"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e14" source="n11" target="n6">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="0.0" sy="15.0" tx="0.0" ty="-15.0"/>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e15" source="n2" target="n13">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="0.0" sy="27.5" tx="0.0" ty="-15.0"/>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e16" source="n2" target="n14">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="11.068750000000001" sy="27.5" tx="0.0" ty="-15.0">
+<y:Point x="502.5088293650794" y="85.0"/>
+<y:Point x="572.8055555555555" y="85.0"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e17" source="n1" target="n15">
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="10.671484374999999" sy="27.5" tx="0.0" ty="-15.0">
+<y:Point x="198.04886532738095" y="85.0"/>
+<y:Point x="233.3845238095238" y="85.0"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+<edge id="e18" source="n1" target="n16">
+<data key="d1"/>
+<data key="d2">
+<y:PolyLineEdge>
+<y:Path sx="21.34296875" sy="27.5" tx="0.0" ty="-15.0">
+<y:Point x="208.72034970238096" y="70.0"/>
+<y:Point x="304.06825396825394" y="70.0"/>
+</y:Path>
+<y:LineStyle color="#000000" type="line" width="1.0"/>
+<y:Arrows source="none" target="standard"/>
+<y:BendStyle smoothed="false"/>
+</y:PolyLineEdge>
+</data>
+</edge>
+</graph>
+<data key="d4">
+<y:Resources/>
+</data>
+</graphml>
