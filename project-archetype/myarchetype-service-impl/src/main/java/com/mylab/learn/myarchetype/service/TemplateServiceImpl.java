@@ -70,6 +70,7 @@ public class TemplateServiceImpl implements TemplateService {
 			throw new TemplateRequestValidationException("class not supported: " + templateRequest.getClass());
 		}
 
+		// rethrows internal exceptions to service (contract) exceptions
 		try {
 			this.requestValidator.validate(templateRequest);
 		} catch (ValidationException e) {
