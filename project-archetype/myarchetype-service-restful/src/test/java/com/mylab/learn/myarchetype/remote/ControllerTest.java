@@ -23,17 +23,18 @@ public class ControllerTest {
 
 			public TemplateResponse templateOperation(TemplateRequest templateRequest) throws TemplateServiceException {
 				Boolean result = Boolean.FALSE;
-				
+
 				if (!templateRequest.hasData()) {
 					throw new TemplateRequestValidationException();
 				}
-				
+
 				if (templateRequest.getDummyProperty().equals(BusinessEnum.MAIN_FLOW.toString())) {
 					result = Boolean.TRUE;
 				}
 
 				return new TemplateResponse(result);
 			}
+
 		};
 
 		this.restfulController.setTemplateService(this.templateService);
@@ -57,10 +58,19 @@ public class ControllerTest {
 		Assert.assertFalse("alternate flow", response.getDummyResult());
 	}
 
-	@Test(expected=TemplateRequestValidationException.class)
+	@Test(expected = TemplateRequestValidationException.class)
 	public void testRestfulControllerException() {
 		String requestId = null;
 		this.restfulController.templateOperation(requestId);
+	}
+
+	@Test
+	public void testTemplatePutOperation() {
+		TemplateRequest templateRequest = new TemplateRequest("dummyProperty");
+		TemplateResponse response = this.restfulController.templatePutOperation(templateRequest);
+		
+		Assert.assertNotNull("response", response);
+		Assert.assertFalse("alternate flow", response.getDummyResult());
 	}
 
 }

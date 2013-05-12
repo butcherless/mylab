@@ -23,7 +23,6 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 		Assert.assertTrue("main flow", templateResponse.getDummyResult());
 
 		this.logger.debug("adapter operation");
-
 	}
 
 	/**
@@ -37,6 +36,20 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 
 		Assert.assertNotNull(templateResponse);
 		Assert.assertFalse("alternate flow", templateResponse.getDummyResult());
+
+		this.logger.debug("adapter operation");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Test(expected = MyServiceException.class)
+	public void testGeneralErrorTemplateOperation() {
+		String dummyProperty = BusinessEnum.GENERAL_ERROR_FLOW.toString();
+		TemplateRequest templateRequest = new TemplateRequest(dummyProperty);
+		TemplateResponse templateResponse = this.templateService.templateOperation(templateRequest);
+
+		Assert.assertNotNull(templateResponse);
 
 		this.logger.debug("adapter operation");
 	}
@@ -74,20 +87,35 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 	@Test
 	public void testExceptionAssignableForm() {
 		Class<TemplateServiceException> clazz = TemplateServiceException.class;
-		
+
 		Assert.assertTrue(clazz.isAssignableFrom(TemplateRequestValidationException.class));
-		
+
 		Assert.assertFalse(clazz.isAssignableFrom(MyServiceException.class));
 	}
-	
-	///////// H E L P E R S
-	
+
+	@Test
+	public void testMyServiceException() {
+		String message = "exception-message";
+		Throwable cause = new RuntimeException();
+		MyServiceException exception = new MyServiceException();
+
+		exception = new MyServiceException(message);
+		Assert.assertNotNull("message", exception.getMessage());
+		exception = new MyServiceException(cause);
+		Assert.assertNotNull("cause", exception.getCause());
+		exception = new MyServiceException(message, cause);
+		Assert.assertNotNull("message", exception.getMessage());
+		Assert.assertNotNull("cause", exception.getCause());
+	}
+
+	// /////// H E L P E R S
+
 	private class NotSupportedRequest extends TemplateRequest {
 		private static final long serialVersionUID = 1L;
 
 		public NotSupportedRequest(String dummyProperty) {
-	        super(dummyProperty);
-        }
+			super(dummyProperty);
+		}
 
 	}
 
