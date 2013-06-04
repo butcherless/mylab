@@ -29,6 +29,7 @@
 		<module>myarchetype-service-impl</module>
 		<module>myarchetype-service-invoker</module>
 		<module>myarchetype-service-restful</module>
+		<module>myarchetype-basic-mvc</module>
 	</modules>
 
 

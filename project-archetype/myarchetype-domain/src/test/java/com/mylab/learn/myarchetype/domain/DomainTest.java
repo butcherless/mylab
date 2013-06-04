@@ -28,7 +28,7 @@ public class DomainTest {
 	private List<PojoClass> pojoClasses;
 
 	private Class[] classArray = { SimpleText.class, Translation.class,
-			TemplateEntity.class };
+			TemplateEntity.class, Aircraft.class, Destination.class };
 
 	@Before
 	public void setup() {
@@ -45,7 +45,6 @@ public class DomainTest {
 		pojoValidator.addRule(new NoNestedClassRule());
 
 		// Create Testers to validate behaviour for POJO_PACKAGE
-		pojoValidator.addTester(new DefaultValuesNullTester());
 		pojoValidator.addTester(new SetterTester());
 		pojoValidator.addTester(new GetterTester());
 	}

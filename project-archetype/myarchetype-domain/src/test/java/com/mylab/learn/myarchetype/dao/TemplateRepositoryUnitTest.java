@@ -9,11 +9,4 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(locations = "classpath:template-domain-unit-test.xml")
 public class TemplateRepositoryUnitTest extends TemplateRepositoryTestAdapter {
 
-	@Transactional
-	@Override
-	public void testCreateTemplate() {
-		super.testCreateTemplate();
-		this.logger.debug("entity created by unit test.");
-	}
-
 }
