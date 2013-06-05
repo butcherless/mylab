@@ -26,7 +26,7 @@ public interface TemplateRepositoryTestInterface {
 	 * test delete entity operation
 	 */
 	void testDeleteTemplate();
-	
+
 	/**
 	 * test embeddable collection
 	 */
