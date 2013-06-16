@@ -15,6 +15,16 @@ public interface RelationshipTestInterface {
 	/**
 	 * 
 	 */
+	void testExistsAircraft();
+
+	/**
+	 * 
+	 */
+	void testNotExistsAircraft();
+
+	/**
+	 * 
+	 */
 	void testCreateDestination();
 
 	/**

@@ -6,6 +6,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:template-domain-integration-test.xml")
-public class RelationshipRepositoryTestIT extends TemplateRepositoryTestAdapter {
+public class RelationshipRepositoryTestIT extends RelationshipTestAdapter {
 
 }

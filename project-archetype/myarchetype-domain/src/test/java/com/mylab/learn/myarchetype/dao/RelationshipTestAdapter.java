@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mylab.learn.myarchetype.domain.Aircraft;
 import com.mylab.learn.myarchetype.domain.Destination;
+import com.mylab.learn.myarchetype.domain.DomainFactory;
 import com.mylab.learn.myarchetype.repository.AircraftRepository;
 import com.mylab.learn.myarchetype.repository.DestinationRepository;
 
@@ -23,8 +24,9 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
 	@Autowired
 	protected DestinationRepository destinationRepository;
 
-	@Test
+	@Override
 	@Transactional
+	@Test
 	public void testCreateAircraft() {
 		Aircraft entity = this.createPicosDeEuropaAircraft();
 		long entityCount = this.aircraftRepository.count();
@@ -34,8 +36,26 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
 		Assert.assertEquals("entity count", (entityCount + 1), this.aircraftRepository.count());
 	}
 
-	@Test
+	@Override
 	@Transactional
+	@Test
+	public void testExistsAircraft() {
+		Aircraft entity = this.createPicosDeEuropaAircraft();
+		this.aircraftRepository.save(entity);
+		Assert.assertNotNull(entity.getId());
+		Assert.assertTrue(this.aircraftRepository.exists(entity.getId()));
+	}
+	
+	@Override
+	@Transactional
+	@Test
+	public void testNotExistsAircraft() {
+		Assert.assertFalse(this.aircraftRepository.exists(Long.MAX_VALUE));
+	}
+	
+	@Override
+	@Transactional
+	@Test
 	public void testCreateDestination() {
 		Destination destination = this.createBarajasDestination();
 
@@ -45,8 +65,9 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
 		Assert.assertEquals("entity count", 1L, this.destinationRepository.count());
 	}
 
-	@Test
+	@Override
 	@Transactional
+	@Test
 	public void testCreateAircraftWithDestinations() {
 		Aircraft aircraft = this.createPicosDeEuropaAircraft();
 
@@ -70,8 +91,9 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
 		Assert.assertEquals("destination count", 2L, this.destinationRepository.count());
 	}
 
-	@Test
+	@Override
 	@Transactional
+	@Test
 	public void testAddDestinationToAircraft() {
 		Aircraft aircraft = this.createPicosDeEuropaAircraft();
 
@@ -106,8 +128,9 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
 		Assert.assertTrue("v", 2 == aircraftFound.destinationCount());
 	}
 
-	@Test
+	@Override
 	@Transactional
+	@Test
 	public void testRemoveDestinationFromAircraft() {
 		Aircraft aircraft = this.createPicosDeEuropaAircraft();
 
@@ -144,41 +167,25 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
 
 	// //////// H E L P E R S
 
-	private Aircraft createAircraft(String name, String registration) {
-		Aircraft entity = new Aircraft();
-		entity.setName(name);
-		entity.setRegistration(registration);
-
-		return entity;
-	}
-
-	private Destination createDestination(String airportName, String shortCode) {
-		Destination entity = new Destination();
-		entity.setAirportName(airportName);
-		entity.setShortCode(shortCode);
-
-		return entity;
-	}
-
 	private Aircraft createPicosDeEuropaAircraft() {
 		String name = "Picos de Europa";
 		String registration = "EC-LUB";
 
-		return this.createAircraft(name, registration);
+		return DomainFactory.newAircraft(name, registration);
 	}
 
 	private Destination createBarajasDestination() {
 		String airportName = "Madrid Barajas";
 		String shortCode = "MAD";
 
-		return this.createDestination(airportName, shortCode);
+		return DomainFactory.newDestination(airportName, shortCode);
 	}
 
 	private Destination createLasPalmasDestination() {
 		String airportName = "Las Palmas de Gran Canaria";
 		String shortCode = "LPA";
 
-		return this.createDestination(airportName, shortCode);
+		return DomainFactory.newDestination(airportName, shortCode);
 	}
 
 }

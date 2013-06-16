@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mylab.learn.myarchetype.domain.DomainFactory;
 import com.mylab.learn.myarchetype.domain.SimpleText;
 import com.mylab.learn.myarchetype.domain.TemplateEntity;
 import com.mylab.learn.myarchetype.domain.Translation;
@@ -31,8 +32,7 @@ public abstract class TemplateRepositoryTestAdapter implements TemplateRepositor
 
 	@Before
 	public void setUp() {
-		this.templateEntity = new TemplateEntity();
-		this.templateEntity.setName(entityName);
+		this.templateEntity = DomainFactory.newTemplateEntity(entityName); 
 	}
 
 	@Test
@@ -78,8 +78,7 @@ public abstract class TemplateRepositoryTestAdapter implements TemplateRepositor
 	@Test
 	@Transactional
 	public void testSimpleText() {
-		SimpleText simpleText = new SimpleText();
-		simpleText.setText("a very simple text");
+		SimpleText simpleText = DomainFactory.newSimpleText("a very simple text");
 
 		Translation translationEN = new Translation("en", "english text");
 		Translation translationPT = new Translation("pt", "texto português");
