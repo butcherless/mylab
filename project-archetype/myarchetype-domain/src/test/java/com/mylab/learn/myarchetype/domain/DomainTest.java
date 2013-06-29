@@ -1,24 +1,23 @@
 package com.mylab.learn.myarchetype.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.mylab.learn.myarchetype.test.ExclusionListFilter;
 import com.openpojo.reflection.PojoClass;
-import com.openpojo.reflection.filters.FilterClassName;
+import com.openpojo.reflection.filters.FilterChain;
+import com.openpojo.reflection.filters.FilterNestedClasses;
+import com.openpojo.reflection.filters.FilterNonConcrete;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.PojoValidator;
-import com.openpojo.validation.affirm.Affirm;
 import com.openpojo.validation.rule.impl.GetterMustExistRule;
 import com.openpojo.validation.rule.impl.NoNestedClassRule;
 import com.openpojo.validation.rule.impl.NoPrimitivesRule;
 import com.openpojo.validation.rule.impl.NoPublicFieldsRule;
 import com.openpojo.validation.rule.impl.NoStaticExceptFinalRule;
-import com.openpojo.validation.test.impl.DefaultValuesNullTester;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
 
@@ -27,15 +26,17 @@ public class DomainTest {
 	private PojoValidator pojoValidator;
 	private List<PojoClass> pojoClasses;
 
-	private Class[] classArray = { SimpleText.class, Translation.class,
-			TemplateEntity.class, Aircraft.class, Destination.class };
+	private Class[] exclusionArray = { DomainTest.class };
 
 	@Before
 	public void setup() {
 		pojoValidator = new PojoValidator();
-		FilterClassName filterClassName = new FilterClassName(this.buildRegex());
-		pojoClasses = PojoClassFactory.getPojoClasses(this.getClass()
-				.getPackage().getName(), filterClassName);
+		FilterNonConcrete filterNonConcrete = new FilterNonConcrete();
+		FilterNestedClasses filterNestedClasses = new FilterNestedClasses();
+		ExclusionListFilter exclusionListFilter = new ExclusionListFilter(exclusionArray);
+
+		FilterChain filterChain = new FilterChain(filterNonConcrete, filterNestedClasses, exclusionListFilter);
+		pojoClasses = PojoClassFactory.getPojoClasses(this.getClass().getPackage().getName(), filterChain);
 
 		// Create Rules to validate structure for POJO_PACKAGE
 		pojoValidator.addRule(new NoPublicFieldsRule());
@@ -50,30 +51,10 @@ public class DomainTest {
 	}
 
 	@Test
-	public void ensureExpectedPojoCount() {
-		Affirm.affirmEquals("Classes added / removed?", this.classArray.length,
-				pojoClasses.size());
-	}
-
-	@Test
 	public void testPojoStructureAndBehavior() {
 		for (PojoClass pojoClass : pojoClasses) {
 			pojoValidator.runValidation(pojoClass);
 		}
-	}
-
-	/*
-	 * H E L P E R S
-	 */
-
-	private String buildRegex() {
-		List<String> classList = new ArrayList<String>();
-		for (Class clazz : this.classArray) {
-			classList.add(clazz.getSimpleName() + '$');
-		}
-
-		// or expression
-		return StringUtils.join(classList, '|');
 	}
 
 	@Test

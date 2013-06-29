@@ -6,9 +6,11 @@
 		<artifactId>myarchetype-parent-pom</artifactId>
 		<version>1.1.0-SNAPSHOT</version>
 	</parent>
+
 	<artifactId>myarchetype-test</artifactId>
 	<name>myarchetype-test</name>
 	<description>myarchetype test utils module</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.openpojo</groupId>
