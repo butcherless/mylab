@@ -30,6 +30,7 @@
 		<module>myarchetype-service-invoker</module>
 		<module>myarchetype-service-restful</module>
 		<module>myarchetype-basic-mvc</module>
+		<module>myarchetype-test</module>
 	</modules>
 
 

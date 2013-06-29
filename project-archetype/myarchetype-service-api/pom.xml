@@ -17,6 +17,13 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
+            <groupId>com.mylab.learn.myarchetype</groupId>
+            <artifactId>myarchetype-test</artifactId>
+            <scope>test</scope>
+            <version>${project.version}</version>
+        </dependency>
+		
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
