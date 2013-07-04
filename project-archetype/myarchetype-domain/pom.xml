@@ -15,13 +15,6 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.mylab.learn.myarchetype</groupId>
-			<artifactId>myarchetype-test</artifactId>
-			<scope>test</scope>
-			<version>${project.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 		</dependency>
@@ -77,10 +70,6 @@
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>cglib</groupId>
@@ -104,18 +93,6 @@
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.openpojo</groupId>
-			<artifactId>openpojo</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -131,13 +108,5 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

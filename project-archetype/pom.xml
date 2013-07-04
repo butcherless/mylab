@@ -15,24 +15,23 @@
 	<name>myarchetype</name>
 	<description>my archetype parent pom, restful server and client</description>
 
-    <properties>
-        <myarchetype.version>1.0.0-SNAPSHOT</myarchetype.version>
-    </properties>
-
+	<properties>
+		<myarchetype.version>1.0.0-SNAPSHOT</myarchetype.version>
+	</properties>
 
 	<modules>
+		<module>myarchetype-basic-mvc</module>
 		<module>myarchetype-client-invoker</module>
 		<module>myarchetype-client-restful</module>
 		<module>myarchetype-core</module>
 		<module>myarchetype-domain</module>
+		<module>myarchetype-domain-test</module>
 		<module>myarchetype-service-api</module>
 		<module>myarchetype-service-impl</module>
 		<module>myarchetype-service-invoker</module>
 		<module>myarchetype-service-restful</module>
-		<module>myarchetype-basic-mvc</module>
 		<module>myarchetype-test</module>
 	</modules>
-
 
 	<prerequisites>
 		<maven>3.0.4</maven>
