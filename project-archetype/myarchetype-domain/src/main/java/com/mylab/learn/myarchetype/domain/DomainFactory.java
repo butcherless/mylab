@@ -60,4 +60,11 @@ public class DomainFactory {
 
 		return entity;
 	}
+	
+	public static Company newCompany(final String name) {
+	    Company company = new Company();
+	    company.setName(name);
+	    
+	    return company;
+	}
 }

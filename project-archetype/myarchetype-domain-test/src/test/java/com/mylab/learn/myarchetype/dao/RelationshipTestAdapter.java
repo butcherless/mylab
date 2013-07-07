@@ -10,182 +10,219 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mylab.learn.myarchetype.domain.Aircraft;
+import com.mylab.learn.myarchetype.domain.Company;
 import com.mylab.learn.myarchetype.domain.Destination;
 import com.mylab.learn.myarchetype.domain.DomainFactory;
 import com.mylab.learn.myarchetype.repository.AircraftRepository;
+import com.mylab.learn.myarchetype.repository.CompanyRepository;
 import com.mylab.learn.myarchetype.repository.DestinationRepository;
 
 public abstract class RelationshipTestAdapter implements RelationshipTestInterface {
-	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	protected AircraftRepository aircraftRepository;
+    @Autowired
+    protected AircraftRepository aircraftRepository;
 
-	@Autowired
-	protected DestinationRepository destinationRepository;
+    @Autowired
+    protected CompanyRepository companyRepository;
 
-	@Override
-	@Transactional
-	@Test
-	public void testCreateAircraft() {
-		Aircraft entity = this.createPicosDeEuropaAircraft();
-		long entityCount = this.aircraftRepository.count();
-		this.aircraftRepository.save(entity);
+    @Autowired
+    protected DestinationRepository destinationRepository;
 
-		Assert.assertNotNull(entity.getId());
-		Assert.assertEquals("entity count", (entityCount + 1), this.aircraftRepository.count());
-	}
+    @Override
+    @Transactional
+    @Test
+    public void testCreateAircraft() {
+        Aircraft entity = this.createPicosDeEuropaAircraft();
+        long entityCount = this.aircraftRepository.count();
+        this.aircraftRepository.save(entity);
 
-	@Override
-	@Transactional
-	@Test
-	public void testExistsAircraft() {
-		Aircraft entity = this.createPicosDeEuropaAircraft();
-		this.aircraftRepository.save(entity);
-		Assert.assertNotNull(entity.getId());
-		Assert.assertTrue(this.aircraftRepository.exists(entity.getId()));
-	}
-	
-	@Override
-	@Transactional
-	@Test
-	public void testNotExistsAircraft() {
-		Assert.assertFalse(this.aircraftRepository.exists(Long.MAX_VALUE));
-	}
-	
-	@Override
-	@Transactional
-	@Test
-	public void testCreateDestination() {
-		Destination destination = this.createBarajasDestination();
+        Assert.assertNotNull(entity.getId());
+        Assert.assertEquals("entity count", (entityCount + 1), this.aircraftRepository.count());
+    }
 
-		this.destinationRepository.save(destination);
+    @Override
+    @Transactional
+    @Test
+    public void testExistsAircraft() {
+        Aircraft entity = this.createPicosDeEuropaAircraft();
+        this.aircraftRepository.save(entity);
+        Assert.assertNotNull(entity.getId());
+        Assert.assertTrue(this.aircraftRepository.exists(entity.getId()));
+    }
 
-		Assert.assertNotNull(destination.getId());
-		Assert.assertEquals("entity count", 1L, this.destinationRepository.count());
-	}
+    @Override
+    @Transactional
+    @Test
+    public void testNotExistsAircraft() {
+        Assert.assertFalse(this.aircraftRepository.exists(Long.MAX_VALUE));
+    }
 
-	@Override
-	@Transactional
-	@Test
-	public void testCreateAircraftWithDestinations() {
-		Aircraft aircraft = this.createPicosDeEuropaAircraft();
+    @Override
+    @Transactional
+    @Test
+    public void testCreateDestination() {
+        Destination destination = this.createBarajasDestination();
 
-		this.aircraftRepository.save(aircraft);
+        this.destinationRepository.save(destination);
 
-		// aircraft asserts
-		Assert.assertNotNull(aircraft.getId());
-		Assert.assertEquals("aircraft count", 1L, this.aircraftRepository.count());
+        Assert.assertNotNull(destination.getId());
+        Assert.assertEquals("entity count", 1L, this.destinationRepository.count());
+    }
 
-		Destination destination = this.createBarajasDestination();
+    @Override
+    @Transactional
+    @Test
+    public void testCreateCompany() {
+        Company company = this.createIberiaCompany();
+        this.companyRepository.save(company);
 
-		aircraft.addDestination(destination);
-		Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
+        Assert.assertNotNull(company.getId());
+        Assert.assertEquals("entity count", 1L, this.companyRepository.count());
+    }
 
-		destination = this.createLasPalmasDestination();
+    @Transactional
+    @Test
+    public void testAddAircraftToCompany() {
+        Company company = this.createIberiaCompany();
+        this.companyRepository.save(company);
+        
+        Aircraft aircraft = this.createPicosDeEuropaAircraft();
+        company.addAircraft(aircraft);
+        this.aircraftRepository.save(aircraft);
+        
+        company = this.companyRepository.findOne(company.getId());
+        Assert.assertNotNull(company);
+        Assert.assertTrue(company.hasAircrafts());
+        Assert.assertEquals(1, this.aircraftRepository.count());
+    }    
+    
+    @Override
+    @Transactional
+    @Test
+    public void testCreateAircraftWithDestinations() {
+        Aircraft aircraft = this.createPicosDeEuropaAircraft();
 
-		aircraft.addDestination(destination);
-		Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
+        this.aircraftRepository.save(aircraft);
 
-		// destination asserts
-		Assert.assertEquals("destination count", 2L, this.destinationRepository.count());
-	}
+        // aircraft asserts
+        Assert.assertNotNull(aircraft.getId());
+        Assert.assertEquals("aircraft count", 1L, this.aircraftRepository.count());
 
-	@Override
-	@Transactional
-	@Test
-	public void testAddDestinationToAircraft() {
-		Aircraft aircraft = this.createPicosDeEuropaAircraft();
+        Destination destination = this.createBarajasDestination();
 
-		Destination destination = this.createBarajasDestination();
+        aircraft.addDestination(destination);
+        Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
 
-		aircraft.addDestination(destination);
+        destination = this.createLasPalmasDestination();
 
-		this.aircraftRepository.save(aircraft);
+        aircraft.addDestination(destination);
+        Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
 
-		// aircraft asserts
-		Assert.assertNotNull(aircraft.getId());
-		Assert.assertEquals("aircraft count", 1L, this.aircraftRepository.count());
-		Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
+        // destination asserts
+        Assert.assertEquals("destination count", 2L, this.destinationRepository.count());
+    }
 
-		// destination asserts
-		Assert.assertEquals("destination count", 1L, this.destinationRepository.count());
+    @Override
+    @Transactional
+    @Test
+    public void testAddDestinationToAircraft() {
+        Aircraft aircraft = this.createPicosDeEuropaAircraft();
 
-		destination = this.createLasPalmasDestination();
+        Destination destination = this.createBarajasDestination();
 
-		List<Aircraft> aircraftList = this.aircraftRepository.findByRegistration(aircraft.getRegistration());
-		Assert.assertFalse("aircraft must exist", aircraftList.isEmpty());
-		Aircraft aircraftFound = aircraftList.get(0);
+        aircraft.addDestination(destination);
 
-		aircraftFound.addDestination(destination);
+        this.aircraftRepository.save(aircraft);
 
-		// destination asserts
-		Assert.assertEquals("destination count", 2L, this.destinationRepository.count());
+        // aircraft asserts
+        Assert.assertNotNull(aircraft.getId());
+        Assert.assertEquals("aircraft count", 1L, this.aircraftRepository.count());
+        Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
 
-		aircraftList = this.aircraftRepository.findByRegistration(aircraft.getRegistration());
-		aircraftFound = aircraftList.get(0);
-		// aircraft asserts
-		Assert.assertTrue("v", 2 == aircraftFound.destinationCount());
-	}
+        // destination asserts
+        Assert.assertEquals("destination count", 1L, this.destinationRepository.count());
 
-	@Override
-	@Transactional
-	@Test
-	public void testRemoveDestinationFromAircraft() {
-		Aircraft aircraft = this.createPicosDeEuropaAircraft();
+        destination = this.createLasPalmasDestination();
 
-		this.aircraftRepository.save(aircraft);
+        List<Aircraft> aircraftList = this.aircraftRepository.findByRegistration(aircraft.getRegistration());
+        Assert.assertFalse("aircraft must exist", aircraftList.isEmpty());
+        Aircraft aircraftFound = aircraftList.get(0);
 
-		// aircraft asserts
-		Assert.assertNotNull(aircraft.getId());
-		Assert.assertEquals("aircraft count", 1L, this.aircraftRepository.count());
+        aircraftFound.addDestination(destination);
 
-		Destination destination = this.createBarajasDestination();
+        // destination asserts
+        Assert.assertEquals("destination count", 2L, this.destinationRepository.count());
 
-		aircraft.addDestination(destination);
-		Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
+        aircraftList = this.aircraftRepository.findByRegistration(aircraft.getRegistration());
+        aircraftFound = aircraftList.get(0);
+        // aircraft asserts
+        Assert.assertTrue("v", 2 == aircraftFound.destinationCount());
+    }
 
-		destination = this.createLasPalmasDestination();
+    @Override
+    @Transactional
+    @Test
+    public void testRemoveDestinationFromAircraft() {
+        Aircraft aircraft = this.createPicosDeEuropaAircraft();
 
-		aircraft.addDestination(destination);
-		Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
+        this.aircraftRepository.save(aircraft);
 
-		// destination asserts
-		Assert.assertEquals("destination count", 2L, this.destinationRepository.count());
+        // aircraft asserts
+        Assert.assertNotNull(aircraft.getId());
+        Assert.assertEquals("aircraft count", 1L, this.aircraftRepository.count());
 
-		List<Aircraft> aircraftList = this.aircraftRepository.findByRegistration(aircraft.getRegistration());
-		Assert.assertFalse("aircraft must exist", aircraftList.isEmpty());
-		Aircraft aircraftFound = aircraftList.get(0);
+        Destination destination = this.createBarajasDestination();
 
-		List<Destination> destinationList = this.destinationRepository.findByShortCode(destination.getShortCode());
-		Destination destinationFound = destinationList.get(0);
-		aircraftFound.removeDestination(destinationFound);
+        aircraft.addDestination(destination);
+        Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
 
-		// destination asserts
-		Assert.assertEquals("destination count", 1L, this.destinationRepository.count());
-	}
+        destination = this.createLasPalmasDestination();
 
-	// //////// H E L P E R S
+        aircraft.addDestination(destination);
+        Assert.assertTrue("aircraft has not destinations", aircraft.hasDestinations());
 
-	private Aircraft createPicosDeEuropaAircraft() {
-		String name = "Picos de Europa";
-		String registration = "EC-LUB";
+        // destination asserts
+        Assert.assertEquals("destination count", 2L, this.destinationRepository.count());
 
-		return DomainFactory.newAircraft(name, registration);
-	}
+        List<Aircraft> aircraftList = this.aircraftRepository.findByRegistration(aircraft.getRegistration());
+        Assert.assertFalse("aircraft must exist", aircraftList.isEmpty());
+        Aircraft aircraftFound = aircraftList.get(0);
 
-	private Destination createBarajasDestination() {
-		String airportName = "Madrid Barajas";
-		String shortCode = "MAD";
+        Destination destinationFound = this.destinationRepository.findByShortCode(destination.getShortCode());
+        aircraftFound.removeDestination(destinationFound);
 
-		return DomainFactory.newDestination(airportName, shortCode);
-	}
+        // destination asserts
+        Assert.assertEquals("destination count", 1L, this.destinationRepository.count());
+    }
 
-	private Destination createLasPalmasDestination() {
-		String airportName = "Las Palmas de Gran Canaria";
-		String shortCode = "LPA";
+    // //////// H E L P E R S
 
-		return DomainFactory.newDestination(airportName, shortCode);
-	}
+    private Aircraft createPicosDeEuropaAircraft() {
+        String name = "Picos de Europa";
+        String registration = "EC-LUB";
+
+        return DomainFactory.newAircraft(name, registration);
+    }
+
+    private Destination createBarajasDestination() {
+        String airportName = "Madrid Barajas";
+        String shortCode = "MAD";
+
+        return DomainFactory.newDestination(airportName, shortCode);
+    }
+
+    private Destination createLasPalmasDestination() {
+        String airportName = "Las Palmas de Gran Canaria";
+        String shortCode = "LPA";
+
+        return DomainFactory.newDestination(airportName, shortCode);
+    }
+
+    private Company createIberiaCompany() {
+        String name = "Iberia";
+
+        return DomainFactory.newCompany(name);
+    }
 
 }

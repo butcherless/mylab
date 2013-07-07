@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -31,6 +32,9 @@ public class Aircraft extends AbstractEntity {
     @Size(min = 1, max = 32)
     private String name;
 
+    @ManyToOne
+    private Company company;
+
     /*
      * unidirectional OneToMany
      */
@@ -55,6 +59,14 @@ public class Aircraft extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Company getCompany() {
+        return company;
     }
 
     public void setDestinations(List<Destination> destinations) {

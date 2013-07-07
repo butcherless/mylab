@@ -7,38 +7,43 @@ package com.mylab.learn.myarchetype.dao;
  */
 public interface RelationshipTestInterface {
 
-	/**
+    /**
 	 * 
 	 */
-	void testCreateAircraft();
+    void testCreateAircraft();
 
-	/**
+    /**
 	 * 
 	 */
-	void testExistsAircraft();
+    void testExistsAircraft();
 
-	/**
+    /**
 	 * 
 	 */
-	void testNotExistsAircraft();
+    void testNotExistsAircraft();
 
-	/**
+    /**
 	 * 
 	 */
-	void testCreateDestination();
+    void testCreateDestination();
 
-	/**
+    /**
 	 * 
 	 */
-	void testCreateAircraftWithDestinations();
+    void testCreateAircraftWithDestinations();
 
-	/**
+    /**
 	 * 
 	 */
-	void testAddDestinationToAircraft();
+    void testAddDestinationToAircraft();
 
-	/**
+    /**
 	 * 
 	 */
-	void testRemoveDestinationFromAircraft();
+    void testRemoveDestinationFromAircraft();
+
+    /**
+	 * 
+	 */
+    void testCreateCompany();
 }
