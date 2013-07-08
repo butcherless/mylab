@@ -81,22 +81,43 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
         Assert.assertEquals("entity count", 1L, this.companyRepository.count());
     }
 
+    @Override
     @Transactional
     @Test
     public void testAddAircraftToCompany() {
         Company company = this.createIberiaCompany();
         this.companyRepository.save(company);
-        
+
         Aircraft aircraft = this.createPicosDeEuropaAircraft();
         company.addAircraft(aircraft);
         this.aircraftRepository.save(aircraft);
-        
+
         company = this.companyRepository.findOne(company.getId());
         Assert.assertNotNull(company);
         Assert.assertTrue(company.hasAircrafts());
         Assert.assertEquals(1, this.aircraftRepository.count());
-    }    
-    
+    }
+
+    @Override
+    @Transactional
+    @Test
+    public void testFindAircraftByCompany() {
+        Company company = this.createIberiaCompany();
+        this.companyRepository.save(company);
+
+        Aircraft aircraft = this.createPicosDeEuropaAircraft();
+        company.addAircraft(aircraft);
+        this.aircraftRepository.save(aircraft);
+
+        aircraft = this.createSierraDeGredosAircraft();
+        company.addAircraft(aircraft);
+        this.aircraftRepository.save(aircraft);
+
+        List<Aircraft> aircrafts = this.aircraftRepository.findByCompany(company);
+        Assert.assertFalse("collection must contain aircrafts", aircrafts.isEmpty());
+        Assert.assertEquals(2, aircrafts.size());
+    }
+
     @Override
     @Transactional
     @Test
@@ -157,7 +178,7 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
         aircraftList = this.aircraftRepository.findByRegistration(aircraft.getRegistration());
         aircraftFound = aircraftList.get(0);
         // aircraft asserts
-        Assert.assertTrue("v", 2 == aircraftFound.destinationCount());
+        Assert.assertEquals(2, aircraftFound.destinationCount().intValue());
     }
 
     @Override
@@ -201,6 +222,13 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
     private Aircraft createPicosDeEuropaAircraft() {
         String name = "Picos de Europa";
         String registration = "EC-LUB";
+
+        return DomainFactory.newAircraft(name, registration);
+    }
+
+    private Aircraft createSierraDeGredosAircraft() {
+        String name = "Sierra de Gredos";
+        String registration = "EC-LUC";
 
         return DomainFactory.newAircraft(name, registration);
     }

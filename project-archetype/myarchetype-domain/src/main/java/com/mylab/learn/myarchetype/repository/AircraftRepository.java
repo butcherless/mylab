@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import com.mylab.learn.myarchetype.domain.Aircraft;
+import com.mylab.learn.myarchetype.domain.Company;
 
 /**
  * Persistence operations for {@link Aircraft} entity.
@@ -18,4 +19,6 @@ import com.mylab.learn.myarchetype.domain.Aircraft;
 public interface AircraftRepository extends JpaRepository<Aircraft, Long>, JpaSpecificationExecutor<Aircraft> {
 
 	List<Aircraft> findByRegistration(String registration);
+
+    List<Aircraft> findByCompany(Company company);
 }
