@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +26,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class Aircraft extends AbstractEntity {
 
     @NotNull
-    @Size(min = 4, max = 32)
+    @Size(min = 4, max = 8)
+    @Column(nullable=false, unique=true)
     private String registration;
 
     @NotNull

@@ -3,6 +3,7 @@ package com.mylab.learn.myarchetype.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,6 +19,7 @@ public class Company extends AbstractEntity {
 
     @NotNull
     @Size(min = 1, max = 32)
+    @Column(nullable=false, unique=true)
     private String name;
 
     @OneToMany(mappedBy = "company")
