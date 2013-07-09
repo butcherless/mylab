@@ -1,5 +1,6 @@
 package com.mylab.learn.myarchetype.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -57,9 +58,8 @@ public class AviationServiceImpl implements AviationService {
         this.logger.debug("begin operation {}", createCompanyRequest);
 
         // TODO validate request
-
-        List<Company> companies = this.companyRepository.findByName(createCompanyRequest.getName());
-        if (companies.isEmpty()) { // company does not exist
+        // company does not exist
+        if (!DomainUtils.isEntity(this.companyRepository.findByName(createCompanyRequest.getName()))) {
             Company company = DomainFactory.newCompany(createCompanyRequest.getName());
             this.companyRepository.save(company);
         } else { // company already exists
@@ -82,10 +82,6 @@ public class AviationServiceImpl implements AviationService {
 
         // TODO validate request
 
-        // search company by name.
-        // create aircraft.
-        // add aircraft to company.
-
         Company company = this.findCompanyByName(createAircraftRequest.getCompanyName());
 
         Aircraft aircraft = DomainFactory.newAircraft(createAircraftRequest.getName(), createAircraftRequest.getRegistration());
@@ -100,15 +96,47 @@ public class AviationServiceImpl implements AviationService {
         return response;
     }
 
-    private Company findCompanyByName(final String companyName) {
-        List<Company> companies = this.companyRepository.findByName(companyName);
-        if (companies.isEmpty()) {
-            throw new AviationServiceException("Company does not exist");
-        }
-        if (!DomainUtils.hasUniqueResult(companies)) {
-            throw new AviationServiceException("Company name must be unique");
+    @Transactional(readOnly = true)
+    @Override
+    public SearchAircraftByCompanyResponse searchAircraftByCompany(SearchAircraftByCompanyRequest searchAircraftByCompanyRequest)
+            throws AviationServiceException {
+        SearchAircraftByCompanyResponse response = null;
+        this.logger.debug("begin operation {}", searchAircraftByCompanyRequest);
+
+        // TODO validate request
+        Company company = this.findCompanyByName(searchAircraftByCompanyRequest.getCompanyName());
+
+        List<Aircraft> aircrafts = this.aircraftRepository.findByCompany(company);
+
+        // TODO response contents
+        response = this.createSearchAircraftByCompanyResponse(aircrafts);
+
+        this.logger.debug("end operation {}", response);
+        return response;
+    }
+
+    private SearchAircraftByCompanyResponse createSearchAircraftByCompanyResponse(final List<Aircraft> aircrafts) {
+        SearchAircraftByCompanyResponse response = null;
+        List<AircraftSumary> sumaryList = new ArrayList<AircraftSumary>();
+
+        for (Aircraft aircraft : aircrafts) {
+            AircraftSumary sumary = ServiceUtils.convertAircraftToAircraftSumary(aircraft);
+            sumaryList.add(sumary);
         }
 
-        return companies.get(0);
+        response = new SearchAircraftByCompanyResponse(sumaryList);
+
+        return response;
     }
+
+    private Company findCompanyByName(final String companyName) {
+        Company company = this.companyRepository.findByName(companyName);
+
+        if (!DomainUtils.isObject(company)) {
+            throw new AviationServiceException("Company does not exist");
+        }
+
+        return company;
+    }
+
 }

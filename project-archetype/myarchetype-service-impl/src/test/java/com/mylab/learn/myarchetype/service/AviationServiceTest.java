@@ -2,7 +2,6 @@ package com.mylab.learn.myarchetype.service;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mylab.learn.myarchetype.domain.Aircraft;
-import com.mylab.learn.myarchetype.domain.Company;
-import com.mylab.learn.myarchetype.domain.Destination;
 import com.mylab.learn.myarchetype.domain.DomainFactory;
-import com.mylab.learn.myarchetype.domain.DomainUtils;
 import com.mylab.learn.myarchetype.repository.AircraftRepository;
 import com.mylab.learn.myarchetype.repository.CompanyRepository;
 import com.mylab.learn.myarchetype.repository.DestinationRepository;
@@ -28,12 +24,14 @@ public class AviationServiceTest {
     private static final String DELTA_COMPANY = "Delta";
 
     private static final String AIRCRAFT1_NAME = "Teide";
-
     private static final String AIRCRAFT1_REGISTRATION = "EC-PMA";
+
+    private static final String AIRCRAFT2_NAME = "Aneto";
+    private static final String AIRCRAFT2_REGISTRATION = "EC-PMB";
+
     private static final String BARAJAS_AIRPORT = "Barajas";
     private static final String BARAJAS_SHORT_CODE = "MAD";
-    
-    
+
     @Autowired
     private DomainUtil domainUtil;
 
@@ -53,25 +51,27 @@ public class AviationServiceTest {
     public void setUp() {
         this.domainUtil.createCompany(IBERIA_COMPANY);
 
-//        Company company = DomainFactory.newCompany(COMPANY_NAME);
-//        this.companyRepository.save(company);
-//
-//        Aircraft aircraft = DomainFactory.newAircraft(AIRCRAFT1_NAME, AIRCRAFT1_REGISTRATION);
-//        this.aircraftRepository.save(aircraft);
-//
-//        Destination destination = DomainFactory.newDestination("barajas", "mad");
-//        this.destinationRepository.save(destination);
-//
-//        Assert.assertNotNull(company.getId());
-//        Assert.assertNotNull(aircraft.getId());
-//        Assert.assertNotNull(destination.getId());
+        // Company company = DomainFactory.newCompany(COMPANY_NAME);
+        // this.companyRepository.save(company);
+        //
+        // Aircraft aircraft = DomainFactory.newAircraft(AIRCRAFT1_NAME,
+        // AIRCRAFT1_REGISTRATION);
+        // this.aircraftRepository.save(aircraft);
+        //
+        // Destination destination =
+        // DomainFactory.newDestination("barajas", "mad");
+        // this.destinationRepository.save(destination);
+        //
+        // Assert.assertNotNull(company.getId());
+        // Assert.assertNotNull(aircraft.getId());
+        // Assert.assertNotNull(destination.getId());
     }
 
     @Transactional
     @Test
     public void testCreateAircraftWithDestination() {
         long destinationCount = this.domainUtil.countDestinations();
-        
+
         String airportName = BARAJAS_AIRPORT;
         String shortCode = BARAJAS_SHORT_CODE;
         CreateDestinationRequest createDestinationRequest = new CreateDestinationRequest(airportName, shortCode);
@@ -113,5 +113,27 @@ public class AviationServiceTest {
 
         Assert.assertNotNull(response);
         Assert.assertEquals((aircraftCount + 1), this.domainUtil.countAircrafts().longValue());
+    }
+
+    @Transactional
+    @Test
+    public void testSearchAircraftByCompany() {
+        // preconditions
+        // company created in setUp method
+        // create 2 aircrafts
+        long aircraftCount = this.domainUtil.countAircrafts();
+        String companyName = IBERIA_COMPANY;
+        Aircraft aircraft = DomainFactory.newAircraft(AIRCRAFT1_NAME, AIRCRAFT1_REGISTRATION);
+        this.domainUtil.addAircraftToCompany(aircraft, companyName);
+        aircraft = DomainFactory.newAircraft(AIRCRAFT2_NAME, AIRCRAFT2_REGISTRATION);
+        this.domainUtil.addAircraftToCompany(aircraft, companyName);
+
+        SearchAircraftByCompanyRequest searchAircraftByCompanyRequest = new SearchAircraftByCompanyRequest(companyName);
+        SearchAircraftByCompanyResponse response = this.aviationService.searchAircraftByCompany(searchAircraftByCompanyRequest);
+
+        Assert.assertNotNull(response);
+        Assert.assertTrue("response must have data", response.hasData());
+        Assert.assertEquals("collection must have elements", 2, response.aircraftCount().intValue());
+        Assert.assertEquals((aircraftCount + 2), this.domainUtil.countAircrafts().longValue());
     }
 }
