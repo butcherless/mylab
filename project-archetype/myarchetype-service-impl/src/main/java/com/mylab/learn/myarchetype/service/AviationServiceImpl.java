@@ -39,6 +39,8 @@ public class AviationServiceImpl implements AviationService {
         // TODO Auto-generated method stub
         this.logger.debug("begin operation {}", createDestinationRequest);
 
+        // TODO validate request
+
         Destination destination = DomainFactory.newDestination(createDestinationRequest.getAirportName(),
                 createDestinationRequest.getShortCode());
         this.destinationRepository.save(destination);
