@@ -33,11 +33,9 @@ public class AviationServiceImpl implements AviationService {
 
     @Override
     @Transactional
-    public CreateDestinationResponse createDestination(CreateDestinationRequest createDestinationRequest)
+    public CreateDestinationResponse createDestination(final CreateDestinationRequest createDestinationRequest)
             throws AviationServiceException {
         CreateDestinationResponse response = null;
-        // TODO Auto-generated method stub
-        this.logger.debug("begin operation {}", createDestinationRequest);
 
         // TODO validate request
 
@@ -46,9 +44,8 @@ public class AviationServiceImpl implements AviationService {
         this.destinationRepository.save(destination);
 
         // TODO response contents
-        response = new CreateDestinationResponse();
+        response = new CreateDestinationResponse(OperationResultEnum.OK);
 
-        this.logger.debug("end operation {}", response);
         return response;
     }
 
@@ -56,8 +53,6 @@ public class AviationServiceImpl implements AviationService {
     @Override
     public CreateCompanyResponse createCompany(final CreateCompanyRequest createCompanyRequest) throws AviationServiceException {
         CreateCompanyResponse response = null;
-        // TODO Auto-generated method stub
-        this.logger.debug("begin operation {}", createCompanyRequest);
 
         // TODO validate request
         // company does not exist
@@ -69,9 +64,8 @@ public class AviationServiceImpl implements AviationService {
         }
 
         // TODO response contents
-        response = new CreateCompanyResponse();
+        response = new CreateCompanyResponse(OperationResultEnum.OK);
 
-        this.logger.debug("end operation {}", response);
         return response;
     }
 
@@ -79,8 +73,6 @@ public class AviationServiceImpl implements AviationService {
     @Override
     public CreateAircraftResponse createAircraft(final CreateAircraftRequest createAircraftRequest) throws AviationServiceException {
         CreateAircraftResponse response = null;
-        // TODO Auto-generated method stub
-        this.logger.debug("begin operation {}", createAircraftRequest);
 
         // TODO validate request
 
@@ -92,18 +84,16 @@ public class AviationServiceImpl implements AviationService {
         company.addAircraft(aircraft);
 
         // TODO response contents
-        response = new CreateAircraftResponse();
+        response = new CreateAircraftResponse(OperationResultEnum.OK);
 
-        this.logger.debug("end operation {}", response);
         return response;
     }
 
     @Transactional(readOnly = true)
     @Override
-    public SearchAircraftByCompanyResponse searchAircraftByCompany(SearchAircraftByCompanyRequest searchAircraftByCompanyRequest)
-            throws AviationServiceException {
+    public SearchAircraftByCompanyResponse searchAircraftByCompany(
+            final SearchAircraftByCompanyRequest searchAircraftByCompanyRequest) throws AviationServiceException {
         SearchAircraftByCompanyResponse response = null;
-        this.logger.debug("begin operation {}", searchAircraftByCompanyRequest);
 
         // TODO validate request
         Company company = this.findCompanyByName(searchAircraftByCompanyRequest.getCompanyName());
@@ -113,7 +103,6 @@ public class AviationServiceImpl implements AviationService {
         // TODO response contents
         response = this.createSearchAircraftByCompanyResponse(aircrafts);
 
-        this.logger.debug("end operation {}", response);
         return response;
     }
 
@@ -126,7 +115,7 @@ public class AviationServiceImpl implements AviationService {
             sumaryList.add(sumary);
         }
 
-        response = new SearchAircraftByCompanyResponse(sumaryList);
+        response = new SearchAircraftByCompanyResponse(OperationResultEnum.OK, sumaryList);
 
         return response;
     }

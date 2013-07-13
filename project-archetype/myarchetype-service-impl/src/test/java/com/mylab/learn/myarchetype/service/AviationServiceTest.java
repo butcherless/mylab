@@ -78,6 +78,7 @@ public class AviationServiceTest {
         CreateDestinationResponse response = this.aviationService.createDestination(createDestinationRequest);
 
         Assert.assertNotNull(response);
+        Assert.assertEquals(OperationResultEnum.OK, response.getOperationResult());
         Assert.assertEquals((destinationCount + 1), this.domainUtil.countDestinations().longValue());
     }
 
@@ -89,6 +90,7 @@ public class AviationServiceTest {
         CreateCompanyResponse response = this.aviationService.createCompany(createCompanyRequest);
 
         Assert.assertNotNull(response);
+        Assert.assertEquals(OperationResultEnum.OK, response.getOperationResult());
         Assert.assertEquals((companyCount + 1), this.domainUtil.countCompanies().longValue());
     }
 
@@ -112,6 +114,7 @@ public class AviationServiceTest {
         CreateAircraftResponse response = this.aviationService.createAircraft(createAircraftRequest);
 
         Assert.assertNotNull(response);
+        Assert.assertEquals(OperationResultEnum.OK, response.getOperationResult());
         Assert.assertEquals((aircraftCount + 1), this.domainUtil.countAircrafts().longValue());
     }
 
@@ -132,6 +135,7 @@ public class AviationServiceTest {
         SearchAircraftByCompanyResponse response = this.aviationService.searchAircraftByCompany(searchAircraftByCompanyRequest);
 
         Assert.assertNotNull(response);
+        Assert.assertEquals(OperationResultEnum.OK, response.getOperationResult());
         Assert.assertTrue("response must have data", response.hasData());
         Assert.assertEquals("collection must have elements", 2, response.aircraftCount().intValue());
         Assert.assertEquals((aircraftCount + 2), this.domainUtil.countAircrafts().longValue());

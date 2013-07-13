@@ -7,14 +7,20 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class CreateCompanyResponse implements Serializable {
     private static final long serialVersionUID = -3990860942956501641L;
+    private final OperationResultEnum operationResult;
 
-    public CreateCompanyResponse() {
-        // TODO Auto-generated constructor stub
+    public CreateCompanyResponse(OperationResultEnum operationResult) {
+        this.operationResult = operationResult;
+    }
+    
+    public OperationResultEnum getOperationResult() {
+        return operationResult;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-        .toString();
+        ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE);
+        builder.append("operationResult", this.operationResult);
+        return builder.toString();
     }
 }
