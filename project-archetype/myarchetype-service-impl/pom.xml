@@ -6,7 +6,7 @@
 		<artifactId>myarchetype-parent-pom</artifactId>
 		<version>1.1.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>myarchetype-service-impl</artifactId>
 	<name>myarchetype-service-implementation</name>
 	<description>myarchtype service implementation module</description>
@@ -28,12 +28,12 @@
 			<version>${project.version}</version>
 		</dependency>
 
-        <dependency>
-            <groupId>com.mylab.learn.myarchetype</groupId>
-            <artifactId>myarchetype-domain-util</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>com.mylab.learn.myarchetype</groupId>
+			<artifactId>myarchetype-domain-util</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -70,10 +70,10 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -84,16 +84,16 @@
 			<artifactId>spring-beans</artifactId>
 		</dependency>
 
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-	<scope>compile</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
