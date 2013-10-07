@@ -39,6 +39,10 @@
 		<downloadJavadocs>true</downloadJavadocs>
 	</properties>
 
+        <prerequisites>
+                <maven>3.0.4</maven>
+        </prerequisites>
+
 	<dependencyManagement>
 		<dependencies>
 
