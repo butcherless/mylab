@@ -83,6 +83,12 @@
 					<stopPort>9081</stopPort>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.openejb.maven</groupId>
+				<artifactId>tomee-maven-plugin</artifactId>
+				<version>1.5.2</version>
+			</plugin>
 		</plugins>
 	</build>
 
