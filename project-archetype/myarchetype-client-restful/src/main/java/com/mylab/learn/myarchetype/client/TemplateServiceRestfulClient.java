@@ -26,7 +26,7 @@ public class TemplateServiceRestfulClient {
 
 		// TODO externalizar URI's
 		TemplateResponse templateResponse = restTemplate.getForObject(this.serviceUrl + "/templateOperation/{requestId}",
-				TemplateResponse.class, "MAIN_FLOW");
+		        TemplateResponse.class, "MAIN_FLOW");
 		result = templateResponse.getDummyResult();
 
 		this.logger.debug("response {}", templateResponse);
@@ -42,7 +42,7 @@ public class TemplateServiceRestfulClient {
 		this.logger.debug("request {}", request);
 
 		TemplateResponse templateResponse = restTemplate.postForObject(this.serviceUrl + "/templatePutOperation", request,
-				TemplateResponse.class);
+		        TemplateResponse.class);
 
 		this.logger.debug("response {}", templateResponse);
 

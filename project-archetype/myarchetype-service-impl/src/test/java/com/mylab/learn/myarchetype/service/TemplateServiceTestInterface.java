@@ -31,4 +31,19 @@ public interface TemplateServiceTestInterface {
 	 * Defines test method for empty request
 	 */
 	void testEmptyTemplateRequest();
+
+	/**
+	 * 
+	 */
+	void testGeneralErrorTemplateOperation();
+
+	/**
+	 * 
+	 */
+	void testExceptionAssignableForm();
+
+	/**
+	 * 
+	 */
+	void testMyServiceException();
 }

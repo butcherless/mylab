@@ -10,24 +10,24 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 
 	protected TemplateService templateService;
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	@Test
 	public void testMainTemplateOperation() {
+		// preconditions, prepare request
 		String dummyProperty = BusinessEnum.MAIN_FLOW.toString();
 		TemplateRequest templateRequest = new TemplateRequest(dummyProperty);
+
+		// perform operation
 		TemplateResponse templateResponse = this.templateService.templateOperation(templateRequest);
 
+		// postconditions, verify response
 		Assert.assertNotNull(templateResponse);
 		Assert.assertTrue("main flow", templateResponse.getDummyResult());
 
 		this.logger.debug("adapter operation");
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	@Test
 	public void testAlternateTemplateOperation() {
 		String dummyProperty = BusinessEnum.ALTERNATE_FLOW.toString();
@@ -40,9 +40,7 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 		this.logger.debug("adapter operation");
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	@Test(expected = MyServiceException.class)
 	public void testGeneralErrorTemplateOperation() {
 		String dummyProperty = BusinessEnum.GENERAL_ERROR_FLOW.toString();
@@ -54,9 +52,7 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 		this.logger.debug("adapter operation");
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	@Test(expected = TemplateRequestValidationException.class)
 	public void testNullTemplateRequest() {
 		TemplateRequest templateRequest = null;
@@ -64,9 +60,7 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 		this.templateService.templateOperation(templateRequest);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	@Test(expected = TemplateRequestValidationException.class)
 	public void testUnsopportedTemplateRequest() {
 		TemplateRequest templateRequest = new NotSupportedRequest("dummyProperty");
@@ -74,9 +68,7 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 		this.templateService.templateOperation(templateRequest);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	@Test(expected = TemplateRequestValidationException.class)
 	public void testEmptyTemplateRequest() {
 		TemplateRequest templateRequest = new TemplateRequest("");
@@ -84,6 +76,7 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 		this.templateService.templateOperation(templateRequest);
 	}
 
+	@Override
 	@Test
 	public void testExceptionAssignableForm() {
 		Class<TemplateServiceException> clazz = TemplateServiceException.class;
@@ -93,6 +86,7 @@ public abstract class TemplateServiceTestAdapter implements TemplateServiceTestI
 		Assert.assertFalse(clazz.isAssignableFrom(MyServiceException.class));
 	}
 
+	@Override
 	@Test
 	public void testMyServiceException() {
 		String message = "exception-message";
