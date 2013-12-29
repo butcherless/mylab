@@ -26,7 +26,7 @@ public class DomainTest {
 	private PojoValidator pojoValidator;
 	private List<PojoClass> pojoClasses;
 
-	private Class[] exclusionArray = { DomainTest.class };
+	private Class[] exclusionArray = { DomainTest.class, DomainFactory.class };
 
 	@Before
 	public void setup() {
@@ -46,7 +46,6 @@ public class DomainTest {
 		pojoValidator.addRule(new NoNestedClassRule());
 
 		// Create Testers to validate behaviour for POJO_PACKAGE
-		pojoValidator.addTester(new SetterTester());
 		pojoValidator.addTester(new GetterTester());
 	}
 

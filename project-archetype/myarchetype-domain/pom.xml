@@ -106,6 +106,24 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+        <dependency>
+            <groupId>com.googlecode.openpojo</groupId>
+            <artifactId>openpojo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mylab.learn.myarchetype</groupId>
+            <artifactId>myarchetype-test</artifactId>
+            <scope>test</scope>
+            <version>${project.version}</version>
+        </dependency>
+
 	</dependencies>
 
 
