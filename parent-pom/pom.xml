@@ -15,7 +15,7 @@
 
 		<aspectj.version>1.7.4</aspectj.version>
 		<commons.dbcp.version>1.4</commons.dbcp.version>
-		<commons.lang3.version>3.2</commons.lang3.version>
+		<commons.lang3.version>3.2.1</commons.lang3.version>
 		<commons.pool.version>1.6</commons.pool.version>
 		<hibernate.version>4.2.0.Final</hibernate.version>
 		<hibernate-jpa-api.version>1.0.1.Final</hibernate-jpa-api.version>
@@ -27,7 +27,7 @@
 		<javax.annotation.version>1.0</javax.annotation.version>
 		<javax.servlet.version>2.5</javax.servlet.version>
 		<jaxb.api.version>2.2.11</jaxb.api.version>
-		<jetty.version>9.1.0.v20131115</jetty.version>
+		<jetty.version>9.1.1.v20140108</jetty.version>
 		<junit.version>4.11</junit.version>
 		<openpojo.version>0.4.8</openpojo.version>
 		<slf4j.version>1.7.5</slf4j.version>
