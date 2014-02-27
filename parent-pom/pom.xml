@@ -20,20 +20,20 @@
 		<hibernate.version>4.2.0.Final</hibernate.version>
 		<hibernate-jpa-api.version>1.0.1.Final</hibernate-jpa-api.version>
 		<hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
-		<hsqldb.version>2.3.1</hsqldb.version>
+		<hsqldb.version>2.3.2</hsqldb.version>
 		<jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
 		<jackson-core.version>2.3.1</jackson-core.version>
 		<jackson-databind.version>2.3.1</jackson-databind.version>
 		<javax.annotation.version>1.0</javax.annotation.version>
 		<javax.servlet.version>2.5</javax.servlet.version>
 		<jaxb.api.version>2.2.11</jaxb.api.version>
-		<jetty.version>9.1.1.v20140108</jetty.version>
+		<jetty.version>9.1.2.v20140210</jetty.version>
 		<junit.version>4.11</junit.version>
-		<openpojo.version>0.4.8</openpojo.version>
-		<slf4j.version>1.7.5</slf4j.version>
-		<spring-data-commons.version>1.6.3.RELEASE</spring-data-commons.version>
-		<spring.data.version>1.4.3.RELEASE</spring.data.version>
-		<spring.version>4.0.0.RELEASE</spring.version>
+		<openpojo.version>0.4.9</openpojo.version>
+		<slf4j.version>1.7.6</slf4j.version>
+		<spring-data-commons.version>1.7.0.RELEASE</spring-data-commons.version>
+		<spring.data.version>1.5.0.RELEASE</spring.data.version>
+		<spring.version>4.0.2.RELEASE</spring.version>
 		<validation.api.version>1.1.0.Final</validation.api.version>
 
 		<downloadSources>true</downloadSources>
