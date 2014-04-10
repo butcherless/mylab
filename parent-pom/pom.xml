@@ -15,7 +15,7 @@
 
 		<aspectj.version>1.7.4</aspectj.version>
 		<commons.dbcp.version>1.4</commons.dbcp.version>
-		<commons.lang3.version>3.3.1</commons.lang3.version>
+		<commons.lang3.version>3.3.2</commons.lang3.version>
 		<commons.pool.version>1.6</commons.pool.version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
 		<hibernate-validator.version>5.1.0.Final</hibernate-validator.version>
