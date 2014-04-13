@@ -21,8 +21,8 @@
 		<hibernate-validator.version>5.1.0.Final</hibernate-validator.version>
 		<hsqldb.version>2.3.2</hsqldb.version>
 		<jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
-		<jackson-core.version>2.3.2</jackson-core.version>
-		<jackson-databind.version>2.3.2</jackson-databind.version>
+		<jackson-core.version>2.3.3</jackson-core.version>
+		<jackson-databind.version>2.3.3</jackson-databind.version>
 		<javax.annotation.version>1.0</javax.annotation.version>
 		<javax.servlet.version>2.5</javax.servlet.version>
 		<jaxb.api.version>2.2.11</jaxb.api.version>
