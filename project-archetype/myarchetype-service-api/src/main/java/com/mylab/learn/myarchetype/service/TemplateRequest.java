@@ -21,7 +21,7 @@ public class TemplateRequest implements Serializable {
 	}
 
 	public Boolean hasData() {
-		return (this.dummyProperty != null)	&& (this.dummyProperty.length() > 0);
+		return (this.dummyProperty != null) && (this.dummyProperty.length() > 0);
 	}
 
 	public String getDummyProperty() {
@@ -31,9 +31,9 @@ public class TemplateRequest implements Serializable {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-		.append("dummyProperty", this.dummyProperty)
-		.append("hasData", this.hasData())
-		.toString();
+		        .append("dummyProperty", this.dummyProperty)
+		        .append("hasData", this.hasData())
+		        .toString();
 	}
-	
+
 }

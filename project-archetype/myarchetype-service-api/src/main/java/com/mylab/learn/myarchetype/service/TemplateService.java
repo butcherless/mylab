@@ -14,5 +14,6 @@ public interface TemplateService {
 	 * @return ouput data for the operation
 	 * @throws TemplateServiceException operation errors
 	 */
-	TemplateResponse templateOperation(TemplateRequest templateRequest) throws TemplateServiceException;
+	TemplateResponse templateOperation(TemplateRequest templateRequest)
+	        throws TemplateServiceException;
 }
