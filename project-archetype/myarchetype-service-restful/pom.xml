@@ -103,6 +103,7 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<configuration>
+					<jvmArgs>-Xmx1024m -Xms512m</jvmArgs>
 					<webAppConfig>
 						<contextPath>/${project.name}</contextPath>
 					</webAppConfig>
