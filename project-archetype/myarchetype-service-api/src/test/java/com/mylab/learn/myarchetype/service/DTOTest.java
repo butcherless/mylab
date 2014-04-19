@@ -23,66 +23,66 @@ import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.utils.ValidationHelper;
 
 public class DTOTest {
-	private PojoValidator pojoValidator;
-	private List<PojoClass> pojoClasses;
+    private PojoValidator pojoValidator;
+    private List<PojoClass> pojoClasses;
 
-	private Class[] exclusionArray = { DTOTest.class, ServiceTest.class };
+    private Class[] exclusionArray = { DTOTest.class, ServiceTest.class };
 
-	@Before
-	public void setup() {
-		pojoValidator = new PojoValidator();
-		FilterNonConcrete filterNonConcrete = new FilterNonConcrete();
-		FilterNestedClasses filterNestedClasses = new FilterNestedClasses();
-		ExclusionListFilter exclusionListFilter = new ExclusionListFilter(exclusionArray);
+    @Before
+    public void setup() {
+        pojoValidator = new PojoValidator();
+        FilterNonConcrete filterNonConcrete = new FilterNonConcrete();
+        FilterNestedClasses filterNestedClasses = new FilterNestedClasses();
+        ExclusionListFilter exclusionListFilter = new ExclusionListFilter(exclusionArray);
 
-		FilterChain filterChain = new FilterChain(filterNonConcrete, filterNestedClasses,
-		        exclusionListFilter);
-		pojoClasses = PojoClassFactory.getPojoClasses(this.getClass().getPackage().getName(),
-		        filterChain);
+        FilterChain filterChain = new FilterChain(filterNonConcrete, filterNestedClasses,
+                exclusionListFilter);
+        pojoClasses = PojoClassFactory.getPojoClasses(this.getClass().getPackage().getName(),
+                filterChain);
 
-		// Create Rules to validate structure for POJO_PACKAGE
-		pojoValidator.addRule(new NoPublicFieldsRule());
-		pojoValidator.addRule(new NoPrimitivesRule());
-		pojoValidator.addRule(new NoStaticExceptFinalRule());
-		pojoValidator.addRule(new GetterMustExistRule());
-		pojoValidator.addRule(new NoNestedClassRule());
+        // Create Rules to validate structure for POJO_PACKAGE
+        pojoValidator.addRule(new NoPublicFieldsRule());
+        pojoValidator.addRule(new NoPrimitivesRule());
+        pojoValidator.addRule(new NoStaticExceptFinalRule());
+        pojoValidator.addRule(new GetterMustExistRule());
+        pojoValidator.addRule(new NoNestedClassRule());
 
-		// Create Testers to validate behaviour for POJO_PACKAGE
-		pojoValidator.addTester(new DefaultValuesNullTester());
-		pojoValidator.addTester(new GetterTester());
-	}
+        // Create Testers to validate behaviour for POJO_PACKAGE
+        pojoValidator.addTester(new DefaultValuesNullTester());
+        pojoValidator.addTester(new GetterTester());
+    }
 
-	@Test
-	public void testPojoStructureAndBehavior() {
-		for (PojoClass pojoClass : pojoClasses) {
-			pojoValidator.runValidation(pojoClass);
-			ValidationHelper.getBasicInstance(pojoClass).toString();
-			ValidationHelper.getMostCompleteInstance(pojoClass).toString();
-		}
-	}
+    @Test
+    public void testPojoStructureAndBehavior() {
+        for (PojoClass pojoClass : pojoClasses) {
+            pojoValidator.runValidation(pojoClass);
+            ValidationHelper.getBasicInstance(pojoClass).toString();
+            ValidationHelper.getMostCompleteInstance(pojoClass).toString();
+        }
+    }
 
-	@Test
-	public void testAdditionalMethods() {
-		OperationResultEnum operationResult = OperationResultEnum.OK;
-		List<AircraftSumary> aircraftSumaryList = null;
-		SearchAircraftByCompanyResponse response =
-		        new SearchAircraftByCompanyResponse(operationResult, aircraftSumaryList);
+    @Test
+    public void testAdditionalMethods() {
+        OperationResultEnum operationResult = OperationResultEnum.OK;
+        List<AircraftSumary> aircraftSumaryList = null;
+        SearchAircraftByCompanyResponse response =
+                new SearchAircraftByCompanyResponse(operationResult, aircraftSumaryList);
 
-		Assert.assertFalse(response.hasData());
-		Assert.assertTrue(response.aircraftCount() == 0);
+        Assert.assertFalse(response.hasData());
+        Assert.assertTrue(response.aircraftCount() == 0);
 
-		String airportName = "airportName";
-		String shortCode = null;
-		CreateDestinationRequest request = new CreateDestinationRequest(airportName, shortCode);
+        String airportName = "airportName";
+        String shortCode = null;
+        CreateDestinationRequest request = new CreateDestinationRequest(airportName, shortCode);
 
-		Assert.assertFalse(request.hasData());
+        Assert.assertFalse(request.hasData());
 
-		airportName = null;
-		shortCode = "shortCode";
-		request = new CreateDestinationRequest(airportName, shortCode);
+        airportName = null;
+        shortCode = "shortCode";
+        request = new CreateDestinationRequest(airportName, shortCode);
 
-		Assert.assertFalse(request.hasData());
+        Assert.assertFalse(request.hasData());
 
-	}
+    }
 
 }

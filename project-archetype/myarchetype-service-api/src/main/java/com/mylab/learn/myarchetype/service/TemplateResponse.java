@@ -12,27 +12,27 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 
  */
 public class TemplateResponse implements Serializable {
-	private static final long serialVersionUID = -6497550139770730644L;
+    private static final long serialVersionUID = -6497550139770730644L;
 
-	private final Boolean dummyResult;
+    private final Boolean dummyResult;
 
-	public TemplateResponse() {
-		this.dummyResult = false;
-	}
+    public TemplateResponse() {
+        this.dummyResult = false;
+    }
 
-	public TemplateResponse(Boolean dummyResult) {
-		this.dummyResult = dummyResult;
-	}
+    public TemplateResponse(Boolean dummyResult) {
+        this.dummyResult = dummyResult;
+    }
 
-	public Boolean getDummyResult() {
-		return dummyResult;
-	}
+    public Boolean getDummyResult() {
+        return dummyResult;
+    }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-		        .append("result", this.dummyResult)
-		        .toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("result", this.dummyResult)
+                .toString();
+    }
 
 }

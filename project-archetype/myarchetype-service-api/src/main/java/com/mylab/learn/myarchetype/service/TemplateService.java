@@ -7,13 +7,13 @@ package com.mylab.learn.myarchetype.service;
  * 
  */
 public interface TemplateService {
-	/**
-	 * Service operation description from requirements
-	 * 
-	 * @param templateRequest input data for the operation
-	 * @return ouput data for the operation
-	 * @throws TemplateServiceException operation errors
-	 */
-	TemplateResponse templateOperation(TemplateRequest templateRequest)
-	        throws TemplateServiceException;
+    /**
+     * Service operation description from requirements
+     * 
+     * @param templateRequest input data for the operation
+     * @return ouput data for the operation
+     * @throws TemplateServiceException operation errors
+     */
+    TemplateResponse templateOperation(TemplateRequest templateRequest)
+            throws TemplateServiceException;
 }
