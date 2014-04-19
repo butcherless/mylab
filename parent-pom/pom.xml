@@ -359,6 +359,10 @@
 					<version>2.6</version>
 					<configuration>
 						<aggregate>true</aggregate>
+						<formats>
+							<format>html</format>
+							<format>xml</format>
+						</formats>
 					</configuration>
 				</plugin>
 				<plugin>
