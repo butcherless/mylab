@@ -36,7 +36,6 @@ public class HttpFacadeInvokerServiceExporter extends HttpInvokerServiceExporter
 			}
 
 			writeRemoteInvocationResult(request, response, result);
-			logger.debug("6");
 		} catch (ClassNotFoundException ex) {
 			throw new NestedServletException("Class not found during deserialization", ex);
 		}
