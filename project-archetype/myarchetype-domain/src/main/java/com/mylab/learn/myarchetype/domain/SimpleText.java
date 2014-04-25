@@ -41,11 +41,11 @@ public class SimpleText extends AbstractEntity {
         return translations;
     }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-		.append(super.toString())
-		.append("text", this.getText())
-		.toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append(super.toString())
+                .append("text", this.getText())
+                .toString();
+    }
 }

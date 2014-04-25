@@ -16,68 +16,72 @@ import com.mylab.learn.myarchetype.repository.TemplateRepository;
 
 @Service
 public class TemplateServiceImpl implements TemplateService {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Resource(type = TemplateRequestValidator.class)
-	private Validator requestValidator;
+    @Resource(type = TemplateRequestValidator.class)
+    private Validator requestValidator;
 
-	@Autowired
-	private TemplateRepository templateRepository;
+    @Autowired
+    private TemplateRepository templateRepository;
 
-	@Transactional
-	@Override
-	public TemplateResponse templateOperation(final TemplateRequest templateRequest) throws TemplateServiceException {
-		Boolean isMain = Boolean.FALSE;
-		TemplateResponse templateResponse;
+    @Transactional
+    @Override
+    public TemplateResponse templateOperation(final TemplateRequest templateRequest)
+            throws TemplateServiceException {
+        Boolean isMain = Boolean.FALSE;
+        TemplateResponse templateResponse;
 
-		this.validateRequest(templateRequest);
+        this.validateRequest(templateRequest);
 
-		TemplateEntity template = DomainFactory.newTemplateEntity(templateRequest.getDummyProperty());
-		this.templateRepository.save(template);
+        TemplateEntity template = DomainFactory.newTemplateEntity(templateRequest
+                .getDummyProperty());
+        this.templateRepository.save(template);
 
-		if (templateRequest.getDummyProperty().equals(BusinessEnum.MAIN_FLOW.toString())) {
-			isMain = Boolean.TRUE;
-		} else if (templateRequest.getDummyProperty().equals(BusinessEnum.GENERAL_ERROR_FLOW.toString())) {
-			/* simulation of general exception, not declared in the service api
-			 */
-			throw new MyServiceException();
-		}
-		
-		templateResponse = new TemplateResponse(isMain);
+        if (templateRequest.getDummyProperty().equals(BusinessEnum.MAIN_FLOW.toString())) {
+            isMain = Boolean.TRUE;
+        } else if (templateRequest.getDummyProperty().equals(
+                BusinessEnum.GENERAL_ERROR_FLOW.toString())) {
+            /*
+             * simulation of general exception, not declared in the service api
+             */
+            throw new MyServiceException();
+        }
 
-		return templateResponse;
-	}
+        templateResponse = new TemplateResponse(isMain);
 
-	public void setTemplateRepository(TemplateRepository templateRepository) {
-		this.templateRepository = templateRepository;
-	}
-	
-	public void setRequestValidator(Validator requestValidator) {
-		this.requestValidator = requestValidator;
-	}
+        return templateResponse;
+    }
 
+    public void setTemplateRepository(TemplateRepository templateRepository) {
+        this.templateRepository = templateRepository;
+    }
 
-	//////// H E L P E R S ////////
-	
-	private void validateRequest(final TemplateRequest templateRequest) {
-		this.logger.debug("request validation for {}.", templateRequest);
+    public void setRequestValidator(Validator requestValidator) {
+        this.requestValidator = requestValidator;
+    }
 
-		if (templateRequest == null) {
-			throw new TemplateRequestValidationException("Empty request.");
-		}
+    // ////// H E L P E R S ////////
 
-		if (!this.requestValidator.supports(templateRequest.getClass())) {
-			throw new TemplateRequestValidationException("class not supported: " + templateRequest.getClass());
-		}
+    private void validateRequest(final TemplateRequest templateRequest) {
+        this.logger.debug("request validation for {}.", templateRequest);
 
-		// rethrows internal exceptions to service (contract) exceptions
-		try {
-			this.requestValidator.validate(templateRequest);
-		} catch (ValidationException e) {
-			throw new TemplateRequestValidationException(e.getMessage());
-		}
+        if (templateRequest == null) {
+            throw new TemplateRequestValidationException("Empty request.");
+        }
 
-		this.logger.debug("request validated.");
-	}
+        if (!this.requestValidator.supports(templateRequest.getClass())) {
+            throw new TemplateRequestValidationException("class not supported: "
+                    + templateRequest.getClass());
+        }
+
+        // rethrows internal exceptions to service (contract) exceptions
+        try {
+            this.requestValidator.validate(templateRequest);
+        } catch (ValidationException e) {
+            throw new TemplateRequestValidationException(e.getMessage());
+        }
+
+        this.logger.debug("request validated.");
+    }
 
 }

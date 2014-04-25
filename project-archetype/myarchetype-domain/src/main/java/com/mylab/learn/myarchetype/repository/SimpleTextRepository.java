@@ -13,7 +13,8 @@ import com.mylab.learn.myarchetype.domain.SimpleText;
  * 
  */
 @Repository
-public interface SimpleTextRepository extends JpaRepository<SimpleText, Long>, JpaSpecificationExecutor<SimpleText> {
+public interface SimpleTextRepository extends JpaRepository<SimpleText, Long>,
+        JpaSpecificationExecutor<SimpleText> {
 
-	SimpleText findByText(String text);
+    SimpleText findByText(String text);
 }

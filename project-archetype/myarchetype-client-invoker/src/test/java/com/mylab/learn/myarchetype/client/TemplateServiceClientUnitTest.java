@@ -11,11 +11,11 @@ import com.mylab.learn.myarchetype.service.TemplateServiceMockImpl;
 @ContextConfiguration(locations = "classpath:template-service-client-unit-test.xml")
 public class TemplateServiceClientUnitTest extends TemplateServiceClientTestAdapter {
 
-	@Before
-	public void setUp() {
-		TemplateServiceMockImpl templateServiceMockImpl = new TemplateServiceMockImpl();
-		TemplateServiceClient templateServiceClient = new TemplateServiceClient();
-		templateServiceClient.setTemplateService(templateServiceMockImpl);
-		super.templateServiceClient = templateServiceClient;
-	}
+    @Before
+    public void setUp() {
+        TemplateServiceMockImpl templateServiceMockImpl = new TemplateServiceMockImpl();
+        TemplateServiceClient templateServiceClient = new TemplateServiceClient();
+        templateServiceClient.setTemplateService(templateServiceMockImpl);
+        super.templateServiceClient = templateServiceClient;
+    }
 }

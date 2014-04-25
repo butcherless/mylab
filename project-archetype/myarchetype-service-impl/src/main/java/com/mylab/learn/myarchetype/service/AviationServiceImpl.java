@@ -33,13 +33,15 @@ public class AviationServiceImpl implements AviationService {
 
     @Override
     @Transactional
-    public CreateDestinationResponse createDestination(final CreateDestinationRequest createDestinationRequest)
+    public CreateDestinationResponse createDestination(
+            final CreateDestinationRequest createDestinationRequest)
             throws AviationServiceException {
         CreateDestinationResponse response = null;
 
         // TODO validate request
 
-        Destination destination = DomainFactory.newDestination(createDestinationRequest.getAirportName(),
+        Destination destination = DomainFactory.newDestination(
+                createDestinationRequest.getAirportName(),
                 createDestinationRequest.getShortCode());
         this.destinationRepository.save(destination);
 
@@ -51,16 +53,19 @@ public class AviationServiceImpl implements AviationService {
 
     @Transactional
     @Override
-    public CreateCompanyResponse createCompany(final CreateCompanyRequest createCompanyRequest) throws AviationServiceException {
+    public CreateCompanyResponse createCompany(final CreateCompanyRequest createCompanyRequest)
+            throws AviationServiceException {
         CreateCompanyResponse response = null;
 
         // TODO validate request
         // company does not exist
-        if (!DomainUtils.isEntity(this.companyRepository.findByName(createCompanyRequest.getName()))) {
+        if (!DomainUtils
+                .isEntity(this.companyRepository.findByName(createCompanyRequest.getName()))) {
             Company company = DomainFactory.newCompany(createCompanyRequest.getName());
             this.companyRepository.save(company);
         } else { // company already exists
-            throw new AviationServiceException("Company already exists: " + createCompanyRequest.getName());
+            throw new AviationServiceException("Company already exists: "
+                    + createCompanyRequest.getName());
         }
 
         // TODO response contents
@@ -71,14 +76,16 @@ public class AviationServiceImpl implements AviationService {
 
     @Transactional
     @Override
-    public CreateAircraftResponse createAircraft(final CreateAircraftRequest createAircraftRequest) throws AviationServiceException {
+    public CreateAircraftResponse createAircraft(final CreateAircraftRequest createAircraftRequest)
+            throws AviationServiceException {
         CreateAircraftResponse response = null;
 
         // TODO validate request
 
         Company company = this.findCompanyByName(createAircraftRequest.getCompanyName());
 
-        Aircraft aircraft = DomainFactory.newAircraft(createAircraftRequest.getName(), createAircraftRequest.getRegistration());
+        Aircraft aircraft = DomainFactory.newAircraft(createAircraftRequest.getName(),
+                createAircraftRequest.getRegistration());
         this.aircraftRepository.save(aircraft);
 
         company.addAircraft(aircraft);
@@ -92,7 +99,8 @@ public class AviationServiceImpl implements AviationService {
     @Transactional(readOnly = true)
     @Override
     public SearchAircraftByCompanyResponse searchAircraftByCompany(
-            final SearchAircraftByCompanyRequest searchAircraftByCompanyRequest) throws AviationServiceException {
+            final SearchAircraftByCompanyRequest searchAircraftByCompanyRequest)
+            throws AviationServiceException {
         SearchAircraftByCompanyResponse response = null;
 
         // TODO validate request
@@ -106,7 +114,8 @@ public class AviationServiceImpl implements AviationService {
         return response;
     }
 
-    private SearchAircraftByCompanyResponse createSearchAircraftByCompanyResponse(final List<Aircraft> aircrafts) {
+    private SearchAircraftByCompanyResponse createSearchAircraftByCompanyResponse(
+            final List<Aircraft> aircrafts) {
         SearchAircraftByCompanyResponse response = null;
         List<AircraftSumary> sumaryList = new ArrayList<AircraftSumary>();
 

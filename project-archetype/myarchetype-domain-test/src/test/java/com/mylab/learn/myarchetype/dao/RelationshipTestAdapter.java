@@ -166,7 +166,8 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
 
         destination = this.createLasPalmasDestination();
 
-        List<Aircraft> aircraftList = this.aircraftRepository.findByRegistration(aircraft.getRegistration());
+        List<Aircraft> aircraftList = this.aircraftRepository.findByRegistration(aircraft
+                .getRegistration());
         Assert.assertFalse("aircraft must exist", aircraftList.isEmpty());
         Aircraft aircraftFound = aircraftList.get(0);
 
@@ -206,11 +207,13 @@ public abstract class RelationshipTestAdapter implements RelationshipTestInterfa
         // destination asserts
         Assert.assertEquals("destination count", 2L, this.destinationRepository.count());
 
-        List<Aircraft> aircraftList = this.aircraftRepository.findByRegistration(aircraft.getRegistration());
+        List<Aircraft> aircraftList = this.aircraftRepository.findByRegistration(aircraft
+                .getRegistration());
         Assert.assertFalse("aircraft must exist", aircraftList.isEmpty());
         Aircraft aircraftFound = aircraftList.get(0);
 
-        Destination destinationFound = this.destinationRepository.findByShortCode(destination.getShortCode());
+        Destination destinationFound = this.destinationRepository.findByShortCode(destination
+                .getShortCode());
         aircraftFound.removeDestination(destinationFound);
 
         // destination asserts

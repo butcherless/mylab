@@ -17,43 +17,43 @@ import com.mylab.learn.myarchetype.service.TemplateService;
 @Controller
 @RequestMapping(value = "/templateService")
 public class TemplateServiceRestfulController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private TemplateService templateService;
+    @Autowired
+    private TemplateService templateService;
 
-	@RequestMapping(value = "/templateOperation/{requestId}", method = RequestMethod.GET)
-	@ResponseBody
-	public TemplateResponse templateOperation(@PathVariable String requestId) {
-		// TODO solo para pruebas
-		// String dummyProperty = null;
-		String dummyProperty = requestId;
+    @RequestMapping(value = "/templateOperation/{requestId}", method = RequestMethod.GET)
+    @ResponseBody
+    public TemplateResponse templateOperation(@PathVariable String requestId) {
+        // TODO solo para pruebas
+        // String dummyProperty = null;
+        String dummyProperty = requestId;
 
-		TemplateRequest templateRequest = new TemplateRequest(dummyProperty);
-		// TODO
-		TemplateResponse templateResponse = this.templateService.templateOperation(templateRequest);
+        TemplateRequest templateRequest = new TemplateRequest(dummyProperty);
+        // TODO
+        TemplateResponse templateResponse = this.templateService.templateOperation(templateRequest);
 
-		this.logger.debug("request id={}", requestId);
+        this.logger.debug("request id={}", requestId);
 
-		return templateResponse;
-	}
+        return templateResponse;
+    }
 
-	@RequestMapping(value = "/templatePutOperation", method = RequestMethod.POST)
-	@ResponseBody
-	public TemplateResponse templatePutOperation(@RequestBody TemplateRequest templateRequest) {
+    @RequestMapping(value = "/templatePutOperation", method = RequestMethod.POST)
+    @ResponseBody
+    public TemplateResponse templatePutOperation(@RequestBody TemplateRequest templateRequest) {
 
-		this.logger.debug("request {}", templateRequest);
+        this.logger.debug("request {}", templateRequest);
 
-		TemplateResponse templateResponse = this.templateService.templateOperation(templateRequest);
+        TemplateResponse templateResponse = this.templateService.templateOperation(templateRequest);
 
-		this.logger.debug("response {}", templateResponse);
+        this.logger.debug("response {}", templateResponse);
 
-		return templateResponse;
-	}
+        return templateResponse;
+    }
 
-	public void setTemplateService(TemplateService templateService) {
-		this.templateService = templateService;
-	}
+    public void setTemplateService(TemplateService templateService) {
+        this.templateService = templateService;
+    }
 }
 
 /*

@@ -16,41 +16,42 @@ import org.springframework.web.util.NestedServletException;
 import com.mylab.learn.myarchetype.service.TemplateServiceException;
 
 public class HttpFacadeInvokerServiceExporter extends HttpInvokerServiceExporter {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Override
-	public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.debug("begin handle request");
-		try {
-			RemoteInvocation invocation = readRemoteInvocation(request);
-			RemoteInvocationResult result = invokeAndCreateResult(invocation, getProxy());
+    @Override
+    public void handleRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        logger.debug("begin handle request");
+        try {
+            RemoteInvocation invocation = readRemoteInvocation(request);
+            RemoteInvocationResult result = invokeAndCreateResult(invocation, getProxy());
 
-			if (result.hasInvocationTargetException()) {
-				logger.debug("has invocation ex");
-			} else {
-				logger.debug("has no invocation ex");
-			}
+            if (result.hasInvocationTargetException()) {
+                logger.debug("has invocation ex");
+            } else {
+                logger.debug("has no invocation ex");
+            }
 
-			if (result.hasException()) {
-				result = this.manageException(result);
-			}
+            if (result.hasException()) {
+                result = this.manageException(result);
+            }
 
-			writeRemoteInvocationResult(request, response, result);
-		} catch (ClassNotFoundException ex) {
-			throw new NestedServletException("Class not found during deserialization", ex);
-		}
-		logger.debug("end handle request");
-	}
+            writeRemoteInvocationResult(request, response, result);
+        } catch (ClassNotFoundException ex) {
+            throw new NestedServletException("Class not found during deserialization", ex);
+        }
+        logger.debug("end handle request");
+    }
 
-	private RemoteInvocationResult manageException(final RemoteInvocationResult result) {
-		RemoteInvocationResult managedResult = result;
-		Class<TemplateServiceException> clazz = TemplateServiceException.class;
+    private RemoteInvocationResult manageException(final RemoteInvocationResult result) {
+        RemoteInvocationResult managedResult = result;
+        Class<TemplateServiceException> clazz = TemplateServiceException.class;
 
-		if (!clazz.isAssignableFrom(result.getException().getCause().getClass())) {
-			managedResult = new RemoteInvocationResult(new TemplateServiceException());
-		}
+        if (!clazz.isAssignableFrom(result.getException().getCause().getClass())) {
+            managedResult = new RemoteInvocationResult(new TemplateServiceException());
+        }
 
-		return managedResult;
-	}
+        return managedResult;
+    }
 
 }

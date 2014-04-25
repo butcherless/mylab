@@ -13,7 +13,8 @@ import com.mylab.learn.myarchetype.domain.TemplateEntity;
  * 
  */
 @Repository
-public interface TemplateRepository extends JpaRepository<TemplateEntity, Long>, JpaSpecificationExecutor<TemplateEntity> {
+public interface TemplateRepository extends JpaRepository<TemplateEntity, Long>,
+        JpaSpecificationExecutor<TemplateEntity> {
 
-	TemplateEntity findByName(String entityName);
+    TemplateEntity findByName(String entityName);
 }

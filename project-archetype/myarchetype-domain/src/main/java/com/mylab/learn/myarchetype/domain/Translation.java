@@ -9,44 +9,44 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 @Embeddable
 public class Translation {
-	@NotNull
-	@Size(min = 2, max = 16)
-	private String language;
+    @NotNull
+    @Size(min = 2, max = 16)
+    private String language;
 
-	@NotNull
-	@Size(min = 1, max = 128)
-	private String translatedText;
+    @NotNull
+    @Size(min = 1, max = 128)
+    private String translatedText;
 
-	public Translation() {
-	}
-
-	public Translation(String language, String translatedText) {
-	    this.language = language;
-	    this.translatedText = translatedText;
+    public Translation() {
     }
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
+    public Translation(String language, String translatedText) {
+        this.language = language;
+        this.translatedText = translatedText;
+    }
 
-	public String getLanguage() {
-		return language;
-	}
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
-	public void setTranslatedText(String translatedText) {
-		this.translatedText = translatedText;
-	}
+    public String getLanguage() {
+        return language;
+    }
 
-	public String getTranslatedText() {
-		return translatedText;
-	}
-	
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-		.append("language", this.getLanguage())
-		.append("translatedText", this.getTranslatedText())
-		.toString();
-	}
+    public void setTranslatedText(String translatedText) {
+        this.translatedText = translatedText;
+    }
+
+    public String getTranslatedText() {
+        return translatedText;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("language", this.getLanguage())
+                .append("translatedText", this.getTranslatedText())
+                .toString();
+    }
 
 }

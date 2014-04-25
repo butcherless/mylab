@@ -27,7 +27,7 @@ public class Aircraft extends AbstractEntity {
 
     @NotNull
     @Size(min = 4, max = 8)
-    @Column(nullable=false, unique=true)
+    @Column(nullable = false, unique = true)
     private String registration;
 
     @NotNull
@@ -98,11 +98,11 @@ public class Aircraft extends AbstractEntity {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-        .append(super.toString())
-        .append("registration", this.registration)
-        .append("name", this.name)
-        .append("destinations", this.destinations.size())
-        .toString();
+                .append(super.toString())
+                .append("registration", this.registration)
+                .append("name", this.name)
+                .append("destinations", this.destinations.size())
+                .toString();
     }
 
 }

@@ -13,7 +13,8 @@ import com.mylab.learn.myarchetype.domain.Destination;
  * 
  */
 @Repository
-public interface DestinationRepository extends JpaRepository<Destination, Long>, JpaSpecificationExecutor<Destination> {
+public interface DestinationRepository extends JpaRepository<Destination, Long>,
+        JpaSpecificationExecutor<Destination> {
 
-	Destination findByShortCode(String shortCode);
+    Destination findByShortCode(String shortCode);
 }

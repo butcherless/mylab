@@ -13,46 +13,50 @@ import com.mylab.learn.myarchetype.service.TemplateServiceException;
 
 @Component
 public class TemplateServiceRestfulClient {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Value("${service.url}")
-	private String serviceUrl;
+    @Value("${service.url}")
+    private String serviceUrl;
 
-	@Autowired
-	private RestTemplate restTemplate;
+    @Autowired
+    private RestTemplate restTemplate;
 
-	public Boolean callTemplateOperation(final String dummyProperty) throws TemplateServiceException {
-		Boolean result;
+    public Boolean callTemplateOperation(final String dummyProperty)
+            throws TemplateServiceException {
+        Boolean result;
 
-		// TODO externalizar URI's
-		TemplateResponse templateResponse = restTemplate.getForObject(this.serviceUrl + "/templateOperation/{requestId}",
-		        TemplateResponse.class, "MAIN_FLOW");
-		result = templateResponse.getDummyResult();
+        // TODO externalizar URI's
+        TemplateResponse templateResponse = restTemplate.getForObject(this.serviceUrl
+                + "/templateOperation/{requestId}",
+                TemplateResponse.class, "MAIN_FLOW");
+        result = templateResponse.getDummyResult();
 
-		this.logger.debug("response {}", templateResponse);
+        this.logger.debug("response {}", templateResponse);
 
-		return result;
-	}
+        return result;
+    }
 
-	public Boolean callTemplatePostOperation(final String dummyProperty) throws TemplateServiceException {
-		Boolean result;
+    public Boolean callTemplatePostOperation(final String dummyProperty)
+            throws TemplateServiceException {
+        Boolean result;
 
-		// TODO externalizar URI's
-		TemplateRequest request = new TemplateRequest(dummyProperty);
-		this.logger.debug("request {}", request);
+        // TODO externalizar URI's
+        TemplateRequest request = new TemplateRequest(dummyProperty);
+        this.logger.debug("request {}", request);
 
-		TemplateResponse templateResponse = restTemplate.postForObject(this.serviceUrl + "/templatePutOperation", request,
-		        TemplateResponse.class);
+        TemplateResponse templateResponse = restTemplate.postForObject(this.serviceUrl
+                + "/templatePutOperation", request,
+                TemplateResponse.class);
 
-		this.logger.debug("response {}", templateResponse);
+        this.logger.debug("response {}", templateResponse);
 
-		result = templateResponse.getDummyResult();
+        result = templateResponse.getDummyResult();
 
-		return result;
-	}
+        return result;
+    }
 
-	public void setRestTemplate(RestTemplate restTemplate) {
-		this.restTemplate = restTemplate;
-	}
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
 }

@@ -42,8 +42,8 @@ public abstract class AbstractEntity {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-            .append("id", this.id)
-            .append("version", version)
-            .toString();
+                .append("id", this.id)
+                .append("version", version)
+                .toString();
     }
 }

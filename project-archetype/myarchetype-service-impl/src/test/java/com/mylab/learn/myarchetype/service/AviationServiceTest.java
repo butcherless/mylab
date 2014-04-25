@@ -74,8 +74,10 @@ public class AviationServiceTest {
 
         String airportName = BARAJAS_AIRPORT;
         String shortCode = BARAJAS_SHORT_CODE;
-        CreateDestinationRequest createDestinationRequest = new CreateDestinationRequest(airportName, shortCode);
-        CreateDestinationResponse response = this.aviationService.createDestination(createDestinationRequest);
+        CreateDestinationRequest createDestinationRequest = new CreateDestinationRequest(
+                airportName, shortCode);
+        CreateDestinationResponse response = this.aviationService
+                .createDestination(createDestinationRequest);
 
         Assert.assertNotNull(response);
         Assert.assertEquals(OperationResultEnum.OK, response.getOperationResult());
@@ -110,8 +112,10 @@ public class AviationServiceTest {
         String name = AIRCRAFT1_NAME;
         String registration = AIRCRAFT1_REGISTRATION;
         String companyName = IBERIA_COMPANY;
-        CreateAircraftRequest createAircraftRequest = new CreateAircraftRequest(name, registration, companyName);
-        CreateAircraftResponse response = this.aviationService.createAircraft(createAircraftRequest);
+        CreateAircraftRequest createAircraftRequest = new CreateAircraftRequest(name, registration,
+                companyName);
+        CreateAircraftResponse response = this.aviationService
+                .createAircraft(createAircraftRequest);
 
         Assert.assertNotNull(response);
         Assert.assertEquals(OperationResultEnum.OK, response.getOperationResult());
@@ -131,8 +135,10 @@ public class AviationServiceTest {
         aircraft = DomainFactory.newAircraft(AIRCRAFT2_NAME, AIRCRAFT2_REGISTRATION);
         this.domainUtil.addAircraftToCompany(aircraft, companyName);
 
-        SearchAircraftByCompanyRequest searchAircraftByCompanyRequest = new SearchAircraftByCompanyRequest(companyName);
-        SearchAircraftByCompanyResponse response = this.aviationService.searchAircraftByCompany(searchAircraftByCompanyRequest);
+        SearchAircraftByCompanyRequest searchAircraftByCompanyRequest = new SearchAircraftByCompanyRequest(
+                companyName);
+        SearchAircraftByCompanyResponse response = this.aviationService
+                .searchAircraftByCompany(searchAircraftByCompanyRequest);
 
         Assert.assertNotNull(response);
         Assert.assertEquals(OperationResultEnum.OK, response.getOperationResult());

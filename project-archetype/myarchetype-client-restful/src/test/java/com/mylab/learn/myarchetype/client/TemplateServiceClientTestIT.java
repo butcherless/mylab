@@ -13,24 +13,23 @@ import com.mylab.learn.myarchetype.service.BusinessEnum;
 @ContextConfiguration(locations = "classpath:template-service-client-integration-test.xml")
 public class TemplateServiceClientTestIT {
 
-	@Autowired
-	private TemplateServiceRestfulClient client;
-	
-	@Test
-	public void testTemplateOperation() {
-		String dummyProperty = BusinessEnum.MAIN_FLOW.toString();
-		Boolean result = this.client.callTemplateOperation(dummyProperty);
-		
-		Assert.assertTrue("main flow", result);
-	}
+    @Autowired
+    private TemplateServiceRestfulClient client;
 
-	@Test
-	public void testTemplatePutOperation() {
-		String dummyProperty = BusinessEnum.MAIN_FLOW.toString();
-		Boolean result = this.client.callTemplatePostOperation(dummyProperty);
-		
-		Assert.assertTrue("main flow", result);
-	}
+    @Test
+    public void testTemplateOperation() {
+        String dummyProperty = BusinessEnum.MAIN_FLOW.toString();
+        Boolean result = this.client.callTemplateOperation(dummyProperty);
 
+        Assert.assertTrue("main flow", result);
+    }
+
+    @Test
+    public void testTemplatePutOperation() {
+        String dummyProperty = BusinessEnum.MAIN_FLOW.toString();
+        Boolean result = this.client.callTemplatePostOperation(dummyProperty);
+
+        Assert.assertTrue("main flow", result);
+    }
 
 }

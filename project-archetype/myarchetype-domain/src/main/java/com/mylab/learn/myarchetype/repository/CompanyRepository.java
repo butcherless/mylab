@@ -13,7 +13,8 @@ import com.mylab.learn.myarchetype.domain.Company;
  * 
  */
 @Repository
-public interface CompanyRepository extends JpaRepository<Company, Long>, JpaSpecificationExecutor<Company> {
+public interface CompanyRepository extends JpaRepository<Company, Long>,
+        JpaSpecificationExecutor<Company> {
 
     Company findByName(String name);
 

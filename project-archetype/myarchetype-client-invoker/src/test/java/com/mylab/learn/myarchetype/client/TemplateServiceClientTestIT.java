@@ -11,13 +11,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = "classpath:template-service-client-integration-test.xml")
 public class TemplateServiceClientTestIT extends TemplateServiceClientTestAdapter {
 
-	@Autowired
-	private TemplateServiceClient contextService;
+    @Autowired
+    private TemplateServiceClient contextService;
 
-	@Before
-	public void setUp() {
-		Assert.assertNotNull(contextService);
-		this.templateServiceClient = contextService;
-	}
+    @Before
+    public void setUp() {
+        Assert.assertNotNull(contextService);
+        this.templateServiceClient = contextService;
+    }
 
 }

@@ -19,35 +19,36 @@ import com.mylab.learn.myarchetype.service.TemplateServiceException;
  */
 @Component
 public class TemplateServiceClient {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Resource(name = "templateServiceProxy")
-	private TemplateService templateService;
+    @Resource(name = "templateServiceProxy")
+    private TemplateService templateService;
 
-	/**
-	 * Remote call to {@link TemplateService} operation
-	 * 
-	 * @param dummyProperty data for {@link TemplateRequest}
-	 * @return true if is the use case main flow scenario
-	 * @throws TemplateServiceException if an error occurs
-	 */
-	public Boolean callTemplateOperation(final String dummyProperty) throws TemplateServiceException {
-		Boolean result = Boolean.FALSE;
-		TemplateRequest templateRequest = new TemplateRequest(dummyProperty);
+    /**
+     * Remote call to {@link TemplateService} operation
+     * 
+     * @param dummyProperty data for {@link TemplateRequest}
+     * @return true if is the use case main flow scenario
+     * @throws TemplateServiceException if an error occurs
+     */
+    public Boolean callTemplateOperation(final String dummyProperty)
+            throws TemplateServiceException {
+        Boolean result = Boolean.FALSE;
+        TemplateRequest templateRequest = new TemplateRequest(dummyProperty);
 
-		TemplateResponse templateResponse = this.templateService.templateOperation(templateRequest);
-		this.logger.debug("response {}.", templateResponse);
+        TemplateResponse templateResponse = this.templateService.templateOperation(templateRequest);
+        this.logger.debug("response {}.", templateResponse);
 
-		if (templateResponse.getDummyResult()) {
-			result = Boolean.TRUE;
-		}
+        if (templateResponse.getDummyResult()) {
+            result = Boolean.TRUE;
+        }
 
-		this.logger.debug("result {}.", result);
-		
-		return result;
-	}
+        this.logger.debug("result {}.", result);
 
-	public void setTemplateService(final TemplateService templateService) {
-		this.templateService = templateService;
-	}
+        return result;
+    }
+
+    public void setTemplateService(final TemplateService templateService) {
+        this.templateService = templateService;
+    }
 }

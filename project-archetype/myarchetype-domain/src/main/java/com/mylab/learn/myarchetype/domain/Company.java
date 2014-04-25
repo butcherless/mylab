@@ -19,7 +19,7 @@ public class Company extends AbstractEntity {
 
     @NotNull
     @Size(min = 1, max = 32)
-    @Column(nullable=false, unique=true)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @OneToMany(mappedBy = "company")
@@ -65,9 +65,9 @@ public class Company extends AbstractEntity {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-        .append(super.toString())
-        .append("name", this.name)
-        .append("aircrafts", this.aircrafts.size())
-        .toString();
+                .append(super.toString())
+                .append("name", this.name)
+                .append("aircrafts", this.aircrafts.size())
+                .toString();
     }
 }

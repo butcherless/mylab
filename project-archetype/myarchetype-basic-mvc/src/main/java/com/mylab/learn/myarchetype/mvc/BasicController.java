@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class BasicController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@RequestMapping("/home")
-	public String helloWorld() {
-		this.logger.debug("request mapping {}", "/home");
+    @RequestMapping("/home")
+    public String helloWorld() {
+        this.logger.debug("request mapping {}", "/home");
 
-		return "home";
-	}
+        return "home";
+    }
 }

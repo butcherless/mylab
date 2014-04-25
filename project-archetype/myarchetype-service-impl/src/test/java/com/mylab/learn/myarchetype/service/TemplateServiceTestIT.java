@@ -11,20 +11,20 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = "classpath:template-service-integration-test.xml")
 public class TemplateServiceTestIT extends TemplateServiceTestAdapter {
 
-	@Autowired
-	private TemplateService templateService;
+    @Autowired
+    private TemplateService templateService;
 
-	@Before
-	public void setUp() {
-		Assert.assertNotNull(this.templateService);
-		super.templateService = this.templateService;
-	}
+    @Before
+    public void setUp() {
+        Assert.assertNotNull(this.templateService);
+        super.templateService = this.templateService;
+    }
 
-	@Override
-	public void testAlternateTemplateOperation() {
-		this.logger.debug("before service operation");
-		super.testAlternateTemplateOperation();
-		this.logger.debug("after service operation");
-	}
+    @Override
+    public void testAlternateTemplateOperation() {
+        this.logger.debug("before service operation");
+        super.testAlternateTemplateOperation();
+        this.logger.debug("after service operation");
+    }
 
 }

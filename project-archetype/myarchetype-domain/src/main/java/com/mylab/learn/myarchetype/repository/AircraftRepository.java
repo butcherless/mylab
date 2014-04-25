@@ -16,9 +16,10 @@ import com.mylab.learn.myarchetype.domain.Company;
  * 
  */
 @Repository
-public interface AircraftRepository extends JpaRepository<Aircraft, Long>, JpaSpecificationExecutor<Aircraft> {
+public interface AircraftRepository extends JpaRepository<Aircraft, Long>,
+        JpaSpecificationExecutor<Aircraft> {
 
-	List<Aircraft> findByRegistration(String registration);
+    List<Aircraft> findByRegistration(String registration);
 
     List<Aircraft> findByCompany(Company company);
 }

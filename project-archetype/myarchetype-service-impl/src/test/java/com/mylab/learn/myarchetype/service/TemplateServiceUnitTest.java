@@ -13,23 +13,23 @@ import com.mylab.learn.myarchetype.repository.TemplateRepositoryImpl;
 @ContextConfiguration(locations = "classpath:template-service-unit-test.xml")
 public class TemplateServiceUnitTest extends TemplateServiceTestAdapter {
 
-	@Before
-	public void setUp() {
-		Validator requestValidator = new TemplateRequestValidator();
-		TemplateRepository templateRepository = new TemplateRepositoryImpl();
-		TemplateServiceImpl templateServiceImpl = new TemplateServiceImpl();
+    @Before
+    public void setUp() {
+        Validator requestValidator = new TemplateRequestValidator();
+        TemplateRepository templateRepository = new TemplateRepositoryImpl();
+        TemplateServiceImpl templateServiceImpl = new TemplateServiceImpl();
 
-		templateServiceImpl.setRequestValidator(requestValidator);
-		templateServiceImpl.setTemplateRepository(templateRepository);
+        templateServiceImpl.setRequestValidator(requestValidator);
+        templateServiceImpl.setTemplateRepository(templateRepository);
 
-		super.templateService = templateServiceImpl;
-	}
+        super.templateService = templateServiceImpl;
+    }
 
-	@Override
-	public void testMainTemplateOperation() {
-		this.logger.debug("before service operation");
-		super.testMainTemplateOperation();
-		this.logger.debug("after service operation");
-	}
+    @Override
+    public void testMainTemplateOperation() {
+        this.logger.debug("before service operation");
+        super.testMainTemplateOperation();
+        this.logger.debug("after service operation");
+    }
 
 }

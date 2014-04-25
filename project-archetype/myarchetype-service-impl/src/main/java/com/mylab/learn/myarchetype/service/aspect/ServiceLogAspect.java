@@ -22,7 +22,8 @@ public class ServiceLogAspect {
      */
     @Before("execution(public * com.mylab.learn.myarchetype.service.*Service.*(..)) && args(request)")
     public void doBeforeLog(JoinPoint joinPoint, Object request) {
-        this.logger.debug("operation: {}, request: {}", joinPoint.getSignature().toShortString(), request);
+        this.logger.debug("operation: {}, request: {}", joinPoint.getSignature().toShortString(),
+                request);
     }
 
     /**

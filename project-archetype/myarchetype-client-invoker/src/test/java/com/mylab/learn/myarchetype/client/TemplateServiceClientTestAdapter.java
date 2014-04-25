@@ -10,39 +10,38 @@ import com.mylab.learn.myarchetype.service.BusinessEnum;
 import com.mylab.learn.myarchetype.service.TemplateRequestValidationException;
 
 public class TemplateServiceClientTestAdapter implements TemplateServiceClientTestInterface {
-	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	protected TemplateServiceClient templateServiceClient;
+    protected TemplateServiceClient templateServiceClient;
 
-	@Test
-	public void testMainTemplateOperation() {
-		String dummyProperty = BusinessEnum.MAIN_FLOW.toString();
-		Boolean result = this.templateServiceClient.callTemplateOperation(dummyProperty);
+    @Test
+    public void testMainTemplateOperation() {
+        String dummyProperty = BusinessEnum.MAIN_FLOW.toString();
+        Boolean result = this.templateServiceClient.callTemplateOperation(dummyProperty);
 
-		Assert.assertTrue("main flow", result);
-	}
+        Assert.assertTrue("main flow", result);
+    }
 
-	@Test
-	public void testAlternateTemplateOperation() {
-		String dummyProperty = BusinessEnum.ALTERNATE_FLOW.toString();
-		Boolean result = this.templateServiceClient.callTemplateOperation(dummyProperty);
+    @Test
+    public void testAlternateTemplateOperation() {
+        String dummyProperty = BusinessEnum.ALTERNATE_FLOW.toString();
+        Boolean result = this.templateServiceClient.callTemplateOperation(dummyProperty);
 
-		Assert.assertFalse("alternate flow", result);
-	}
+        Assert.assertFalse("alternate flow", result);
+    }
 
-	@Test(expected = TemplateRequestValidationException.class)
-	public void testTemplateOperationException() {
-		String dummyProperty = "";
+    @Test(expected = TemplateRequestValidationException.class)
+    public void testTemplateOperationException() {
+        String dummyProperty = "";
 
-		this.templateServiceClient.callTemplateOperation(dummyProperty);
-	}
+        this.templateServiceClient.callTemplateOperation(dummyProperty);
+    }
 
-	@Test(expected = RemoteInvocationFailureException.class)
-	public void testUnexpectedException() {
-		String dummyProperty = BusinessEnum.GENERAL_ERROR_FLOW.toString();
-		
-		this.templateServiceClient.callTemplateOperation(dummyProperty);
-	}
-	
-	
+    @Test(expected = RemoteInvocationFailureException.class)
+    public void testUnexpectedException() {
+        String dummyProperty = BusinessEnum.GENERAL_ERROR_FLOW.toString();
+
+        this.templateServiceClient.callTemplateOperation(dummyProperty);
+    }
+
 }

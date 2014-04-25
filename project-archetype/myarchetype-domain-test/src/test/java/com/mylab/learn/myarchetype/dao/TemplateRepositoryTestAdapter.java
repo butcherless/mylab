@@ -19,78 +19,78 @@ import com.mylab.learn.myarchetype.repository.SimpleTextRepository;
 import com.mylab.learn.myarchetype.repository.TemplateRepository;
 
 public abstract class TemplateRepositoryTestAdapter implements TemplateRepositoryTestInterface {
-	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	protected TemplateRepository templateRepository;
+    @Autowired
+    protected TemplateRepository templateRepository;
 
-	@Autowired
-	protected SimpleTextRepository simpleTextRepository;
+    @Autowired
+    protected SimpleTextRepository simpleTextRepository;
 
-	private TemplateEntity templateEntity;
-	private String entityName = "template-name";
+    private TemplateEntity templateEntity;
+    private String entityName = "template-name";
 
-	@Before
-	public void setUp() {
-		this.templateEntity = DomainFactory.newTemplateEntity(entityName); 
-	}
+    @Before
+    public void setUp() {
+        this.templateEntity = DomainFactory.newTemplateEntity(entityName);
+    }
 
-	@Test
-	@Transactional
-	public void testCreateTemplate() {
-		long entityCount = this.templateRepository.count();
-		this.templateRepository.save(this.templateEntity);
+    @Test
+    @Transactional
+    public void testCreateTemplate() {
+        long entityCount = this.templateRepository.count();
+        this.templateRepository.save(this.templateEntity);
 
-		Assert.assertNotNull(this.templateEntity.getId());
-		Assert.assertEquals("entity count", (entityCount + 1), this.templateRepository.count());
-	}
+        Assert.assertNotNull(this.templateEntity.getId());
+        Assert.assertEquals("entity count", (entityCount + 1), this.templateRepository.count());
+    }
 
-	@Test
-	@Transactional
-	public void testFindByNameTemplate() {
-		this.templateRepository.save(this.templateEntity);
-		TemplateEntity result = this.templateRepository.findByName(this.entityName);
+    @Test
+    @Transactional
+    public void testFindByNameTemplate() {
+        this.templateRepository.save(this.templateEntity);
+        TemplateEntity result = this.templateRepository.findByName(this.entityName);
 
-		Assert.assertNotNull("entity does not exist", result);
-		Assert.assertEquals("entity name does not match", this.entityName, result.getName());
-	}
+        Assert.assertNotNull("entity does not exist", result);
+        Assert.assertEquals("entity name does not match", this.entityName, result.getName());
+    }
 
-	@Test
-	@Transactional
-	public void testUpdateTemplate() {
-		String entityNameUpdated = this.entityName + "-updated";
-		this.templateRepository.save(this.templateEntity);
-		this.templateEntity.setName(entityNameUpdated);
-		this.templateRepository.save(this.templateEntity);
-		TemplateEntity result = this.templateRepository.findOne(this.templateEntity.getId());
-		Assert.assertEquals("entity name has not been updated", entityNameUpdated, result.getName());
-	}
+    @Test
+    @Transactional
+    public void testUpdateTemplate() {
+        String entityNameUpdated = this.entityName + "-updated";
+        this.templateRepository.save(this.templateEntity);
+        this.templateEntity.setName(entityNameUpdated);
+        this.templateRepository.save(this.templateEntity);
+        TemplateEntity result = this.templateRepository.findOne(this.templateEntity.getId());
+        Assert.assertEquals("entity name has not been updated", entityNameUpdated, result.getName());
+    }
 
-	@Test
-	@Transactional
-	public void testDeleteTemplate() {
-		this.templateRepository.save(this.templateEntity);
-		long entityCount = this.templateRepository.count();
-		this.templateRepository.delete(templateEntity);
-		Assert.assertEquals("entity count", (entityCount - 1), this.templateRepository.count());
-	}
+    @Test
+    @Transactional
+    public void testDeleteTemplate() {
+        this.templateRepository.save(this.templateEntity);
+        long entityCount = this.templateRepository.count();
+        this.templateRepository.delete(templateEntity);
+        Assert.assertEquals("entity count", (entityCount - 1), this.templateRepository.count());
+    }
 
-	@Test
-	@Transactional
-	public void testSimpleText() {
-		SimpleText simpleText = DomainFactory.newSimpleText("a very simple text");
+    @Test
+    @Transactional
+    public void testSimpleText() {
+        SimpleText simpleText = DomainFactory.newSimpleText("a very simple text");
 
-		Translation translationEN = new Translation("en", "english text");
-		Translation translationPT = new Translation("pt", "texto português");
-		List<Translation> translations = Arrays.asList(translationEN, translationPT);
+        Translation translationEN = new Translation("en", "english text");
+        Translation translationPT = new Translation("pt", "texto português");
+        List<Translation> translations = Arrays.asList(translationEN, translationPT);
 
-		simpleText.setTranslations(translations);
+        simpleText.setTranslations(translations);
 
-		long entityCount = this.simpleTextRepository.count();
-		this.simpleTextRepository.save(simpleText);
+        long entityCount = this.simpleTextRepository.count();
+        this.simpleTextRepository.save(simpleText);
 
-		Assert.assertNotNull(simpleText.getId());
-		Assert.assertEquals("entity count", (entityCount + 1), this.simpleTextRepository.count());
-	}
+        Assert.assertNotNull(simpleText.getId());
+        Assert.assertEquals("entity count", (entityCount + 1), this.simpleTextRepository.count());
+    }
 
 }

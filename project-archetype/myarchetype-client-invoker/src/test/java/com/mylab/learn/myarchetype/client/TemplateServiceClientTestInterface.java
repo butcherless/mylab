@@ -7,19 +7,19 @@ package com.mylab.learn.myarchetype.client;
  * 
  */
 public interface TemplateServiceClientTestInterface {
-	/**
-	 * Defines test method for use case main flow scenario
-	 */
-	void testMainTemplateOperation();
+    /**
+     * Defines test method for use case main flow scenario
+     */
+    void testMainTemplateOperation();
 
-	/**
-	 * Defines test method for use case alternate flow scenario
-	 */
-	void testAlternateTemplateOperation();
+    /**
+     * Defines test method for use case alternate flow scenario
+     */
+    void testAlternateTemplateOperation();
 
-	/**
-	 * Defines test method for use case error scenario
-	 */
-	void testTemplateOperationException();
+    /**
+     * Defines test method for use case error scenario
+     */
+    void testTemplateOperationException();
 
 }

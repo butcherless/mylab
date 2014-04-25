@@ -17,13 +17,13 @@ public class DestinationMockRepository implements DestinationRepository {
     @Override
     public void deleteAllInBatch() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void deleteInBatch(Iterable<Destination> arg0) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -47,7 +47,7 @@ public class DestinationMockRepository implements DestinationRepository {
     @Override
     public void flush() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -83,25 +83,25 @@ public class DestinationMockRepository implements DestinationRepository {
     @Override
     public void delete(Long arg0) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void delete(Destination arg0) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void delete(Iterable<? extends Destination> arg0) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void deleteAll() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -157,5 +157,5 @@ public class DestinationMockRepository implements DestinationRepository {
         // TODO Auto-generated method stub
         return null;
     }
-    
+
 }

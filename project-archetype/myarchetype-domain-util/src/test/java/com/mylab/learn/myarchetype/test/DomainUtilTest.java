@@ -17,11 +17,12 @@ public class DomainUtilTest {
 
     @Autowired
     protected DomainUtil domainUtil;
-    
-    @Before public void setUp() {
+
+    @Before
+    public void setUp() {
         Assert.assertNotNull("missing repository", this.domainUtil);
     }
-    
+
     @Test
     public void testCountAircrafts() {
         Assert.assertEquals(Long.valueOf(0L), this.domainUtil.countAircrafts());
@@ -40,11 +41,11 @@ public class DomainUtilTest {
     @Test
     public void testCreateCompany() {
         String companyName = "companyName";
-        Company company = this.domainUtil.createCompany(companyName );
-        Assert.assertNotNull("company doesn't exist",company);
+        Company company = this.domainUtil.createCompany(companyName);
+        Assert.assertNotNull("company doesn't exist", company);
         Assert.assertNotNull("company id doesn't exist", company.getId());
     }
-    
+
     @Test
     public void testAddAircraftToCompany() {
         Aircraft aircraft = new Aircraft();
@@ -60,5 +61,5 @@ public class DomainUtilTest {
         this.domainUtil.addAircraftToCompany(aircraft, companyName);
         Assert.assertNull("aircraft id exists", aircraft.getId());
     }
-    
+
 }

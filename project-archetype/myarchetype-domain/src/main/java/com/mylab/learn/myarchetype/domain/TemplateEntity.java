@@ -36,11 +36,11 @@ public class TemplateEntity extends AbstractEntity {
         this.name = name;
     }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-		.append(super.toString())
-		.append("name", this.name)
-		.toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append(super.toString())
+                .append("name", this.name)
+                .toString();
+    }
 }
