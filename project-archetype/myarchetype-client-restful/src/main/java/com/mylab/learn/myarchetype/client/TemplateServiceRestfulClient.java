@@ -55,8 +55,12 @@ public class TemplateServiceRestfulClient {
         return result;
     }
 
+    // ////// S E T T E R S
     public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
+    public void setServiceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
+    }
 }
