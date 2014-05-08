@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.mylab.learn.myarchetype</groupId>
-        <artifactId>myarchetype-parent-pom</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
+        <groupId>com.mylab.learn.myairline</groupId>
+        <artifactId>myairline-parent-pom</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>myarchetype-domain</artifactId>
-    <name>myarchetype-domain</name>
-    <description>myarchetype domain module</description>
+    <artifactId>myairline-domain</artifactId>
+    <name>myairline-domain</name>
+    <description>airline domain model</description>
 
     <dependencies>
 
@@ -43,7 +43,7 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -111,16 +111,52 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.googlecode.openpojo</groupId>
             <artifactId>openpojo</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mylab.learn.myarchetype</groupId>
-            <artifactId>myarchetype-test</artifactId>
-            <scope>test</scope>
-            <version>${project.version}</version>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.openpojo</groupId>
+            <artifactId>openpojo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
         </dependency>
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.mysema.maven</groupId>
+                <artifactId>apt-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/generated-sources/java</outputDirectory>
+                            <processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
