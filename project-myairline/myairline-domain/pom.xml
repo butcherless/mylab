@@ -124,11 +124,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.googlecode.openpojo</groupId>
-            <artifactId>openpojo</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.mysema.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
         </dependency>
