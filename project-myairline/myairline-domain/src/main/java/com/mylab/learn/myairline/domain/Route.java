@@ -21,11 +21,11 @@ public class Route extends AbstractEntity {
     private String name;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(optional=false)
     private Destination startDestination;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(optional=false)
     private Destination stopDestination;
 
     public Route() {

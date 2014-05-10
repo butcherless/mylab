@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mylab.learn.myairline.domain.Aircraft;
 import com.mylab.learn.myairline.domain.Airline;
 import com.mylab.learn.myairline.domain.Destination;
 import com.mylab.learn.myairline.domain.DomainFactory;
@@ -24,7 +25,11 @@ public class AirlineRepositoryTest {
     protected AirlineRepository airlineRepository;
 
     @Autowired
+    protected AircraftRepository aircraftRepository;
+
+    @Autowired
     protected DestinationRepository destinationRepository;
+
     @Autowired
     protected RouteRepository routeRepository;
 
@@ -38,6 +43,53 @@ public class AirlineRepositoryTest {
         Assert.assertEquals("entity count", 1L, this.airlineRepository.count());
     }
 
+    @Transactional
+    @Test
+    public void testExistsAirline() {
+        Airline airline = this.createIberiaAirline();
+        this.airlineRepository.save(airline);
+        Assert.assertNotNull(airline.getId());
+        Assert.assertTrue(this.airlineRepository.exists(airline.getId()));
+    }
+
+    @Transactional
+    @Test
+    public void testCreateAircraft() {
+        Airline airline = this.createIberiaAirline();
+        this.airlineRepository.save(airline);
+
+        Aircraft aircraft = this.createPicosDeEuropaAircraft(airline);
+        long entityCount = this.aircraftRepository.count();
+        this.aircraftRepository.save(aircraft);
+
+        Assert.assertNotNull(aircraft.getId());
+        Assert.assertEquals("entity count", (entityCount + 1), this.aircraftRepository.count());
+    }
+
+    @Transactional
+    @Test
+    public void testFindAircraftByAirlineName() {
+        Airline airline = this.createIberiaAirline();
+        this.airlineRepository.save(airline);
+
+        Aircraft aircraft = this.createPicosDeEuropaAircraft(airline);
+        long entityCount = this.aircraftRepository.count();
+        this.aircraftRepository.save(aircraft);
+
+        aircraft = this.createSierraDeGredosAircraft(airline);
+        this.aircraftRepository.save(aircraft);
+        
+        Assert.assertEquals("entity count", 1L, this.airlineRepository.count());
+        Assert.assertEquals("entity count", 2L, this.aircraftRepository.count());
+        
+        String airlineName = "Iberia";
+        Iterable<Aircraft> aircfrafts = this.aircraftRepository.findAll(
+                AircraftPredicates.belongsToAirline(airlineName));
+
+        Assert.assertEquals("entity count", 2L, this.iterableToAircraftList(aircfrafts).size());
+    }
+
+    
     @Transactional
     @Test
     public void testCreateDestination() {
@@ -57,7 +109,7 @@ public class AirlineRepositoryTest {
         this.destinationRepository.save(startDestination);
         Destination stopDestination = this.createLasPalmasDestination();
         this.destinationRepository.save(stopDestination);
-        
+
         Route route = DomainFactory.newRoute(name, startDestination, stopDestination);
 
         this.routeRepository.save(route);
@@ -73,11 +125,27 @@ public class AirlineRepositoryTest {
 
         Assert.assertNotNull(airline.getId());
 
-        String searchTerm = "Iberia";
+        String airlineName = "Iberia";
         Iterable<Airline> airlines = this.airlineRepository.findAll(
-                AirlinePredicates.nameEquals(searchTerm));
+                AirlinePredicates.nameEquals(airlineName));
 
         Assert.assertEquals("entity count", 1L, this.iterableToList(airlines).size());
+    }
+
+    // //////// H E L P E R S
+
+    private Aircraft createPicosDeEuropaAircraft(final Airline airline) {
+        String name = "Picos de Europa";
+        String registration = "EC-LUB";
+
+        return DomainFactory.newAircraft(name, registration, airline);
+    }
+
+    private Aircraft createSierraDeGredosAircraft(final Airline airline) {
+        String name = "Sierra de Gredos";
+        String registration = "EC-LUC";
+
+        return DomainFactory.newAircraft(name, registration, airline);
     }
 
     private Airline createIberiaAirline() {
@@ -93,6 +161,15 @@ public class AirlineRepositoryTest {
         Route route = DomainFactory.newRoute(name, startDestination, stopDestination);
 
         return route;
+    }
+
+    private List<Aircraft> iterableToAircraftList(final Iterable<Aircraft> aircrafts) {
+        List<Aircraft> list = new ArrayList<Aircraft>();
+        for (Aircraft aircraft : aircrafts) {
+            list.add(aircraft);
+        }
+
+        return list;
     }
 
     private List<Airline> iterableToList(final Iterable<Airline> airlines) {

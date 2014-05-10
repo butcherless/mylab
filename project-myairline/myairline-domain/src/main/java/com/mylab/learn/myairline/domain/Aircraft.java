@@ -28,7 +28,8 @@ public class Aircraft extends AbstractEntity {
     @Size(min = 1, max = 32)
     private String name;
 
-    @ManyToOne
+    @NotNull
+    @ManyToOne(optional = false)
     private Airline airline;
 
     public Aircraft() {
@@ -50,7 +51,7 @@ public class Aircraft extends AbstractEntity {
         this.name = name;
     }
 
-    public void setCompany(Airline airline) {
+    public void setAirline(Airline airline) {
         this.airline = airline;
     }
 
@@ -62,8 +63,9 @@ public class Aircraft extends AbstractEntity {
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append(super.toString())
-                .append("registration", this.registration)
                 .append("name", this.name)
+                .append("registration", this.registration)
+                .append("airline", this.airline)
                 .toString();
     }
 

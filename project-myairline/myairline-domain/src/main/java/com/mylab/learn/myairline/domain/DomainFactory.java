@@ -19,12 +19,15 @@ public class DomainFactory {
      * 
      * @param name
      * @param registration
+     * @param airline 
      * @return
      */
-    public static Aircraft newAircraft(final String name, final String registration) {
+    public static Aircraft newAircraft(final String name, final String registration, final Airline airline) {
         Aircraft entity = new Aircraft();
         entity.setName(name);
         entity.setRegistration(registration);
+        entity.setAirline(airline);
+        airline.addAircraft(entity);
 
         return entity;
     }

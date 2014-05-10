@@ -46,12 +46,12 @@ public class Airline extends AbstractEntity {
 
     public void addAircraft(Aircraft aircraft) {
         this.aircrafts.add(aircraft);
-        aircraft.setCompany(this);
+        aircraft.setAirline(this);
     }
 
     public void removeAircraft(Aircraft aircraft) {
         this.aircrafts.remove(aircraft);
-        aircraft.setCompany(null);
+        aircraft.setAirline(null);
     }
 
     public Boolean hasAircrafts() {
