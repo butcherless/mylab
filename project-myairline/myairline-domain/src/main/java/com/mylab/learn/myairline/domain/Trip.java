@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -16,7 +17,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @Entity
 @Table(name = "TRIP")
 public class Trip extends AbstractEntity {
+    @NotNull
+    @Future
     private Date beginDate;
+
+    @NotNull
+    @Future
     private Date endDate;
 
     @NotNull
