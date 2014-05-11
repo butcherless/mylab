@@ -19,10 +19,11 @@ public class DomainFactory {
      * 
      * @param name
      * @param registration
-     * @param airline 
+     * @param airline
      * @return
      */
-    public static Aircraft newAircraft(final String name, final String registration, final Airline airline) {
+    public static Aircraft newAircraft(final String name, final String registration,
+            final Airline airline) {
         Aircraft entity = new Aircraft();
         entity.setName(name);
         entity.setRegistration(registration);
@@ -38,20 +39,20 @@ public class DomainFactory {
      * @param shortCode
      * @return
      */
-    public static Destination newDestination(final String airportName, final String shortCode) {
-        Destination entity = new Destination();
+    public static Location newDestination(final String airportName, final String shortCode) {
+        Location entity = new Location();
         entity.setAirportName(airportName);
         entity.setShortCode(shortCode);
 
         return entity;
     }
 
-    public static Route newRoute(final String name, final Destination startDestination,
-            final Destination stopDestination) {
+    public static Route newRoute(final String name, final Location origin,
+            final Location destination) {
         Route route = new Route();
         route.setName(name);
-        route.setStartDestination(startDestination);
-        route.setStopDestination(stopDestination);
+        route.setOrigin(origin);
+        route.setDestination(destination);
 
         return route;
     }

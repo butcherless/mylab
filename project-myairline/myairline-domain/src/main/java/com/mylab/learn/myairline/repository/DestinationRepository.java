@@ -5,7 +5,7 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 import com.mylab.learn.myairline.domain.Airline;
-import com.mylab.learn.myairline.domain.Destination;
+import com.mylab.learn.myairline.domain.Location;
 
 /**
  * Persistence operations for {@link Airline} entity.
@@ -14,10 +14,10 @@ import com.mylab.learn.myairline.domain.Destination;
  * 
  */
 @Repository
-public interface DestinationRepository extends JpaRepository<Destination, Long>,
-        QueryDslPredicateExecutor<Destination> {
+public interface DestinationRepository extends JpaRepository<Location, Long>,
+        QueryDslPredicateExecutor<Location> {
 
-    Destination findByShortCode(String shortCode);
+    Location findByShortCode(String shortCode);
 
-    Destination findByAirportName(String airportName);
+    Location findByAirportName(String airportName);
 }

@@ -21,12 +21,12 @@ public class Route extends AbstractEntity {
     private String name;
 
     @NotNull
-    @ManyToOne(optional=false)
-    private Destination startDestination;
+    @ManyToOne(optional = false)
+    private Location origin;
 
     @NotNull
-    @ManyToOne(optional=false)
-    private Destination stopDestination;
+    @ManyToOne(optional = false)
+    private Location destination;
 
     public Route() {
     }
@@ -39,20 +39,20 @@ public class Route extends AbstractEntity {
         this.name = name;
     }
 
-    public Destination getStartDestination() {
-        return startDestination;
+    public void setDestination(Location destination) {
+        this.destination = destination;
     }
 
-    public void setStartDestination(Destination startDestination) {
-        this.startDestination = startDestination;
+    public void setOrigin(Location origin) {
+        this.origin = origin;
     }
 
-    public Destination getStopDestination() {
-        return stopDestination;
+    public Location getDestination() {
+        return destination;
     }
 
-    public void setStopDestination(Destination stopDestination) {
-        this.stopDestination = stopDestination;
+    public Location getOrigin() {
+        return origin;
     }
 
     @Override
@@ -60,8 +60,8 @@ public class Route extends AbstractEntity {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append(super.toString())
                 .append("name", this.name)
-                .append("start", this.startDestination)
-                .append("stop", this.stopDestination)
+                .append("origin", this.origin)
+                .append("destination", this.destination)
                 .toString();
     }
 }

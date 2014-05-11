@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mylab.learn.myairline.domain.Aircraft;
 import com.mylab.learn.myairline.domain.Airline;
-import com.mylab.learn.myairline.domain.Destination;
+import com.mylab.learn.myairline.domain.Location;
 import com.mylab.learn.myairline.domain.DomainFactory;
 import com.mylab.learn.myairline.domain.Route;
 
@@ -93,7 +93,7 @@ public class AirlineRepositoryTest {
     @Transactional
     @Test
     public void testCreateDestination() {
-        Destination destination = this.createBarajasDestination();
+        Location destination = this.createBarajasDestination();
 
         this.destinationRepository.save(destination);
 
@@ -105,9 +105,9 @@ public class AirlineRepositoryTest {
     @Test
     public void testCreateRoute() {
         String name = "Madrid-LasPalmas";
-        Destination startDestination = this.createBarajasDestination();
+        Location startDestination = this.createBarajasDestination();
         this.destinationRepository.save(startDestination);
-        Destination stopDestination = this.createLasPalmasDestination();
+        Location stopDestination = this.createLasPalmasDestination();
         this.destinationRepository.save(stopDestination);
 
         Route route = DomainFactory.newRoute(name, startDestination, stopDestination);
@@ -156,8 +156,8 @@ public class AirlineRepositoryTest {
 
     private Route createRouteMAD2LPA() {
         String name = "Madrid-LasPalmas";
-        Destination startDestination = this.createBarajasDestination();
-        Destination stopDestination = this.createLasPalmasDestination();
+        Location startDestination = this.createBarajasDestination();
+        Location stopDestination = this.createLasPalmasDestination();
         Route route = DomainFactory.newRoute(name, startDestination, stopDestination);
 
         return route;
@@ -181,14 +181,14 @@ public class AirlineRepositoryTest {
         return list;
     }
 
-    private Destination createBarajasDestination() {
+    private Location createBarajasDestination() {
         String airportName = "Madrid Barajas";
         String shortCode = "MAD";
 
         return DomainFactory.newDestination(airportName, shortCode);
     }
 
-    private Destination createLasPalmasDestination() {
+    private Location createLasPalmasDestination() {
         String airportName = "Las Palmas de Gran Canaria";
         String shortCode = "LPA";
 

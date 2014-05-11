@@ -26,7 +26,7 @@
         <javax.annotation.version>1.0</javax.annotation.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <jaxb.api.version>2.2.11</jaxb.api.version>
-        <jetty.version>9.2.0.M0</jetty.version>
+        <jetty.version>9.2.0.M1</jetty.version>
         <junit.version>4.11</junit.version>
         <openpojo.version>0.5.0</openpojo.version>
         <querydsl.version>3.3.3</querydsl.version>

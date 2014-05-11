@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 @Entity
 @Table(name = "DESTINATION")
-public class Destination extends AbstractEntity {
+public class Location extends AbstractEntity {
 
     @NotNull
     @Size(min = 3, max = 3)
@@ -27,7 +27,7 @@ public class Destination extends AbstractEntity {
     @Size(min = 1, max = 32)
     private String airportName;
 
-    public Destination() {
+    public Location() {
     }
 
     public String getShortCode() {
