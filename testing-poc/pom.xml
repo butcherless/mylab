@@ -15,5 +15,6 @@
     <modules>
         <module>testpoc-client</module>
         <module>testpoc-service</module>
+        <module>testpoc-service-impl</module>
     </modules>
 </project>

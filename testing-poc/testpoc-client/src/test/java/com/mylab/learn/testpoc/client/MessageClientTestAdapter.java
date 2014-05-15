@@ -13,9 +13,6 @@ public abstract class MessageClientTestAdapter {
     protected SendServiceRequest sendServiceRequest;
     protected SendServiceResponse sendServiceResponse;
 
-    protected String subject, body;
-    protected Boolean result;
-
     @Autowired
     protected MessageServiceClient messageServiceClient;
 
@@ -25,11 +22,11 @@ public abstract class MessageClientTestAdapter {
         String body = "stored message body";
         this.sendServiceRequest = new SendServiceRequest(subject, body);
         this.sendServiceResponse = new SendServiceResponse(Boolean.TRUE);
-        this.beforeTestMessageSendAndStore();
+        this.beforeTestMessageSendOk();
 
         Boolean stored = this.messageServiceClient.send(this.sendServiceRequest);
 
-        this.afterTestMessageSendAndStore();
+        this.afterTestMessageSendOk();
 
         Assert.assertTrue("message not stored", stored);
     }
@@ -40,11 +37,11 @@ public abstract class MessageClientTestAdapter {
         String body = "transient message body";
         this.sendServiceRequest = new SendServiceRequest(subject, body);
         this.sendServiceResponse = new SendServiceResponse(Boolean.FALSE);
-        this.beforeTestMessageSendAndNotStore();
+        this.beforeTestMessageSendOk();
 
         Boolean stored = this.messageServiceClient.send(this.sendServiceRequest);
 
-        this.afterTestMessageSendAndNotStore();
+        this.afterTestMessageSendOk();
 
         Assert.assertFalse("message stored", stored);
     }
@@ -56,16 +53,15 @@ public abstract class MessageClientTestAdapter {
         this.sendServiceRequest = new SendServiceRequest(subject, body);
         this.beforeTestMessageSendError();
 
-        Boolean stored = this.messageServiceClient.send(this.sendServiceRequest);
+        this.messageServiceClient.send(this.sendServiceRequest);
     }
 
-    protected abstract void beforeTestMessageSendAndStore();
+    protected void beforeTestMessageSendOk() {
+    }
 
-    protected abstract void afterTestMessageSendAndStore();
+    protected void afterTestMessageSendOk() {
+    }
 
-    protected abstract void beforeTestMessageSendAndNotStore();
-
-    protected abstract void afterTestMessageSendAndNotStore();
-
-    protected abstract void beforeTestMessageSendError();
+    protected void beforeTestMessageSendError() {
+    }
 }

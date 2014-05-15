@@ -6,16 +6,11 @@
         <artifactId>testpoc-parent-pom</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>testpoc-client</artifactId>
+    <artifactId>testpoc-service-impl</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.mylab.learn.testpoc</groupId>
             <artifactId>testpoc-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mylab.learn.testpoc</groupId>
-            <artifactId>testpoc-service-impl</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -48,9 +43,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-        </dependency>
+
     </dependencies>
 </project>

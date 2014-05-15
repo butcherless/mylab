@@ -9,8 +9,6 @@ import org.junit.Before;
 import com.mylab.learn.testpoc.service.MessageService;
 import com.mylab.learn.testpoc.service.MessageServiceException;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations = "classpath:message-client-unit-test.xml")
 public class MessageClientTest extends MessageClientTestAdapter {
 
     private MessageService messageService;
@@ -23,24 +21,14 @@ public class MessageClientTest extends MessageClientTestAdapter {
     }
 
     @Override
-    protected void beforeTestMessageSendAndStore() {
+    protected void beforeTestMessageSendOk() {
         when(this.messageService.send(this.sendServiceRequest))
                 .thenReturn(this.sendServiceResponse);
     }
 
     @Override
-    protected void afterTestMessageSendAndStore() {
+    protected void afterTestMessageSendOk() {
         verify(this.messageService).send(this.sendServiceRequest);
-    }
-
-    @Override
-    protected void beforeTestMessageSendAndNotStore() {
-        this.beforeTestMessageSendAndStore();
-    }
-
-    @Override
-    protected void afterTestMessageSendAndNotStore() {
-        this.afterTestMessageSendAndStore();
     }
 
     @Override

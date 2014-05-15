@@ -7,6 +7,8 @@
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <import resource="classpath:/META-INF/spring/message-service.xml" />
+
     <context:component-scan base-package="com.mylab.learn.testpoc.client" />
 
 </beans>

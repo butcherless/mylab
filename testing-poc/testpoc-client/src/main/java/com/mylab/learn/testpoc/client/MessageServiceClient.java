@@ -39,9 +39,4 @@ public class MessageServiceClient {
 
     }
 
-    private SendServiceRequest createSendRequest(final String subject, final String body) {
-        SendServiceRequest sendServiceRequest = new SendServiceRequest(subject, body);
-        // TODO Auto-generated method stub
-        return sendServiceRequest;
-    }
 }
