@@ -525,4 +525,12 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <distributionManagement>
+        <repository>
+            <id>cloudbees</id>
+            <name>Cloudbees Forge</name>
+            <url>https://repository-butcherless.forge.cloudbees.com/snapshot</url>
+        </repository>
+    </distributionManagement>
 </project>
