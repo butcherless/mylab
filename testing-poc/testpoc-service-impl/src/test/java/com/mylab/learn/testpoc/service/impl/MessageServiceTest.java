@@ -9,6 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mylab.learn.testpoc.service.MessageService;
+import com.mylab.learn.testpoc.service.MessageServiceException;
+import com.mylab.learn.testpoc.service.MessageType;
+import com.mylab.learn.testpoc.service.dto.SearchServiceRequest;
 import com.mylab.learn.testpoc.service.dto.SendServiceRequest;
 import com.mylab.learn.testpoc.service.dto.SendServiceResponse;
 
@@ -25,23 +28,77 @@ public class MessageServiceTest {
     }
 
     @Test
-    public void testSendOk() {
+    public void testSendStoredOk() {
+        String subject = "stored message";
+        String body = "stored message body";
+        MessageType messageType = MessageType.STORED;
+
+        SendServiceRequest sendServiceRequest = new SendServiceRequest(messageType, subject, body);
+        SendServiceResponse sendServiceResponse = this.messageService.send(sendServiceRequest);
+
+        Assert.assertNotNull("response unavalible", sendServiceResponse);
+        Assert.assertTrue("message not stored", sendServiceResponse.isStored());
+    }
+
+    @Test
+    public void testSendTransientOk() {
+        String subject = "transient message";
+        String body = "transient message body";
+        MessageType messageType = MessageType.TRANSIENT;
+
+        SendServiceRequest sendServiceRequest = new SendServiceRequest(messageType, subject, body);
+        SendServiceResponse sendServiceResponse = this.messageService.send(sendServiceRequest);
+
+        Assert.assertNotNull("response unavalible", sendServiceResponse);
+        Assert.assertFalse("message not stored", sendServiceResponse.isStored());
+    }
+
+    @Test(expected = MessageServiceException.class)
+    public void testSendEmptyRequest() {
+        SendServiceRequest sendServiceRequest = null;
+        this.messageService.send(sendServiceRequest);
+    }
+
+    @Test
+    public void testSendInvalidRequest() {
+        Boolean exceptionThrown = false;
         String subject = null;
         String body = null;
-        SendServiceRequest sendServiceRequest = new SendServiceRequest(subject, body);
-        SendServiceResponse sendServiceResponse = this.messageService.send(sendServiceRequest);
-        
-//        Assert.assertNotNull("response unavalible" ,sendServiceResponse);
+        MessageType messageType = MessageType.STORED;
+
+        SendServiceRequest sendServiceRequest = new SendServiceRequest(messageType, subject, body);
+
+        try {
+            this.messageService.send(sendServiceRequest);
+        } catch (MessageServiceException e) {
+            exceptionThrown = true;
+        }
+
+        Assert.assertTrue(exceptionThrown);
+        exceptionThrown = false;
+        subject = "subject";
+        sendServiceRequest = new SendServiceRequest(messageType, subject, body);
+
+        try {
+            this.messageService.send(sendServiceRequest);
+        } catch (MessageServiceException e) {
+            exceptionThrown = true;
+        }
+
+        Assert.assertTrue(exceptionThrown);
+    }
+
+    @Test
+    public void testSearchMessageOk() {
+        SearchServiceRequest searchServiceRequest = new SearchServiceRequest();
+        this.messageService.search(searchServiceRequest);
+        //TODO
     }
     
-    @Test
-    public void testSendKo() {
-        String subject = null;
-        String body = null;
-        SendServiceRequest sendServiceRequest = new SendServiceRequest(subject, body);
-        SendServiceResponse sendServiceResponse = this.messageService.send(sendServiceRequest);
-        
-//        Assert.assertNotNull("response unavalible" ,sendServiceResponse);
+    @Test(expected = MessageServiceException.class)
+    public void testSearchInvalidRequest() {
+        SearchServiceRequest searchServiceRequest = null;
+        this.messageService.search(searchServiceRequest);
     }
 
 }

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mylab.learn.testpoc.service.MessageServiceException;
+import com.mylab.learn.testpoc.service.MessageType;
 import com.mylab.learn.testpoc.service.dto.SendServiceRequest;
 import com.mylab.learn.testpoc.service.dto.SendServiceResponse;
 
@@ -20,7 +21,9 @@ public abstract class MessageClientTestAdapter {
     public void testMessageSendAndStored() {
         String subject = "stored message";
         String body = "stored message body";
-        this.sendServiceRequest = new SendServiceRequest(subject, body);
+        MessageType messageType = MessageType.STORED;
+
+        this.sendServiceRequest = new SendServiceRequest(messageType, subject, body);
         this.sendServiceResponse = new SendServiceResponse(Boolean.TRUE);
         this.beforeTestMessageSendOk();
 
@@ -35,7 +38,9 @@ public abstract class MessageClientTestAdapter {
     public void testMessageSendAndNotStored() {
         String subject = "transient message";
         String body = "transient message body";
-        this.sendServiceRequest = new SendServiceRequest(subject, body);
+        MessageType messageType = MessageType.STORED;
+
+        this.sendServiceRequest = new SendServiceRequest(messageType, subject, body);
         this.sendServiceResponse = new SendServiceResponse(Boolean.FALSE);
         this.beforeTestMessageSendOk();
 
@@ -50,7 +55,9 @@ public abstract class MessageClientTestAdapter {
     public void testMessageSendError() {
         String subject = null;
         String body = null;
-        this.sendServiceRequest = new SendServiceRequest(subject, body);
+        MessageType messageType = MessageType.STORED;
+
+        this.sendServiceRequest = new SendServiceRequest(messageType, subject, body);
         this.beforeTestMessageSendError();
 
         this.messageServiceClient.send(this.sendServiceRequest);
