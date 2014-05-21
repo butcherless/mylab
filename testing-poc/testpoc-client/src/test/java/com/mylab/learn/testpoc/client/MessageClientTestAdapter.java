@@ -38,7 +38,7 @@ public abstract class MessageClientTestAdapter {
     public void testMessageSendAndNotStored() {
         String subject = "transient message";
         String body = "transient message body";
-        MessageType messageType = MessageType.STORED;
+        MessageType messageType = MessageType.TRANSIENT;
 
         this.sendServiceRequest = new SendServiceRequest(messageType, subject, body);
         this.sendServiceResponse = new SendServiceResponse(Boolean.FALSE);

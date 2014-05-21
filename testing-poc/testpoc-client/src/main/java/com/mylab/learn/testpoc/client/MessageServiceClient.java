@@ -35,8 +35,8 @@ public class MessageServiceClient {
         return sendServiceResponse.isStored();
     }
 
-    public void search(String subject) {
-
-    }
+//    public void search(String subject) {
+//
+//    }
 
 }
