@@ -10,7 +10,6 @@ import org.junit.Test;
 import com.mylab.learn.myarchetype.test.MetamodelFilter;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.filters.FilterChain;
-import com.openpojo.reflection.filters.FilterClassName;
 import com.openpojo.reflection.filters.FilterNestedClasses;
 import com.openpojo.reflection.filters.FilterNonConcrete;
 import com.openpojo.reflection.impl.PojoClassFactory;
@@ -30,6 +29,7 @@ public class DomainTest {
     private PojoValidator pojoValidator;
     private List<PojoClass> pojoClasses;
 
+    @SuppressWarnings("rawtypes")
     private List metamodelClasses = Arrays.asList(AbstractEntity.class, Airline.class,
             Aircraft.class, Location.class, Route.class, Trip.class);
 
@@ -38,12 +38,12 @@ public class DomainTest {
         pojoValidator = new PojoValidator();
         FilterNonConcrete filterNonConcrete = new FilterNonConcrete();
         FilterNestedClasses filterNestedClasses = new FilterNestedClasses();
+        @SuppressWarnings("unchecked")
         MetamodelFilter metamodelFilter = new MetamodelFilter(metamodelClasses);
 
         FilterChain filterChain = new FilterChain(filterNonConcrete, filterNestedClasses,
                 metamodelFilter);
 
-        FilterClassName filterClassName = new FilterClassName("^Airline");
         pojoClasses = PojoClassFactory.getPojoClasses(
                 this.getClass().getPackage().getName(),
                 filterChain
@@ -72,11 +72,11 @@ public class DomainTest {
         }
     }
 
-//    @Test
-//    public void testToString() {
-//        for (PojoClass pojoClass : pojoClasses) {
-//        }
-//    }
+    // @Test
+    // public void testToString() {
+    // for (PojoClass pojoClass : pojoClasses) {
+    // }
+    // }
 
     // @Test
     // public void testDomainMethods() {

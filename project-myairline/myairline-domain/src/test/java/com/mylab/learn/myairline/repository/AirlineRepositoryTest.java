@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mylab.learn.myairline.domain.Aircraft;
 import com.mylab.learn.myairline.domain.Airline;
-import com.mylab.learn.myairline.domain.Location;
 import com.mylab.learn.myairline.domain.DomainFactory;
+import com.mylab.learn.myairline.domain.Location;
 import com.mylab.learn.myairline.domain.Route;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:airline-domain-unit-test.xml")
-@Ignore
+// @Ignore
 public class AirlineRepositoryTest {
 
     @Autowired
@@ -80,10 +79,10 @@ public class AirlineRepositoryTest {
 
         aircraft = this.createSierraDeGredosAircraft(airline);
         this.aircraftRepository.save(aircraft);
-        
+
         Assert.assertEquals("entity count", 1L, this.airlineRepository.count());
         Assert.assertEquals("entity count", 2L, this.aircraftRepository.count());
-        
+
         String airlineName = "Iberia";
         Iterable<Aircraft> aircfrafts = this.aircraftRepository.findAll(
                 AircraftPredicates.belongsToAirline(airlineName));
@@ -91,7 +90,6 @@ public class AirlineRepositoryTest {
         Assert.assertEquals("entity count", 2L, this.iterableToAircraftList(aircfrafts).size());
     }
 
-    
     @Transactional
     @Test
     public void testCreateDestination() {
