@@ -21,12 +21,12 @@
         <hibernate-validator.version>[5.1,5.3)</hibernate-validator.version>
         <hsqldb.version>2.3.2</hsqldb.version>
         <jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
-        <jackson-core.version>2.3.3</jackson-core.version>
+        <jackson-core.version>2.4.0</jackson-core.version>
         <jackson-databind.version>2.3.3</jackson-databind.version>
         <javax.annotation.version>1.0</javax.annotation.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <jaxb.api.version>2.2.11</jaxb.api.version>
-        <jetty.version>9.2.0.RC0</jetty.version>
+        <jetty.version>9.2.0.v20140526</jetty.version>
         <junit.version>4.11</junit.version>
         <mockito.version>1.9.5</mockito.version>
         <openpojo.version>0.5.0</openpojo.version>
@@ -34,7 +34,8 @@
         <slf4j.version>1.7.7</slf4j.version>
         <spring-data-commons.version>1.8.0.RELEASE</spring-data-commons.version>
         <spring.data.version>1.6.0.RELEASE</spring.data.version>
-        <spring.version>4.0.5.RELEASE</spring.version>
+        <spring.version>3.2.9.RELEASE</spring.version>
+<!--        <spring.version>4.0.5.RELEASE</spring.version> -->
         <validation.api.version>1.1.0.Final</validation.api.version>
         <downloadSources>true</downloadSources>
         <downloadJavadocs>true</downloadJavadocs>
@@ -523,6 +524,11 @@
                     <format>txt</format>
                     <linkXref>true</linkXref>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>2.0</version>
             </plugin>
         </plugins>
     </reporting>
