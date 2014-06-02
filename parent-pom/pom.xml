@@ -35,7 +35,6 @@
         <spring-data-commons.version>1.8.0.RELEASE</spring-data-commons.version>
         <spring.data.version>1.6.0.RELEASE</spring.data.version>
         <spring.version>3.2.9.RELEASE</spring.version>
-<!--        <spring.version>4.0.5.RELEASE</spring.version> -->
         <validation.api.version>1.1.0.Final</validation.api.version>
         <downloadSources>true</downloadSources>
         <downloadJavadocs>true</downloadJavadocs>
