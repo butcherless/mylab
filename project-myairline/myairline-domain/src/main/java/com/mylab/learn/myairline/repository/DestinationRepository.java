@@ -1,14 +1,15 @@
 package com.mylab.learn.myairline.repository;
 
+import javax.print.attribute.standard.Destination;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
-import com.mylab.learn.myairline.domain.Airline;
 import com.mylab.learn.myairline.domain.Location;
 
 /**
- * Persistence operations for {@link Airline} entity.
+ * Persistence operations for {@link Destination} entity.
  * 
  * @author cmartin
  * 

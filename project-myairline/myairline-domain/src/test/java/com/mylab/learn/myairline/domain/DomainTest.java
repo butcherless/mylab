@@ -68,7 +68,7 @@ public class DomainTest {
             pojoValidator.runValidation(pojoClass);
             ValidationHelper.getBasicInstance(pojoClass).toString();
             ValidationHelper.getMostCompleteInstance(pojoClass).toString();
-            System.out.println(pojoClass.getClazz().getName());
+//            System.out.println(pojoClass.getClazz().getName());
         }
     }
 
