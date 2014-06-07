@@ -25,11 +25,11 @@ public abstract class MessageClientTestAdapter {
 
         this.sendServiceRequest = new SendServiceRequest(messageType, subject, body);
         this.sendServiceResponse = new SendServiceResponse(Boolean.TRUE);
-        this.beforeTestMessageSendOk();
+        this.beforeSendMessageOk();
 
         Boolean stored = this.messageServiceClient.send(this.sendServiceRequest);
 
-        this.afterTestMessageSendOk();
+        this.afterSendMessageOk();
 
         Assert.assertTrue("message not stored", stored);
     }
@@ -42,11 +42,11 @@ public abstract class MessageClientTestAdapter {
 
         this.sendServiceRequest = new SendServiceRequest(messageType, subject, body);
         this.sendServiceResponse = new SendServiceResponse(Boolean.FALSE);
-        this.beforeTestMessageSendOk();
+        this.beforeSendMessageOk();
 
         Boolean stored = this.messageServiceClient.send(this.sendServiceRequest);
 
-        this.afterTestMessageSendOk();
+        this.afterSendMessageOk();
 
         Assert.assertFalse("message stored", stored);
     }
@@ -58,17 +58,17 @@ public abstract class MessageClientTestAdapter {
         MessageType messageType = MessageType.STORED;
 
         this.sendServiceRequest = new SendServiceRequest(messageType, subject, body);
-        this.beforeTestMessageSendError();
+        this.beforeSendMessageError();
 
         this.messageServiceClient.send(this.sendServiceRequest);
     }
 
-    protected void beforeTestMessageSendOk() {
+    protected void beforeSendMessageOk() {
     }
 
-    protected void afterTestMessageSendOk() {
+    protected void afterSendMessageOk() {
     }
 
-    protected void beforeTestMessageSendError() {
+    protected void beforeSendMessageError() {
     }
 }

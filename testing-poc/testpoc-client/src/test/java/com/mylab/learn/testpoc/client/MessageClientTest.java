@@ -21,18 +21,18 @@ public class MessageClientTest extends MessageClientTestAdapter {
     }
 
     @Override
-    protected void beforeTestMessageSendOk() {
+    protected void beforeSendMessageOk() {
         when(this.messageService.send(this.sendServiceRequest))
                 .thenReturn(this.sendServiceResponse);
     }
 
     @Override
-    protected void afterTestMessageSendOk() {
+    protected void afterSendMessageOk() {
         verify(this.messageService).send(this.sendServiceRequest);
     }
 
     @Override
-    protected void beforeTestMessageSendError() {
+    protected void beforeSendMessageError() {
         when(this.messageService.send(this.sendServiceRequest))
                 .thenThrow(new MessageServiceException("Invalid Request"));
     }
