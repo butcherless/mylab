@@ -16,6 +16,8 @@
 
     <modules>
         <module>myairline-domain</module>
+        <module>myairline-service-api</module>
+        <module>myairline-service-impl</module>
     </modules>
 
     <prerequisites>
