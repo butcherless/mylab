@@ -1,0 +1,6 @@
+PROJECTS="project-archetype project-myairline testing-poc"
+
+for p in ${PROJECTS}
+do
+  mvn clean test -f $p
+done

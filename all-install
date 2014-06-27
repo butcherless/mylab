@@ -1,0 +1,6 @@
+PROJECTS="parent-pom project-archetype project-myairline testing-poc"
+
+for p in ${PROJECTS}
+do
+  mvn install -f $p
+done
