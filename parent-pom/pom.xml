@@ -281,12 +281,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>2.5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.3</version>
+                    <version>3.4</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -406,7 +406,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>2.2</version>
+                    <version>2.3.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -438,6 +438,7 @@
                     <aggregate>true</aggregate>
                 </configuration>
             </plugin>
+<!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
@@ -448,6 +449,7 @@
                     <threshold>Low</threshold>
                 </configuration>
             </plugin>
+-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
@@ -484,13 +486,5 @@
             </plugin>
         </plugins>
     </reporting>
-
-    <!-- <distributionManagement> -->
-    <!-- <repository> -->
-    <!-- <id>cloudbees</id> -->
-    <!-- <name>Cloudbees Forge</name> -->
-    <!-- <url>https://repository-butcherless.forge.cloudbees.com/snapshot</url> -->
-    <!-- </repository> -->
-    <!-- </distributionManagement> -->
 
 </project>
