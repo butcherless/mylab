@@ -1,4 +1,4 @@
 mylab
 =====
 
-Proof of concept and research with colleagues.
+Proof of concept and research with colleagues and friends.
