@@ -1,4 +1,4 @@
-package com.mylab.learn.myarchetype.test;
+package com.mylab.learn.tools.test;
 
 import java.util.ArrayList;
 import java.util.List;

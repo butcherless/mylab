@@ -5,7 +5,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mylab.learn.myarchetype.test.ExclusionListFilter;
+import com.mylab.learn.tools.test.ExclusionListFilter;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.filters.FilterChain;
 import com.openpojo.reflection.filters.FilterNestedClasses;
@@ -21,46 +21,47 @@ import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.utils.ValidationHelper;
 
 public class DTOTest {
-    private PojoValidator pojoValidator;
-    private List<PojoClass> pojoClasses;
+	private PojoValidator pojoValidator;
+	private List<PojoClass> pojoClasses;
 
-    private Class[] exclusionArray = { DTOTest.class };
+	private Class[] exclusionArray = { DTOTest.class };
 
-    @Before
-    public void setup() {
-        pojoValidator = new PojoValidator();
-        FilterNonConcrete filterNonConcrete = new FilterNonConcrete();
-        FilterNestedClasses filterNestedClasses = new FilterNestedClasses();
-        ExclusionListFilter exclusionListFilter = new ExclusionListFilter(exclusionArray);
+	@Before
+	public void setup() {
+		pojoValidator = new PojoValidator();
+		FilterNonConcrete filterNonConcrete = new FilterNonConcrete();
+		FilterNestedClasses filterNestedClasses = new FilterNestedClasses();
+		ExclusionListFilter exclusionListFilter = new ExclusionListFilter(
+				exclusionArray);
 
-        FilterChain filterChain =
-                new FilterChain(filterNonConcrete, filterNestedClasses, exclusionListFilter);
-        pojoClasses = PojoClassFactory.getPojoClasses(
-                this.getClass().getPackage().getName(), filterChain);
+		FilterChain filterChain = new FilterChain(filterNonConcrete,
+				filterNestedClasses, exclusionListFilter);
+		pojoClasses = PojoClassFactory.getPojoClasses(this.getClass()
+				.getPackage().getName(), filterChain);
 
-        // Create Rules to validate structure for POJO_PACKAGE
-        pojoValidator.addRule(new NoPublicFieldsRule());
-        pojoValidator.addRule(new NoPrimitivesRule());
-        pojoValidator.addRule(new NoStaticExceptFinalRule());
-        pojoValidator.addRule(new GetterMustExistRule());
-        pojoValidator.addRule(new NoNestedClassRule());
+		// Create Rules to validate structure for POJO_PACKAGE
+		pojoValidator.addRule(new NoPublicFieldsRule());
+		pojoValidator.addRule(new NoPrimitivesRule());
+		pojoValidator.addRule(new NoStaticExceptFinalRule());
+		pojoValidator.addRule(new GetterMustExistRule());
+		pojoValidator.addRule(new NoNestedClassRule());
 
-        // Create Testers to validate behaviour for POJO_PACKAGE
-        pojoValidator.addTester(new GetterTester());
-    }
+		// Create Testers to validate behaviour for POJO_PACKAGE
+		pojoValidator.addTester(new GetterTester());
+	}
 
-    @Test
-    public void testPojoStructureAndBehavior() {
-        for (PojoClass pojoClass : pojoClasses) {
-            pojoValidator.runValidation(pojoClass);
-        }
-    }
+	@Test
+	public void testPojoStructureAndBehavior() {
+		for (PojoClass pojoClass : pojoClasses) {
+			pojoValidator.runValidation(pojoClass);
+		}
+	}
 
-    @Test
-    public void testToString() {
-        for (PojoClass pojoClass : pojoClasses) {
-            ValidationHelper.getBasicInstance(pojoClass).toString();
-            ValidationHelper.getMostCompleteInstance(pojoClass).toString();
-        }
-    }
+	@Test
+	public void testToString() {
+		for (PojoClass pojoClass : pojoClasses) {
+			ValidationHelper.getBasicInstance(pojoClass).toString();
+			ValidationHelper.getMostCompleteInstance(pojoClass).toString();
+		}
+	}
 }

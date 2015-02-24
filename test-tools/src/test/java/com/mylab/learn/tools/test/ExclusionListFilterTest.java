@@ -1,4 +1,4 @@
-package com.mylab.learn.myarchetype.test;
+package com.mylab.learn.tools.test;
 
 import org.junit.Assert;
 import org.junit.Test;
