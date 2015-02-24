@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mylab.learn.myarchetype.test.MetamodelFilter;
+import com.mylab.learn.tools.test.MetamodelFilter;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.filters.FilterChain;
 import com.openpojo.reflection.filters.FilterNestedClasses;
@@ -152,6 +152,6 @@ public class DomainTest {
         DomainFactory.newDestination(airportName, shortCode);
         DomainFactory.newRoute(airportName, origin, destination);
 
-        new DomainFactory();
-    }
+		new DomainFactory();
+	}
 }

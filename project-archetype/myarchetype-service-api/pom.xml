@@ -17,10 +17,8 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.mylab.learn.myarchetype</groupId>
-            <artifactId>myarchetype-test</artifactId>
-            <scope>test</scope>
-            <version>${project.version}</version>
+            <groupId>com.mylab.learn</groupId>
+            <artifactId>test-tools</artifactId>
         </dependency>
 
         <dependency>

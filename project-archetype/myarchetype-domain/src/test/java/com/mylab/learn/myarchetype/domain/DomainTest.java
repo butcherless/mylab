@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mylab.learn.myarchetype.test.ExclusionListFilter;
+import com.mylab.learn.tools.test.ExclusionListFilter;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.filters.FilterChain;
 import com.openpojo.reflection.filters.FilterNestedClasses;
