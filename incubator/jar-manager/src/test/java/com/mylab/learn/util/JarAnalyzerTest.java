@@ -17,7 +17,7 @@ public class JarAnalyzerTest {
 	final String PATH = "/home/cmartin/.m2/repository";
 	JarAnalyzer analyzer = new JarAnalyzer();
 	String jarFilePath = "/home/cmartin/.m2/repository/org/springframework/spring-core/4.1.6.RELEASE/spring-core-4.1.6.RELEASE.jar";
-
+	
 	@Test
 	public void testCreateJarFiles() throws FileNotFoundException, IOException {
 		Collection<File> jarList = this.analyzer.findJars(PATH);
@@ -54,6 +54,13 @@ public class JarAnalyzerTest {
 				System.out.println(classFileBean);
 			}
 		}
+	}
+	
+	@Test
+	public void testfindJarFileBySha1sum() throws IOException {
+		String sha1sum = "19d4e90b43059058f6e056f794f0ea4030d60b86";
+		String result = this.analyzer.findJarFileBySha1sum(sha1sum);
+		System.out.println(result);
 	}
 	
 	
