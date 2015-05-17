@@ -85,6 +85,12 @@ public class JarAnalyzer {
         JsonNode responseNode = rootNode.path("response");
         System.out.println("missing: " + responseNode.isMissingNode());
         System.out.println("numFound: " + responseNode.path("numFound"));
+        System.out.println("docs: " + responseNode.path("docs"));
+        System.out.println("id: " + responseNode.path("docs").findPath("id"));
+        System.out.println("group: " + responseNode.path("docs").findPath("g"));
+        System.out.println("artifact: " + responseNode.path("docs").findPath("a"));
+        System.out.println("version: " + responseNode.path("docs").findPath("v"));
+        System.out.println("package: " + responseNode.path("docs").findPath("p"));
     }
 
     public Collection<ClassFileBean> findClassFileByJarFile(final String jarFilePath) {

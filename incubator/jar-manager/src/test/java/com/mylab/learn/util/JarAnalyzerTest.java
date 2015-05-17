@@ -41,8 +41,8 @@ public class JarAnalyzerTest {
     @Test
     public void testfindJarFileBySha1sum() throws IOException {
         String sha1sum = "19d4e90b43059058f6e056f794f0ea4030d60b86";
+//        String sha1sum = "ce2d409d470948f11fad41ffdf37dcff4d28cd7c";
         String result = this.analyzer.findJarFileBySha1sum(sha1sum);
-        System.out.println(result);
     }
 
     @Test
