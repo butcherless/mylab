@@ -20,6 +20,10 @@ public class JarFileBean {
                 .toString();
     }
 
+    public String getSha1Hex() {
+        return this.sha1Hex;
+    }
+    
     @Override
     public String toString() {
         // TODO Auto-generated method stub
