@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +56,8 @@ public class JarAnalyzerTest {
         // String sha1sum = "ce2d409d470948f11fad41ffdf37dcff4d28cd7c";
         String result = this.analyzer.findJarFileBySha1sum(sha1sum);
     }
-    
+
+    @Ignore
     @Test
     public void testFindJarFileListBySha1sum() {
         Collection<JarFileBean> jarFileList = this.analyzer.findJarFiles(PATH);
