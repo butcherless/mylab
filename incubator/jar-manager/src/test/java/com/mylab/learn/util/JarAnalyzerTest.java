@@ -6,19 +6,33 @@ import java.util.Collection;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:jar-analyzer-unit-test.xml")
 public class JarAnalyzerTest {
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    final String PATH = "/home/cmartin/.m2/repository";
+    @Value("${repository.path}")
+    String repositoryPath;
+    @Value("${jarfile.path}")
+    String jarFilePath;
+    
     JarAnalyzer analyzer = new JarAnalyzer();
-    String jarFilePath = "/home/cmartin/.m2/repository/org/springframework/spring-core/4.1.6.RELEASE/spring-core-4.1.6.RELEASE.jar";
 
     @Test
+    public void testProperties() {
+    	System.out.println(this.repositoryPath);
+    }
+    
+    @Test
     public void testFindJarFiles() {
-        Collection<JarFileBean> jarFileList = this.analyzer.findJarFiles(PATH);
+        Collection<JarFileBean> jarFileList = this.analyzer.findJarFiles(this.repositoryPath);
         Assert.assertFalse(jarFileList.isEmpty());
         jarFileList.forEach(f -> this.logger.debug(f.toString()));
     }
@@ -39,7 +53,7 @@ public class JarAnalyzerTest {
 
     @Test
     public void test() throws IOException {
-        Collection<JarFileBean> jarFileList = this.analyzer.findJarFiles(PATH);
+        Collection<JarFileBean> jarFileList = this.analyzer.findJarFiles(this.repositoryPath);
         jarFileList.forEach(jarFile -> this.m(jarFile));
         this.logger.debug("list size: {}", jarFileList.size());
     }
@@ -60,7 +74,7 @@ public class JarAnalyzerTest {
     @Ignore
     @Test
     public void testFindJarFileListBySha1sum() {
-        Collection<JarFileBean> jarFileList = this.analyzer.findJarFiles(PATH);
+        Collection<JarFileBean> jarFileList = this.analyzer.findJarFiles(this.repositoryPath);
         jarFileList.forEach(jarFile -> this.analyzer.findJarFileBySha1sum(jarFile.getSha1Hex()));
     }
 
