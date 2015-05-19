@@ -1,4 +1,4 @@
-package com.mylab.learn.util;
+package com.mylab.learn.jaranalyzer.service;
 
 public class ClassFileBean {
 	private final String fullname;

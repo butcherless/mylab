@@ -1,4 +1,4 @@
-package com.mylab.learn.util;
+package com.mylab.learn.jaranalyzer.service;
 
 import java.io.IOException;
 import java.util.Collection;
