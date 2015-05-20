@@ -1,21 +1,29 @@
 package com.mylab.learn.jaranalyzer.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
 @NodeEntity
 public class JarFileBean {
     @GraphId
-    Long nodeId;
+    private Long nodeId;
 
     @Indexed
     private String name;
     private String path;
     @Indexed(unique = true)
     private String sha1Hex;
+
+//    @RelatedTo(type = "HAS_FILE")
+//    private Set<ClassFileBean> classFileBeans = new HashSet<ClassFileBean>();
 
     public JarFileBean() {
     }
@@ -49,6 +57,10 @@ public class JarFileBean {
     public String getSha1Hex() {
         return this.sha1Hex;
     }
+
+//    public void store(ClassFileBean classFileBean) {
+//        this.classFileBeans.add(classFileBean);
+//    }
 
     @Override
     public String toString() {
