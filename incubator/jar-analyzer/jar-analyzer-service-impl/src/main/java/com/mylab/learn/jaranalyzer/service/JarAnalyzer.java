@@ -86,19 +86,19 @@ public class JarAnalyzer {
         Map<String, String> params = new HashMap<String, String>();
         params.put("sha1sum", sha1sum);
 
-        String result = restTemplate.getForObject(SHA1SUM_URI, String.class, params);
+        String restResponse = restTemplate.getForObject(SHA1SUM_URI, String.class, params);
 
         try {
-            Boolean found = this.parseResponse(result);
+            Boolean found = this.parseResponse(sha1sum, restResponse);
 //            this.logger.debug("sha1sum exists?: {}:{}", sha1sum, found);
         } catch (IOException e) {
             throw new JarAnalizerException("Error parsing json file", e);
         }
 
-        return result;
+        return restResponse;
     }
 
-    private Boolean parseResponse(final String response) throws JsonProcessingException,
+    private Boolean parseResponse(final String sha1sum, final String response) throws JsonProcessingException,
             IOException {
         // create ObjectMapper instance
         Boolean found = false;
@@ -110,7 +110,10 @@ public class JarAnalyzer {
                 if (!responseNode.path("numFound").equals("0")) {
                     found = true;
                 }
-                this.logger.debug("artifact found[{}]: {}", responseNode.path("numFound"), responseNode.path("docs").findPath("id"));
+                this.logger.debug("artifact {} found[{}]: {}",
+                		sha1sum,
+                		responseNode.path("numFound"),
+                		responseNode.path("docs").findPath("id"));
             }
         }
 //        System.out.println("missing: " + responseNode.isMissingNode());

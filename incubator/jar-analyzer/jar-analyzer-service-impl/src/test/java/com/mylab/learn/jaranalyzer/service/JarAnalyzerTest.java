@@ -23,7 +23,7 @@ public class JarAnalyzerTest {
     @Value("${jarfile.path}")
     String jarFilePath;
     
-    JarAnalyzer analyzer = new JarAnalyzer();
+    protected JarAnalyzer analyzer = new JarAnalyzer();
 
     @Test
     public void testProperties() {
@@ -71,7 +71,7 @@ public class JarAnalyzerTest {
         String result = this.analyzer.findJarFileBySha1sum(sha1sum);
     }
 
-    @Ignore
+//    @Ignore
     @Test
     public void testFindJarFileListBySha1sum() {
         Collection<JarFileBean> jarFileList = this.analyzer.findJarFiles(this.repositoryPath);
