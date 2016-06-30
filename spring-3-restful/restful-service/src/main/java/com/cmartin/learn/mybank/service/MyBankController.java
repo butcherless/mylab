@@ -1,6 +1,7 @@
 package com.cmartin.learn.mybank.service;
 
 import com.cmartin.learn.mybank.dto.AccountDTO;
+import com.cmartin.learn.mybank.dto.AccountTransactionDTO;
 import com.cmartin.learn.mybank.dto.DomainFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,19 @@ public class MyBankController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
+    @RequestMapping(value = "/{accountId}/accountTransactions",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<List<AccountTransactionDTO>> getAccountTransactionss(@RequestParam(required = false,
+            defaultValue = "0") final Integer paginationSize) {
+
+        List<AccountTransactionDTO> dtos = DomainFactory.newAccountTransactionListDTO(7);
+
+        return new ResponseEntity<List<AccountTransactionDTO>>(dtos, HttpStatus.OK);
+    }
+
+
     @RequestMapping(value = "/{accountId}",
             method = RequestMethod.GET,
             produces = "application/json")
@@ -31,8 +45,8 @@ public class MyBankController {
         // TODO
         this.logger.debug("accountId: {}", accountId);
 
-        final AccountDTO accountDTO =
-                DomainFactory.newAccountDTO("account-number-" + accountId, BigDecimal.valueOf(1024.16));
+        final AccountDTO accountDTO = DomainFactory.newAccountDTO(
+                "account-number-" + accountId, "account alias", BigDecimal.valueOf(1024.16));
 
         this.logger.debug(accountDTO.toString());
 

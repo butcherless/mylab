@@ -16,8 +16,10 @@
         <downloadJavadocs>true</downloadJavadocs>
         <java.version>1.7</java.version>
         <commons-lang3.version>3.4</commons-lang3.version>
-        <!--<spring.version>3.2.17.RELEASE</spring.version>-->
         <spring.version>4.2.6.RELEASE</spring.version>
+        <!--
+        <spring.version>3.2.17.RELEASE</spring.version>
+        -->
         <jackson-core.version>2.5.3</jackson-core.version>
         <jackson-databind.version>2.5.3</jackson-databind.version>
         <jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
@@ -25,6 +27,7 @@
         <junit.version>4.12</junit.version>
         <lombok.version>1.16.8</lombok.version>
         <logback.version>1.1.5</logback.version>
+        <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
         <slf4j.version>1.7.16</slf4j.version>
 
 

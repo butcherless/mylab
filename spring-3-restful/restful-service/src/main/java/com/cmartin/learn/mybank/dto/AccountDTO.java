@@ -11,5 +11,6 @@ import java.math.BigDecimal;
 @Data
 public class AccountDTO implements Serializable {
     private String number;
+    private String alias;
     private BigDecimal balance;
 }
