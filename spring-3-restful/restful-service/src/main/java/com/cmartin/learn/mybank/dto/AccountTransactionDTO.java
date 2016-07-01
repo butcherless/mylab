@@ -12,6 +12,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class AccountTransactionDTO implements Serializable {
+    private String id;
     private Amount amount;
     private Date transactionDate;
     private Date date;

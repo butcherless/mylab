@@ -11,12 +11,16 @@ import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.regex.Matcher;
+
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -39,22 +43,17 @@ public class ApiDocumentation {
         this.mockMvc = MockMvcBuilders.standaloneSetup(new MyBankController()).setMessageConverters(this.prettyPrintConverter)
                 .apply(documentationConfiguration(this.restDocumentation))
                 .build();
-
-//        this.mockMvc= MockMvcBuilders.webAppContextSetup(this.context)
-//                .apply(documentationConfiguration(this.restDocumentation)).build();
-
-//        this.specification = new RequestSpecBuilder().addFilter(
-//                documentationConfiguration(this.restDocumentation))
-//                .build();
     }
-
 
     @Test
     public void testGetAccountList() throws Exception {
         this.mockMvc.perform(get("/accounts/").accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath(".number").exists())
+                .andExpect(jsonPath(".balance").exists())
+                // documentation
                 .andDo(document("account-list",
                         responseFields(
                                 fieldWithPath("[].number").description("número de cuenta"),
@@ -68,7 +67,8 @@ public class ApiDocumentation {
         this.mockMvc.perform(get("/accounts/?paginationSize=7"))
                 .andDo(print())
                 .andExpect(status().isOk())
-
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                // documentation
                 .andDo(document("account-list-page",
                         responseFields(
                                 fieldWithPath("[].number").description("número de cuenta"),
@@ -104,6 +104,8 @@ public class ApiDocumentation {
         this.mockMvc.perform(get("/accounts/AB1122223333441234567890").accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                // documentation
                 .andDo(document("account-get",
                         responseFields(
                                 fieldWithPath("number").description("número de cuenta"),
@@ -125,16 +127,20 @@ public class ApiDocumentation {
         this.mockMvc.perform(get("/accounts/1234567890/accountTransactions").accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                // documentation
                 .andDo(document("accountTransaction-list",
                         responseFields(
-                                fieldWithPath("[].amount").description("cantidad monetaria del movimiento"),
-                                fieldWithPath("[].amount.value").description("cuantía del movimiento"),
-                                fieldWithPath("[].amount.currency").description("divisa del movimiento"),
-                                fieldWithPath("[].transactionDate").description("fecha del movimiento"),
-                                fieldWithPath("[].date").description("fecha de consolidación del movimiento"),
-                                fieldWithPath("[].description").description("descripción del movimiento"))));
+                                fieldWithPath("list.[].id").description("identificador único del movimiento"),
+                                fieldWithPath("list.[].amount").description("cantidad monetaria del movimiento"),
+                                fieldWithPath("list.[].amount.value").description("cuantía del movimiento"),
+                                fieldWithPath("list.[].amount.currency").description("divisa del movimiento"),
+                                fieldWithPath("list.[].transactionDate").description("fecha del movimiento"),
+                                fieldWithPath("list.[].date").description("fecha de consolidación del movimiento"),
+                                fieldWithPath("list.[].description").description("descripción del movimiento"),
+                                fieldWithPath("paginationKey").description("clave de paginación para recuperar la siguiente página de resultados"),
+                                fieldWithPath("hasNextPage").description("indicador de datos adicionales disponibles"))));
     }
-
 
     @Test
     public void testFactory() {

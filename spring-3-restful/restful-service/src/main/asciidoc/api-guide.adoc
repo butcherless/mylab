@@ -1,5 +1,5 @@
 = Guía API RESTful MyBank
-MyBank - - Madrid
+MyBank - Madrid
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -19,6 +19,7 @@ Ficticio.
 Los servicios desarrollados para el proyecto tratan de cumplir las convenciones HTTP y REST en el uso de los verbos
 HTTP.
 
+[cols="1,3",options="header"]
 |===
 | Verb | Usage
 
@@ -45,6 +46,7 @@ HTTP.
 Los servicios desarrollados para el proyecto tratan de cumplir las convenciones HTTP y REST en el uso de los códigos
 de status HTTP.
 
+[cols="1,3",options="header"]
 |===
 | Status code | Usage
 
@@ -67,7 +69,7 @@ de status HTTP.
 | `409 Conflict`
 | The requested already exists
 
-| `5XX Server Error`
+| `[red]#5XX# Server Error`
 | Unable to process the request
 
 |===
@@ -76,17 +78,36 @@ de status HTTP.
 [[resources]]
 = Resources
 
+[[resources-accounts]]
+== Accounts
 
-[[resources-index]]
-== Index
+The Account resource is used to create and list accounts
 
-The index provides the entry point into the service.
+
+
+[[resources-account-list]]
+=== Listing acounts with pagination
+
+A `GET` request will list all of the service's accounts.
+
+==== Response structure
+
+include::{snippets}/account-list-page/response-fields.adoc[]
+
+==== Example curl request
+
+include::{snippets}/account-list-page/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/account-list-page/http-response.adoc[]
+
 
 
 [[resources-index-access]]
-=== Accessing the index
+=== Listing accounts
 
-A `GET` request is used to access the index
+A `GET` request is used to list first available accounts
 
 ==== Response structure
 
@@ -103,7 +124,6 @@ include::{snippets}/account-list/httpie-request.adoc[]
 ==== Example response
 
 include::{snippets}/account-list/http-response.adoc[]
-
 
 
 
@@ -126,35 +146,10 @@ include::{snippets}/account-get/http-response.adoc[]
 
 
 
-[[resources-accounts]]
-== Accounts
-
-The Accounts resources is used to create and list accounts
-
-
-[[resources-account-list]]
-=== Listing acounts
-
-A `GET` request will list all of the service's accounts.
-
-==== Response structure
-
-include::{snippets}/account-list-page/response-fields.adoc[]
-
-==== Example curl request
-
-include::{snippets}/account-list-page/curl-request.adoc[]
-
-==== Example response
-
-include::{snippets}/account-list-page/http-response.adoc[]
-
-
-
 [[resources-accountTransactions]]
 == AccountTransactions
 
-The AccountTransactions resources is used to create and list accountTransactions
+The AccountTransaction resource is used to create and list accountTransactions
 
 
 [[resources-accountTransaction-list]]
@@ -177,39 +172,39 @@ include::{snippets}/accountTransaction-list/http-response.adoc[]
 
 
 [[resources-account-create]]
-=== Creating a note
+=== Creating an account
 
-A `POST` request is used to create a note
+A `POST` request is used to create a account
 
 ==== Request structure
 
-include::{snippets}/account-create/request-fields.adoc[]
+// include::{snippets}/account-create/request-fields.adoc[]
 
 ==== Example request
 
-include::{snippets}/account-create/curl-request.adoc[]
+// include::{snippets}/account-create/curl-request.adoc[]
 
 ==== Example response
 
-include::{snippets}/account-create/http-response.adoc[]
+// include::{snippets}/account-create/http-response.adoc[]
 
 
 
 [[resources-account-update]]
-=== Update a note
+=== Update an account
 
-A `PATCH` request is used to update a note
+A `PATCH` request is used to update an account
 
 ==== Request structure
 
-include::{snippets}/account-update/request-fields.adoc[]
+// include::{snippets}/account-update/request-fields.adoc[]
 
-To leave an attribute of a note unchanged, any of the above may be omitted from the request.
+To leave an attribute of a account unchanged, any of the above may be omitted from the request.
 
 ==== Example request
 
-include::{snippets}/account-update/curl-request.adoc[]
+// include::{snippets}/account-update/curl-request.adoc[]
 
 ==== Example response
 
-include::{snippets}/account-update/http-response.adoc[]
+// include::{snippets}/account-update/http-response.adoc[]

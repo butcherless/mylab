@@ -2,6 +2,7 @@ package com.cmartin.learn.mybank.service;
 
 import com.cmartin.learn.mybank.dto.AccountDTO;
 import com.cmartin.learn.mybank.dto.AccountTransactionDTO;
+import com.cmartin.learn.mybank.dto.AccountTransactionListDTO;
 import com.cmartin.learn.mybank.dto.DomainFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +29,14 @@ public class MyBankController {
             method = RequestMethod.GET,
             produces = "application/json")
     @ResponseBody
-    public ResponseEntity<List<AccountTransactionDTO>> getAccountTransactionss(@RequestParam(required = false,
+    public ResponseEntity<AccountTransactionListDTO> getAccountTransactionss(@RequestParam(required = false,
             defaultValue = "0") final Integer paginationSize) {
 
-        List<AccountTransactionDTO> dtos = DomainFactory.newAccountTransactionListDTO(7);
+        List<AccountTransactionDTO> accountTransactionDTOs = DomainFactory.newAccountTransactionListDTO(7);
 
-        return new ResponseEntity<List<AccountTransactionDTO>>(dtos, HttpStatus.OK);
+        AccountTransactionListDTO AccountTransactionListDTO = DomainFactory.newAccountTransactionListDTO(accountTransactionDTOs);
+
+        return new ResponseEntity<AccountTransactionListDTO>(AccountTransactionListDTO, HttpStatus.OK);
     }
 
 

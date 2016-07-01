@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by cmartin on 11/06/16.
@@ -43,11 +44,53 @@ public class DomainFactory {
     public static AccountTransactionDTO newAccountTransactionDTO(BigDecimal value, Currency currency, String description) {
         Amount amount = new Amount(value, currency);
         Date transactionDate = new Date();
+        String id = UUID.randomUUID().toString();
 
-        return new AccountTransactionDTO(amount, transactionDate, transactionDate, description);
+        return new AccountTransactionDTO(id, amount, transactionDate, transactionDate, description);
     }
 
     public static AccountTransactionDTO newAccountTransactionDTO(Double value, String currencyCode, String description) {
         return newAccountTransactionDTO(BigDecimal.valueOf(value), Currency.getInstance(currencyCode), description);
     }
+
+    private static AccountTransactionListDTO newAccountTransactionListDTO(
+            final List<AccountTransactionDTO> dtos, final Boolean hasNextPage, final String paginationKey) {
+        AccountTransactionListDTO dto = new AccountTransactionListDTO();
+        dto.setAccountTransactionDTOs(dtos);
+        dto.setHasNextPage(hasNextPage);
+        dto.setPaginationKey(paginationKey);
+
+        return dto;
+    }
+
+    /**
+     * caso lista vacía
+     *
+     * @return
+     */
+    public static AccountTransactionListDTO newAccountTransactionListDTO() {
+        return newAccountTransactionListDTO(new ArrayList<AccountTransactionDTO>(), false, "");
+    }
+
+    /**
+     * caso lista con 1 página o lista vacía
+     *
+     * @param dtos
+     * @return
+     */
+    public static AccountTransactionListDTO newAccountTransactionListDTO(final List<AccountTransactionDTO> dtos) {
+        return newAccountTransactionListDTO(dtos, false, "");
+    }
+
+    /**
+     * caso lista con N páginas
+     *
+     * @param dtos
+     * @return
+     */
+    public static AccountTransactionListDTO newAccountTransactionListDTO(
+            final List<AccountTransactionDTO> dtos, final String paginationKey) {
+        return newAccountTransactionListDTO(dtos, true, paginationKey);
+    }
+
 }

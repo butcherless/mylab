@@ -22,6 +22,7 @@ public class DomainFactoryTest {
         String description = "accountTransaction description";
         AccountTransactionDTO dto = DomainFactory.newAccountTransactionDTO(value, currencyCode, description);
 
+        Assert.assertNotNull(dto.getId());
         Assert.assertNotNull(dto.getAmount());
         Assert.assertNotNull(dto.getDate());
         Assert.assertNotNull(dto.getDescription());
