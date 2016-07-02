@@ -90,17 +90,26 @@ The Account resource is used to create and list accounts
 
 A `GET` request will list all of the service's accounts.
 
-==== Response structure
-
-include::{snippets}/account-list-page/response-fields.adoc[]
-
 ==== Example curl request
 
 include::{snippets}/account-list-page/curl-request.adoc[]
 
+==== Example httpie request
+
+include::{snippets}/account-list-page/httpie-request.adoc[]
+
+==== Request parameters
+
+include::{snippets}/account-list-page/request-parameters.adoc[]
+
 ==== Example response
 
 include::{snippets}/account-list-page/http-response.adoc[]
+
+==== Response structure
+
+include::{snippets}/account-list-page/response-fields.adoc[]
+
 
 
 

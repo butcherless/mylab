@@ -1,6 +1,9 @@
 package com.cmartin.learn.mybank.service;
 
 import com.cmartin.learn.mybank.dto.DomainFactory;
+import org.hamcrest.CoreMatchers;
+
+import org.hamcrest.text.MatchesPattern;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -8,21 +11,24 @@ import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.restdocs.JUnitRestDocumentation;
+import org.springframework.restdocs.payload.ResponseFieldsSnippet;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.PatternMatchUtils;
 
-import java.util.regex.Matcher;
+import java.math.BigDecimal;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 
 /**
  * Created by cmartin on 19/06/16.
@@ -30,6 +36,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@RunWith(SpringJUnit4ClassRunner.class)
 public class ApiDocumentation {
 
+    protected ResponseFieldsSnippet responseFieldsSnippet = responseFields(
+            fieldWithPath("[].number").description("número de cuenta"),
+            fieldWithPath("[].alias").description("alias para la cuenta"),
+            fieldWithPath("[].balance").description("saldo de la cuenta"));
 
     @Rule
     public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
@@ -51,29 +61,30 @@ public class ApiDocumentation {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath(".number").exists())
-                .andExpect(jsonPath(".balance").exists())
-                // documentation
+                .andExpect(jsonPath("$[0].number").exists())
+                .andExpect(jsonPath("$[0].alias").exists())
+                .andExpect(jsonPath("$[0].balance").exists())
+                .andExpect(jsonPath("$[0].balance").isNumber())
+//                .andExpect(jsonPath("$[0].balance").value(MatchesPattern.matchesPattern("[0-9]+")))
+                /*
+                 * documentation
+                 */
                 .andDo(document("account-list",
-                        responseFields(
-                                fieldWithPath("[].number").description("número de cuenta"),
-                                fieldWithPath("[].alias").description("alias para la cuenta"),
-                                fieldWithPath("[].balance").description("saldo de la cuenta"))));
+                        this.responseFieldsSnippet));
 
     }
 
     @Test
     public void testGetAccountListWithPagination() throws Exception {
-        this.mockMvc.perform(get("/accounts/?paginationSize=7"))
+        this.mockMvc.perform(get("/accounts/").param("paginationSize", "7"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 // documentation
                 .andDo(document("account-list-page",
-                        responseFields(
-                                fieldWithPath("[].number").description("número de cuenta"),
-                                fieldWithPath("[].alias").description("alias para la cuenta"),
-                                fieldWithPath("[].balance").description("saldo de la cuenta"))));
+                        requestParameters(
+                                parameterWithName("paginationSize").description("tamaño de página solicitado")),
+                        this.responseFieldsSnippet));
 /*
         given()
                 .standaloneSetup(new MyBankController()).

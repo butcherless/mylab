@@ -49,7 +49,7 @@ public class MyBankController {
         this.logger.debug("accountId: {}", accountId);
 
         final AccountDTO accountDTO = DomainFactory.newAccountDTO(
-                "account-number-" + accountId, "account alias", BigDecimal.valueOf(1024.16));
+                "account-number-" + accountId, "account alias", BigDecimal.valueOf(1024.1649));
 
         this.logger.debug(accountDTO.toString());
 

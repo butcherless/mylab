@@ -2,9 +2,11 @@ package com.cmartin.learn.mybank.dto;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Currency;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -15,7 +17,7 @@ public class DomainFactory {
         final AccountDTO dto = new AccountDTO();
         dto.setNumber(number);
         dto.setAlias(alias);
-        dto.setBalance(balance);
+        dto.setBalance(balance.setScale(2, BigDecimal.ROUND_HALF_UP));
 
         return dto;
     }
@@ -23,7 +25,7 @@ public class DomainFactory {
     public static List<AccountDTO> newAccountDTOList(final Integer number) {
         List<AccountDTO> dtos = new ArrayList<AccountDTO>();
         for (Integer i = 1; i <= number; i++) {
-            AccountDTO dto = newAccountDTO("account-number-" + i, "alias-" + i, BigDecimal.valueOf(1024 * i));
+            AccountDTO dto = newAccountDTO("account-number-" + i, "alias-" + i, makeBigDecimalRandomDecimal(1024.0 * i));
             dtos.add(dto);
         }
 
@@ -42,15 +44,17 @@ public class DomainFactory {
     }
 
     public static AccountTransactionDTO newAccountTransactionDTO(BigDecimal value, Currency currency, String description) {
-        Amount amount = new Amount(value, currency);
+        Amount amount = new Amount(value.setScale(2, BigDecimal.ROUND_HALF_UP), currency);
         Date transactionDate = new Date();
         String id = UUID.randomUUID().toString();
-
-        return new AccountTransactionDTO(id, amount, transactionDate, transactionDate, description);
+        Calendar calendar = Calendar.getInstance();
+        calendar.roll(Calendar.DAY_OF_YEAR, -1);
+        Date date = calendar.getTime();
+        return new AccountTransactionDTO(id, amount, transactionDate, date, description);
     }
 
     public static AccountTransactionDTO newAccountTransactionDTO(Double value, String currencyCode, String description) {
-        return newAccountTransactionDTO(BigDecimal.valueOf(value), Currency.getInstance(currencyCode), description);
+        return newAccountTransactionDTO(makeBigDecimalRandomDecimal(value), Currency.getInstance(currencyCode), description);
     }
 
     private static AccountTransactionListDTO newAccountTransactionListDTO(
@@ -93,4 +97,7 @@ public class DomainFactory {
         return newAccountTransactionListDTO(dtos, true, paginationKey);
     }
 
+    private static BigDecimal makeBigDecimalRandomDecimal(final Double value) {
+        return BigDecimal.valueOf(value + new Random().nextDouble());
+    }
 }
