@@ -104,7 +104,7 @@ public class DomainFactory {
         return BigDecimal.valueOf(value + new Random().nextDouble());
     }
 
-    private static String makePseudoIBANAccount() {
+    public static String makePseudoIBANAccount() {
         // country (2) + number (22) ES9<-22->1
         return RandomStringUtils.randomAlphabetic(2).toUpperCase() +
                 RandomStringUtils.randomNumeric(22);

@@ -20,12 +20,13 @@
         </triggeringPolicy>
     </appender>
 
+    <!--
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{20} [%file:%line] %msg%n</pattern>
         </encoder>
     </appender>
-
+-->
     <root level="DEBUG">
         <appender-ref ref="FILE"/>
         <!--appender-ref ref="STDOUT" /-->
@@ -39,7 +40,7 @@
         <appender-ref ref="FILE" level="INFO"/>
     </logger>
 
-    <logger name="com.cmartin">
+    <logger name="com.cmartin" additivity="false">
         <appender-ref ref="FILE" level="DEBUG"/>
     </logger>
 

@@ -1,5 +1,6 @@
 package com.cmartin.learn.mybank.service;
 
+import com.cmartin.learn.mybank.dto.AccountDTO;
 import com.cmartin.learn.mybank.dto.DomainFactory;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -7,11 +8,15 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.mock.http.MockHttpOutputMessage;
 import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.restdocs.payload.ResponseFieldsSnippet;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.io.IOException;
+import java.math.BigDecimal;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
@@ -19,6 +24,7 @@ import static org.hamcrest.text.MatchesPattern.matchesPattern;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
@@ -35,6 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ApiDocumentation {
 
     protected static final ResultMatcher statusOk = status().isOk();
+    protected static final ResultMatcher statusCreated = status().isCreated();
     protected static final ResultMatcher contentTypeJson = content().contentType(MediaType.APPLICATION_JSON);
 
     private static final String DECIMAL_NUMBER_PATTERN = "^[0-9]+.[0-9]{2}";
@@ -119,7 +126,7 @@ public class ApiDocumentation {
 
     @Test
     public void testGetAccount() throws Exception {
-        this.mockMvc.perform(get("/accounts/AB1122223333441234567890").accept(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/accounts/AB1122223333441234567890"))
                 .andDo(print())
                 .andExpect(statusOk)
                 .andExpect(contentTypeJson)
@@ -164,6 +171,18 @@ public class ApiDocumentation {
                                 fieldWithPath("hasNextPage").description("indicador de datos adicionales disponibles"))));
     }
 
+
+    @Test
+    public void testPostCreateAccount() throws Exception {
+        AccountDTO accountDTO = DomainFactory.newAccountDTO(
+                DomainFactory.makePseudoIBANAccount(), "account-alias", new BigDecimal(0).setScale(2));
+        this.mockMvc.perform(post("/users/1234567890/accounts/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json(accountDTO)))
+                .andDo(print())
+                .andExpect(statusCreated);
+    }
+
     @Test
     public void testFactory() {
         new DomainFactory();
@@ -178,5 +197,11 @@ public class ApiDocumentation {
         }
     }
 
+    protected String json(Object o) throws IOException {
+        MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();
+        this.prettyPrintConverter.write(
+                o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);
+        return mockHttpOutputMessage.getBodyAsString();
+    }
 
 }

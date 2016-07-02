@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,12 +21,12 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(value = "/accounts")
+@RequestMapping(value = "/")
 public class MyBankController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
-    @RequestMapping(value = "/{accountId}/accountTransactions",
+    @RequestMapping(value = "/accounts/{accountId}/accountTransactions",
             method = RequestMethod.GET,
             produces = "application/json")
     @ResponseBody
@@ -40,7 +41,7 @@ public class MyBankController {
     }
 
 
-    @RequestMapping(value = "/{accountId}",
+    @RequestMapping(value = "/accounts/{accountId}",
             method = RequestMethod.GET,
             produces = "application/json")
     @ResponseBody
@@ -57,7 +58,7 @@ public class MyBankController {
     }
 
 
-    @RequestMapping(value = "/",
+    @RequestMapping(value = "/accounts",
             method = RequestMethod.GET,
             produces = "application/json")
     @ResponseBody
@@ -81,6 +82,24 @@ public class MyBankController {
 
         return new ResponseEntity<List<AccountDTO>>(dtos, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/users/{userId}/accounts",
+            method = RequestMethod.POST)
+    public ResponseEntity createAccount(@PathVariable String userId, @RequestBody AccountDTO accountDTO) {
+        this.validateUser(userId);
+        this.validateAccountDTO(accountDTO);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    private void validateAccountDTO(final AccountDTO accountDTO) {
+        this.logger.debug("validating: {}", accountDTO);
+    }
+
+    private void validateUser(final String userId) {
+        this.logger.debug("user id: {} is Ok", userId);
+    }
+
+
 }
 
 /*
