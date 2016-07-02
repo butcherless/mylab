@@ -1,9 +1,6 @@
 package com.cmartin.learn.mybank.service;
 
 import com.cmartin.learn.mybank.dto.DomainFactory;
-import org.hamcrest.CoreMatchers;
-
-import org.hamcrest.text.MatchesPattern;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -13,11 +10,12 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.restdocs.payload.ResponseFieldsSnippet;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.util.PatternMatchUtils;
 
-import java.math.BigDecimal;
-
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.text.MatchesPattern.matchesPattern;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -36,6 +34,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@RunWith(SpringJUnit4ClassRunner.class)
 public class ApiDocumentation {
 
+    protected static final ResultMatcher statusOk = status().isOk();
+    protected static final ResultMatcher contentTypeJson = content().contentType(MediaType.APPLICATION_JSON);
+
+    private static final String DECIMAL_NUMBER_PATTERN = "^[0-9]+.[0-9]{2}";
+    private static final String NUMBER_PATTERN = "^[0-9]+";
+    private static final String IBAN_PATTERN = "^[A-Z]{2}[0-9]{22}";
+    //    private static final String WORD_PATTERN = "^[a-zA-Z0-9_-]+";
+    private static final String WORD_PATTERN = "\\p{Print}+";
+
     protected ResponseFieldsSnippet responseFieldsSnippet = responseFields(
             fieldWithPath("[].number").description("número de cuenta"),
             fieldWithPath("[].alias").description("alias para la cuenta"),
@@ -50,50 +57,50 @@ public class ApiDocumentation {
 
     @Before
     public void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new MyBankController()).setMessageConverters(this.prettyPrintConverter)
+        this.mockMvc = MockMvcBuilders
+                .standaloneSetup(new MyBankController()).setMessageConverters(this.prettyPrintConverter)
                 .apply(documentationConfiguration(this.restDocumentation))
                 .build();
     }
 
     @Test
     public void testGetAccountList() throws Exception {
+
         this.mockMvc.perform(get("/accounts/").accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(statusOk)
+                .andExpect(contentTypeJson)
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(jsonPath("$[0].number").exists())
                 .andExpect(jsonPath("$[0].alias").exists())
                 .andExpect(jsonPath("$[0].balance").exists())
-                .andExpect(jsonPath("$[0].balance").isNumber())
-//                .andExpect(jsonPath("$[0].balance").value(MatchesPattern.matchesPattern("[0-9]+")))
+                .andExpect(jsonPath("$[0].number").value(matchesPattern(IBAN_PATTERN)))
+                .andExpect(jsonPath("$[0].alias").value(matchesPattern(WORD_PATTERN)))
+                .andExpect(jsonPath("$[0].balance").value(matchesPattern(DECIMAL_NUMBER_PATTERN)))
                 /*
-                 * documentation
+                 * API Documentation
                  */
-                .andDo(document("account-list",
-                        this.responseFieldsSnippet));
+                .andDo(document("account-list", this.responseFieldsSnippet));
 
     }
 
     @Test
     public void testGetAccountListWithPagination() throws Exception {
-        this.mockMvc.perform(get("/accounts/").param("paginationSize", "7"))
+        final Integer paginationSize = 7;
+        this.mockMvc.perform(get("/accounts/").param("paginationSize", paginationSize.toString()))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                // documentation
+                .andExpect(statusOk)
+                .andExpect(contentTypeJson)
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$", hasSize(lessThanOrEqualTo(paginationSize))))
+                /*
+                 * API Documentation
+                 */
                 .andDo(document("account-list-page",
                         requestParameters(
                                 parameterWithName("paginationSize").description("tamaño de página solicitado")),
                         this.responseFieldsSnippet));
-/*
-        given()
-                .standaloneSetup(new MyBankController()).
-                when()
-                .get("/accounts/?paginationSize=7").
-                then().
-                statusCode(200);
-        //body("entity-1.entity-2", equalTo(3));
- */
     }
 
     @Ignore
@@ -114,9 +121,11 @@ public class ApiDocumentation {
     public void testGetAccount() throws Exception {
         this.mockMvc.perform(get("/accounts/AB1122223333441234567890").accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                // documentation
+                .andExpect(statusOk)
+                .andExpect(contentTypeJson)
+                /*
+                 * API Documentation
+                 */
                 .andDo(document("account-get",
                         responseFields(
                                 fieldWithPath("number").description("número de cuenta"),
@@ -137,9 +146,11 @@ public class ApiDocumentation {
     public void testGetAccountTransactionList() throws Exception {
         this.mockMvc.perform(get("/accounts/1234567890/accountTransactions").accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                // documentation
+                .andExpect(statusOk)
+                .andExpect(contentTypeJson)
+                /*
+                 * API Documentation
+                 */
                 .andDo(document("accountTransaction-list",
                         responseFields(
                                 fieldWithPath("list.[].id").description("identificador único del movimiento"),

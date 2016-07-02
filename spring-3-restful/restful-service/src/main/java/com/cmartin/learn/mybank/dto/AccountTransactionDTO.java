@@ -17,7 +17,7 @@ public class AccountTransactionDTO implements Serializable {
     private Amount amount;
     @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     private Date transactionDate;
-    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date date;
     private String description;
 }

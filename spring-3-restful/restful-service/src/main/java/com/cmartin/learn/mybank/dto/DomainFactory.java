@@ -1,6 +1,9 @@
 package com.cmartin.learn.mybank.dto;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Currency;
@@ -25,7 +28,7 @@ public class DomainFactory {
     public static List<AccountDTO> newAccountDTOList(final Integer number) {
         List<AccountDTO> dtos = new ArrayList<AccountDTO>();
         for (Integer i = 1; i <= number; i++) {
-            AccountDTO dto = newAccountDTO("account-number-" + i, "alias-" + i, makeBigDecimalRandomDecimal(1024.0 * i));
+            AccountDTO dto = newAccountDTO(makePseudoIBANAccount(), "alias-" + i, makeUpTo2Pow16Euro());
             dtos.add(dto);
         }
 
@@ -99,5 +102,17 @@ public class DomainFactory {
 
     private static BigDecimal makeBigDecimalRandomDecimal(final Double value) {
         return BigDecimal.valueOf(value + new Random().nextDouble());
+    }
+
+    private static String makePseudoIBANAccount() {
+        // country (2) + number (22) ES9<-22->1
+        return RandomStringUtils.randomAlphabetic(2).toUpperCase() +
+                RandomStringUtils.randomNumeric(22);
+
+    }
+
+    private static BigDecimal makeUpTo2Pow16Euro() {
+        return new BigDecimal(new BigInteger(16, new Random()))
+                .add(new BigDecimal(new Random().nextDouble()).setScale(2, BigDecimal.ROUND_HALF_UP));
     }
 }

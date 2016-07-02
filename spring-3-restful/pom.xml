@@ -12,23 +12,24 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
         <downloadSources>true</downloadSources>
         <downloadJavadocs>true</downloadJavadocs>
         <java.version>1.7</java.version>
         <commons-lang3.version>3.4</commons-lang3.version>
-        <spring.version>4.2.6.RELEASE</spring.version>
         <!--
         <spring.version>3.2.17.RELEASE</spring.version>
         -->
+        <hamcrest-junit.version>2.0.0.0</hamcrest-junit.version>
         <jackson-core.version>2.5.3</jackson-core.version>
         <jackson-databind.version>2.5.3</jackson-databind.version>
         <jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
         <jetty.version>9.3.9.v20160517</jetty.version>
         <junit.version>4.12</junit.version>
-        <lombok.version>1.16.8</lombok.version>
         <logback.version>1.1.5</logback.version>
-        <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
+        <lombok.version>1.16.8</lombok.version>
         <slf4j.version>1.7.16</slf4j.version>
+        <spring.version>4.2.6.RELEASE</spring.version>
 
 
         <aspectj.version>1.8.5</aspectj.version>
@@ -97,19 +98,22 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
                 <version>${jackson-core.version}</version>
-                <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson-databind.version}</version>
-                <scope>runtime</scope>
             </dependency>
-
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-junit</artifactId>
+                <version>${hamcrest-junit.version}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -121,7 +125,6 @@
                 <version>3.0.0</version>
                 <scope>test</scope>
             </dependency>
-
             <dependency>
                 <groupId>io.rest-assured</groupId>
                 <artifactId>spring-mock-mvc</artifactId>

@@ -1,6 +1,7 @@
 package com.cmartin.learn.mybank.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,5 +14,6 @@ import java.math.BigDecimal;
 public class AccountDTO implements Serializable {
     private String number;
     private String alias;
+    @JsonSerialize(using = ToStringSerializer.class)
     private BigDecimal balance;
 }
