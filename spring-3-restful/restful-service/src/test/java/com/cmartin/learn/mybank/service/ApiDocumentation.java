@@ -2,6 +2,8 @@ package com.cmartin.learn.mybank.service;
 
 import com.cmartin.learn.mybank.dto.AccountDTO;
 import com.cmartin.learn.mybank.dto.DomainFactory;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -26,6 +28,7 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
@@ -50,13 +53,19 @@ public class ApiDocumentation {
     //    private static final String WORD_PATTERN = "^[a-zA-Z0-9_-]+";
     private static final String WORD_PATTERN = "\\p{Print}+";
 
+    public static final String DESC_NÚMERO_CUENTA = "número de cuenta";
+    public static final String DESC_ALIAS_CUENTA = "alias para la cuenta";
+    public static final String DESC_SALDO_CUENTA = "saldo de la cuenta";
+
     protected ResponseFieldsSnippet responseFieldsSnippet = responseFields(
-            fieldWithPath("[].number").description("número de cuenta"),
-            fieldWithPath("[].alias").description("alias para la cuenta"),
-            fieldWithPath("[].balance").description("saldo de la cuenta"));
+            fieldWithPath("[].number").description(DESC_NÚMERO_CUENTA),
+            fieldWithPath("[].alias").description(DESC_ALIAS_CUENTA),
+            fieldWithPath("[].balance").description(DESC_SALDO_CUENTA));
 
     @Rule
     public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     private MockMvc mockMvc;
 
@@ -135,9 +144,9 @@ public class ApiDocumentation {
                  */
                 .andDo(document("account-get",
                         responseFields(
-                                fieldWithPath("number").description("número de cuenta"),
-                                fieldWithPath("alias").description("alias para la cuenta"),
-                                fieldWithPath("balance").description("saldo de la cuenta"))));
+                                fieldWithPath("number").description(DESC_NÚMERO_CUENTA),
+                                fieldWithPath("alias").description(DESC_ALIAS_CUENTA),
+                                fieldWithPath("balance").description(DESC_SALDO_CUENTA))));
     }
 
 
@@ -176,18 +185,25 @@ public class ApiDocumentation {
     public void testPostCreateAccount() throws Exception {
         AccountDTO accountDTO = DomainFactory.newAccountDTO(
                 DomainFactory.makePseudoIBANAccount(), "account-alias", new BigDecimal(0).setScale(2));
-        this.mockMvc.perform(post("/users/1234567890/accounts/")
+        this.mockMvc.perform(post("/users/1234567890/accounts")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(json(accountDTO)))
+                .content(objectToJsonString(accountDTO)))
                 .andDo(print())
-                .andExpect(statusCreated);
+                .andExpect(statusCreated)
+                /*
+                 * API Documentation
+                 */
+                .andDo(document("account-create",
+                        requestFields(
+                                fieldWithPath("number").description(DESC_NÚMERO_CUENTA),
+                                fieldWithPath("alias").description(DESC_ALIAS_CUENTA),
+                                fieldWithPath("balance").description(DESC_SALDO_CUENTA))));
     }
 
     @Test
     public void testFactory() {
         new DomainFactory();
     }
-
 
     // H E L P E R S
     private final class PrettyPrintConverter extends MappingJackson2HttpMessageConverter {
@@ -204,4 +220,7 @@ public class ApiDocumentation {
         return mockHttpOutputMessage.getBodyAsString();
     }
 
+    protected String objectToJsonString(final Object object) throws JsonProcessingException {
+        return this.objectMapper.writeValueAsString(object);
+    }
 }
