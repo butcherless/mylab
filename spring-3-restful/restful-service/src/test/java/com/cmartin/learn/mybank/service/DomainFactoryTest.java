@@ -17,7 +17,7 @@ public class DomainFactoryTest {
 
     @Test
     public void testAccountTransactionDTO() {
-        Double value = 1001.51;
+        BigDecimal value = DomainFactory.makeBigDecimalRandomDecimal(1001d);
         String currencyCode = "EUR";
         String description = "accountTransaction description";
         AccountTransactionDTO dto = DomainFactory.newAccountTransactionDTO(value, currencyCode, description);
@@ -28,7 +28,7 @@ public class DomainFactoryTest {
         Assert.assertNotNull(dto.getDescription());
         Assert.assertNotNull(dto.getTransactionDate());
 
-        Assert.assertEquals(dto.getAmount().getValue(), BigDecimal.valueOf(value));
+        Assert.assertEquals(dto.getAmount().getValue(), value);
         Assert.assertEquals(dto.getAmount().getCurrency(), Currency.getInstance(currencyCode));
         Assert.assertEquals(dto.getDescription(), description);
     }

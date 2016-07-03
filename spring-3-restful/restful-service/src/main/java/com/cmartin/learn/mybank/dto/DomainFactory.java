@@ -38,8 +38,8 @@ public class DomainFactory {
     public static List<AccountTransactionDTO> newAccountTransactionListDTO(final Integer number) {
         List<AccountTransactionDTO> dtos = new ArrayList<AccountTransactionDTO>();
         for (Integer i = 1; i <= number; i++) {
-            AccountTransactionDTO dto = newAccountTransactionDTO(Double
-                    .valueOf(1024 * i + 1), "EUR", "account transaction " + "description-" + i);
+            AccountTransactionDTO dto = newAccountTransactionDTO(
+                    makeBigDecimalRandomDecimal(1024d * i + 1), "EUR", "account transaction " + "description-" + i);
             dtos.add(dto);
         }
 
@@ -56,8 +56,8 @@ public class DomainFactory {
         return new AccountTransactionDTO(id, amount, transactionDate, date, description);
     }
 
-    public static AccountTransactionDTO newAccountTransactionDTO(Double value, String currencyCode, String description) {
-        return newAccountTransactionDTO(makeBigDecimalRandomDecimal(value), Currency.getInstance(currencyCode), description);
+    public static AccountTransactionDTO newAccountTransactionDTO(BigDecimal value, String currencyCode, String description) {
+        return newAccountTransactionDTO(value, Currency.getInstance(currencyCode), description);
     }
 
     private static AccountTransactionListDTO newAccountTransactionListDTO(
@@ -100,8 +100,8 @@ public class DomainFactory {
         return newAccountTransactionListDTO(dtos, true, paginationKey);
     }
 
-    private static BigDecimal makeBigDecimalRandomDecimal(final Double value) {
-        return BigDecimal.valueOf(value + new Random().nextDouble());
+    public static BigDecimal makeBigDecimalRandomDecimal(final Double value) {
+        return BigDecimal.valueOf(value + new Random().nextDouble()).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     public static String makePseudoIBANAccount() {
