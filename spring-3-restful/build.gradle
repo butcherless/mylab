@@ -1,17 +1,39 @@
+plugins {
+    id "org.asciidoctor.convert" version "1.5.3"
+}
+
 subprojects {
+
     apply plugin: 'java'
 
-    sourceCompatibility = 1.7
+    group = 'com.cmartin.learn'
+    version = '1.0'
+    sourceCompatibility = 1.8
+
 
     repositories {
         mavenCentral()
     }
 
+    ext {
+        snippetsDir = file('build/generated-snippets')
+    }
+
+    test {
+        outputs.dir snippetsDir
+    }
+
+    asciidoctor {
+        attributes 'snippets': snippetsDir
+        inputs.dir snippetsDir
+        dependsOn test
+    }
+
     dependencies {
         compile 'org.apache.commons:commons-lang3:3.4'
-        compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.0'
-        compile 'com.fasterxml.jackson.core:jackson-core:2.6.0'
-        compile 'com.fasterxml.jackson.core:jackson-databind:2.6.0'
+        compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.5'
+        compile 'com.fasterxml.jackson.core:jackson-core:2.7.5'
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.7.5'
         compile 'org.projectlombok:lombok:1.16.8'
         compile 'org.slf4j:slf4j-api:1.7.21'
         compile 'org.slf4j:slf4j-api:1.7.21'
@@ -24,9 +46,10 @@ subprojects {
         testCompile 'com.jayway.jsonpath:json-path:2.2.0'
     }
 
-    version = '1.0'
-
     jar {
-        manifest.attributes provider: 'gradle'
+        dependsOn asciidoctor
+        from("${asciidoctor.outputDir}/html5") {
+            into 'static/docs'
+        }
     }
 }
