@@ -1,4 +1,4 @@
-package com.cmartin.learn.mybank.service;
+package com.cmartin.learn.mybank.controller;
 
 import com.cmartin.learn.mybank.dto.AccountDTO;
 import com.cmartin.learn.mybank.dto.DomainFactory;
@@ -27,6 +27,8 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessRequest;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
@@ -53,12 +55,12 @@ public class ApiDocumentation {
     //    private static final String WORD_PATTERN = "^[a-zA-Z0-9_-]+";
     private static final String WORD_PATTERN = "\\p{Print}+";
 
-    public static final String DESC_NÚMERO_CUENTA = "número de cuenta";
+    public static final String DESC_NUMERO_CUENTA = "número de cuenta";
     public static final String DESC_ALIAS_CUENTA = "alias para la cuenta";
     public static final String DESC_SALDO_CUENTA = "saldo de la cuenta";
 
     protected ResponseFieldsSnippet responseFieldsSnippet = responseFields(
-            fieldWithPath("[].number").description(DESC_NÚMERO_CUENTA),
+            fieldWithPath("[].number").description(DESC_NUMERO_CUENTA),
             fieldWithPath("[].alias").description(DESC_ALIAS_CUENTA),
             fieldWithPath("[].balance").description(DESC_SALDO_CUENTA));
 
@@ -74,7 +76,8 @@ public class ApiDocumentation {
     @Before
     public void setUp() {
         this.mockMvc = MockMvcBuilders
-                .standaloneSetup(new MyBankController()).setMessageConverters(this.prettyPrintConverter)
+                .standaloneSetup(new MyBankController())
+                .setMessageConverters(this.prettyPrintConverter)
                 .apply(documentationConfiguration(this.restDocumentation))
                 .build();
     }
@@ -82,7 +85,8 @@ public class ApiDocumentation {
     @Test
     public void testGetAccountList() throws Exception {
 
-        this.mockMvc.perform(get("/accounts/").accept(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/accounts/")
+                .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(statusOk)
                 .andExpect(contentTypeJson)
@@ -104,7 +108,8 @@ public class ApiDocumentation {
     @Test
     public void testGetAccountListWithPagination() throws Exception {
         final Integer paginationSize = 7;
-        this.mockMvc.perform(get("/accounts/").param("paginationSize", paginationSize.toString()))
+        this.mockMvc.perform(get("/accounts/")
+                .param("paginationSize", paginationSize.toString()))
                 .andDo(print())
                 .andExpect(statusOk)
                 .andExpect(contentTypeJson)
@@ -144,7 +149,7 @@ public class ApiDocumentation {
                  */
                 .andDo(document("account-get",
                         responseFields(
-                                fieldWithPath("number").description(DESC_NÚMERO_CUENTA),
+                                fieldWithPath("number").description(DESC_NUMERO_CUENTA),
                                 fieldWithPath("alias").description(DESC_ALIAS_CUENTA),
                                 fieldWithPath("balance").description(DESC_SALDO_CUENTA))));
     }
@@ -152,7 +157,8 @@ public class ApiDocumentation {
 
     @Test
     public void testGetNotFound() throws Exception {
-        this.mockMvc.perform(get("/notFound/").accept(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/notFound/")
+                .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isNotFound());
     }
@@ -160,7 +166,8 @@ public class ApiDocumentation {
 
     @Test
     public void testGetAccountTransactionList() throws Exception {
-        this.mockMvc.perform(get("/accounts/1234567890/accountTransactions").accept(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/accounts/1234567890/accountTransactions")
+                .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(statusOk)
                 .andExpect(contentTypeJson)
@@ -185,6 +192,7 @@ public class ApiDocumentation {
     public void testPostCreateAccount() throws Exception {
         AccountDTO accountDTO = DomainFactory.newAccountDTO(
                 DomainFactory.makePseudoIBANAccount(), "account-alias", new BigDecimal(0).setScale(2));
+
         this.mockMvc.perform(post("/users/1234567890/accounts")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectToJsonString(accountDTO)))
@@ -193,9 +201,9 @@ public class ApiDocumentation {
                 /*
                  * API Documentation
                  */
-                .andDo(document("account-create",
+                .andDo(document("account-create", preprocessRequest(prettyPrint()),
                         requestFields(
-                                fieldWithPath("number").description(DESC_NÚMERO_CUENTA),
+                                fieldWithPath("number").description(DESC_NUMERO_CUENTA),
                                 fieldWithPath("alias").description(DESC_ALIAS_CUENTA),
                                 fieldWithPath("balance").description(DESC_SALDO_CUENTA))));
     }
@@ -205,7 +213,9 @@ public class ApiDocumentation {
         new DomainFactory();
     }
 
+
     // H E L P E R S
+
     private final class PrettyPrintConverter extends MappingJackson2HttpMessageConverter {
         public PrettyPrintConverter(Boolean prettyPrint) {
             super();

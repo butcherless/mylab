@@ -1,4 +1,4 @@
-package com.cmartin.learn.mybank.service;
+package com.cmartin.learn.mybank.controller;
 
 import com.cmartin.learn.mybank.dto.AccountDTO;
 import com.cmartin.learn.mybank.dto.AccountTransactionDTO;

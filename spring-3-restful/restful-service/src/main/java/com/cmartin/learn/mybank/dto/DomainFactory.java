@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by cmartin on 11/06/16.
@@ -26,30 +28,26 @@ public class DomainFactory {
     }
 
     public static List<AccountDTO> newAccountDTOList(final Integer number) {
-        List<AccountDTO> dtos = new ArrayList<AccountDTO>();
-        for (Integer i = 1; i <= number; i++) {
-            AccountDTO dto = newAccountDTO(makePseudoIBANAccount(), "alias-" + i, makeUpTo2Pow16Euro());
-            dtos.add(dto);
-        }
-
-        return dtos;
+        return IntStream.rangeClosed(1, number)
+                .mapToObj(i -> newAccountDTO(makePseudoIBANAccount(),
+                        "alias-" + i,
+                        makeUpTo2Pow16Euro()))
+                .collect(Collectors.toList());
     }
 
     public static List<AccountTransactionDTO> newAccountTransactionListDTO(final Integer number) {
-        List<AccountTransactionDTO> dtos = new ArrayList<AccountTransactionDTO>();
-        for (Integer i = 1; i <= number; i++) {
-            AccountTransactionDTO dto = newAccountTransactionDTO(
-                    makeBigDecimalRandomDecimal(1024d * i + 1), "EUR", "account transaction " + "description-" + i);
-            dtos.add(dto);
-        }
-
-        return dtos;
+        return IntStream.rangeClosed(1, number)
+                .mapToObj(i -> newAccountTransactionDTO(makeBigDecimalRandomDecimal(1024d * i + 1),
+                        "EUR",
+                        "account transaction description-" + i))
+                .collect(Collectors.toList());
     }
 
     public static AccountTransactionDTO newAccountTransactionDTO(BigDecimal value, Currency currency, String description) {
         Amount amount = new Amount(value.setScale(2, BigDecimal.ROUND_HALF_UP), currency);
         Date transactionDate = new Date();
         String id = UUID.randomUUID().toString();
+        // TODO Java Time API
         Calendar calendar = Calendar.getInstance();
         calendar.roll(Calendar.DAY_OF_YEAR, -1);
         Date date = calendar.getTime();

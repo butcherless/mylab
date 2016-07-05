@@ -15,14 +15,14 @@
         <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
         <downloadSources>true</downloadSources>
         <downloadJavadocs>true</downloadJavadocs>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <commons-lang3.version>3.4</commons-lang3.version>
         <!--
         <spring.version>3.2.17.RELEASE</spring.version>
         -->
         <hamcrest-junit.version>2.0.0.0</hamcrest-junit.version>
-        <jackson-core.version>2.5.3</jackson-core.version>
-        <jackson-databind.version>2.5.3</jackson-databind.version>
+        <jackson-core.version>2.7.5</jackson-core.version>
+        <jackson-databind.version>2.7.5</jackson-databind.version>
         <jackson-mapper-asl.version>1.9.12</jackson-mapper-asl.version>
         <jetty.version>9.3.9.v20160517</jetty.version>
         <junit.version>4.12</junit.version>
