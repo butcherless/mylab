@@ -22,7 +22,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/")
-public class MyBankController {
+public class  MyBankController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
