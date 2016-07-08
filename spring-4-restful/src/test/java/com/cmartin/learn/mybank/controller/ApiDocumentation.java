@@ -70,7 +70,7 @@ public class ApiDocumentation {
             fieldWithPath("[].balance").description(DESC_SALDO_CUENTA));
 
     @Rule
-    public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("build/generated-snippets");
+    public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 

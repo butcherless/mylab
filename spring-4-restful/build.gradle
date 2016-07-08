@@ -14,10 +14,10 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'net.saliman.cobertura'
-//apply plugin: 'org.asciidoctor.convert'
 // apply plugin: "jacoco"
-//apply plugin: 'org.asciidoctor.convert'
 
+// compatibility with maven
+project.buildDir = 'target'
 group = 'com.cmartin.learn'
 version = '1.0'
 sourceCompatibility = 1.8
@@ -28,19 +28,15 @@ repositories {
 }
 
 ext {
-    snippetsDir = file('build/generated-snippets')
+    snippetsDir = file('target/generated-snippets')
 }
 
-test {
-    outputs.dir snippetsDir
+asciidoctorj {
+    version = '1.5.4'
 }
 
 asciidoctor {
-    attributes = ['snippets': snippetsDir, 'separateOutputDirs': false]
-    sources {
-        include '**/*.adoc'
-    }
-    sourceDir file(snippetsDir)
+    attributes 'snippets': snippetsDir
     dependsOn test
 }
 
