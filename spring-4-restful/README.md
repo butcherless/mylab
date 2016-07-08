@@ -1,15 +1,15 @@
-= Objective
+# Objective
 
-== POC's for Spring Rest Docs
+## POC's for Spring Rest Docs
 
-== Refactor code to Java 8
+## Refactor code to Java 8
 
-== Migrating from Maven to Gradle
+## Migrating from Maven to Gradle
 
-== Spring Boot
+## Spring Boot
 
-== Static imports:
-
+## Static imports:
+```
  import static org.hamcrest.Matchers.*;
  import static org.hamcrest.text.MatchesPattern.*;
  import static org.mockito.Mockito.*;
@@ -21,4 +21,5 @@
  import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
  import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
  import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+````
 
