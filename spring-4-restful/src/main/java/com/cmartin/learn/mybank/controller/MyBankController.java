@@ -4,8 +4,10 @@ import com.cmartin.learn.mybank.dto.AccountDTO;
 import com.cmartin.learn.mybank.dto.AccountTransactionDTO;
 import com.cmartin.learn.mybank.dto.AccountTransactionListDTO;
 import com.cmartin.learn.mybank.dto.DomainFactory;
+import com.cmartin.learn.mybank.service.MyBankService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ public class MyBankController {
 
     private static final Integer PAGINATION_SIZE = 5;
 
+    @Autowired
+    private MyBankService bankService;
 
     @RequestMapping(value = "/accounts/{accountId}/accountTransactions",
             method = RequestMethod.GET,
@@ -80,11 +84,6 @@ public class MyBankController {
         return new ResponseEntity<List<AccountDTO>>(dtos, HttpStatus.OK);
     }
 
-    private Integer getValidPageSize(final Integer requestedPageSize) {
-        return ((requestedPageSize > 0) && (requestedPageSize <= PAGINATION_SIZE))
-                ? requestedPageSize : PAGINATION_SIZE;
-
-    }
 
     @RequestMapping(value = "/users/{userId}/accounts",
             method = RequestMethod.POST)
@@ -92,6 +91,19 @@ public class MyBankController {
         this.validateUser(userId);
         this.validateAccountDTO(accountDTO);
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+
+    //TODO implementar request mapping
+
+    @RequestMapping(value = "/under-development",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<List<AccountDTO>> getUnderDevelopment(
+            @RequestParam(required = false, defaultValue = "0") final Integer paginationSize) {
+        final Integer accountCounter = this.getValidPageSize(paginationSize);
+        return new ResponseEntity<List<AccountDTO>>(this.bankService.getAccounts(accountCounter), HttpStatus.OK);
     }
 
     private void validateAccountDTO(final AccountDTO accountDTO) {
@@ -103,6 +115,16 @@ public class MyBankController {
         this.logger.debug("user id: {} is Ok", userId);
     }
 
+
+    private Integer getValidPageSize(final Integer requestedPageSize) {
+        return ((requestedPageSize > 0) && (requestedPageSize <= PAGINATION_SIZE))
+                ? requestedPageSize : PAGINATION_SIZE;
+    }
+
+
+    public void setBankService(MyBankService bankService) {
+        this.bankService = bankService;
+    }
 }
 
 /*

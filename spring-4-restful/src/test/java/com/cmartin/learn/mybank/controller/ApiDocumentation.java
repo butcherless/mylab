@@ -1,7 +1,9 @@
 package com.cmartin.learn.mybank.controller;
 
+
 import com.cmartin.learn.mybank.dto.AccountDTO;
 import com.cmartin.learn.mybank.dto.DomainFactory;
+import com.cmartin.learn.mybank.service.MyBankService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -23,6 +25,7 @@ import java.math.BigDecimal;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.text.MatchesPattern.matchesPattern;
+import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -42,9 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by cmartin on 19/06/16.
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
 public class ApiDocumentation {
-
 
     private static final String DECIMAL_NUMBER_PATTERN = "^[0-9]+.[0-9]{2}";
     private static final String NUMBER_PATTERN = "^[0-9]+";
@@ -60,7 +61,8 @@ public class ApiDocumentation {
 
     protected static final ResultMatcher statusOk = status().isOk();
     protected static final ResultMatcher statusCreated = status().isCreated();
-    protected static final ResultMatcher contentTypeJson = content().contentType(MediaType.APPLICATION_JSON);
+    protected static final ResultMatcher contentTypeJson = content()
+            .contentType(MediaType.APPLICATION_JSON + ";charset=UTF-8");
 
     protected ResponseFieldsSnippet responseFieldsSnippet = responseFields(
             fieldWithPath("[].number").description(DESC_NUMERO_CUENTA),
@@ -68,7 +70,7 @@ public class ApiDocumentation {
             fieldWithPath("[].balance").description(DESC_SALDO_CUENTA));
 
     @Rule
-    public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
+    public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("build/generated-snippets");
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -76,10 +78,15 @@ public class ApiDocumentation {
 
     private PrettyPrintConverter prettyPrintConverter = new PrettyPrintConverter(true);
 
+    MyBankService bankService = mock(MyBankService.class);
+    MyBankController controller = new MyBankController();
+
     @Before
     public void setUp() {
+        controller.setBankService(bankService);
+
         this.mockMvc = MockMvcBuilders
-                .standaloneSetup(new MyBankController())
+                .standaloneSetup(controller)
                 .setMessageConverters(this.prettyPrintConverter)
                 .apply(documentationConfiguration(this.restDocumentation))
                 .build();
@@ -237,7 +244,6 @@ public class ApiDocumentation {
     public void testFactory() {
         new DomainFactory();
     }
-
 
     // H E L P E R S
 
