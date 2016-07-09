@@ -23,3 +23,11 @@
  import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 ````
 
+## Links
+  http://asciidoctor.org/docs/asciidoctor-gradle-plugin/
+  https://github.com/asciidoctor/asciidoctor-gradle-examples
+  http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
+  https://github.com/spring-projects/spring-restdocs/
+  http://asciidoctor.org/docs/user-manual/
+  https://docs.gradle.org/current/userguide/userguide.html
+  https://docs.gradle.org/current/dsl/
