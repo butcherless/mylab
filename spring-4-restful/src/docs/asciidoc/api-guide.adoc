@@ -1,0 +1,205 @@
+= Guía API RESTful MyBank
+MyBank - Madrid
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+NOTE: Este documento contiene una POC para la documentación de la API REST de los Servicios Multicanal de un Banco
+Ficticio.
+
+[[overview]]
+= Overview
+
+[[overview-http-verbs]]
+== HTTP verbs
+
+Los servicios desarrollados para el proyecto tratan de cumplir las convenciones HTTP y REST en el uso de los verbos
+HTTP.
+
+[cols="1,3",options="header"]
+|===
+| Verb | Usage
+
+| `GET`
+| Se utiliza para recuperar una entidad. Es idempotente.
+
+| `POST`
+| Se utiliza para crear una nueva entidad.
+
+| `PUT`
+| Se utiliza para almacenar una entidad. Puede crear una nueva o actualizar una existente. Es idempotente.
+
+| `PATCH`
+| Se utiliza para actualizar solamente los atributos indicados en la petición. Es idempotente.
+
+| `DELETE`
+| Se utiliza para eliminar una entidad.
+
+|===
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+Los servicios desarrollados para el proyecto tratan de cumplir las convenciones HTTP y REST en el uso de los códigos
+de status HTTP.
+
+[cols="1,3",options="header"]
+|===
+| Status code | Usage
+
+| `200 OK`
+| The request completed successfully
+
+| `201 Created`
+| A new resource has been created successfully. The resource's URI is available from the response's
+`Location` header
+
+| `204 No Content`
+| An update to an existing resource has been applied successfully
+
+| `400 Bad Request`
+| The request was malformed. The response body will include an error providing further information
+
+| `404 Not Found`
+| The requested resource did not exist
+
+| `409 Conflict`
+| The requested already exists
+
+| `[red]#5XX# Server Error`
+| Unable to process the request
+
+|===
+
+
+[[resources]]
+= Resources
+
+[[resources-accounts]]
+== Accounts
+
+The Account resource is used to create and list accounts
+
+
+
+[[resources-account-list]]
+=== Listing acounts with pagination
+A `GET` request will list all of the service's accounts.
+
+==== Example curl request
+include::{snippets}/account-list-page/curl-request.adoc[]
+
+==== Example httpie request
+include::{snippets}/account-list-page/httpie-request.adoc[]
+
+==== Request parameters
+include::{snippets}/account-list-page/request-parameters.adoc[]
+
+==== Example response
+include::{snippets}/account-list-page/http-response.adoc[]
+
+==== Response structure
+include::{snippets}/account-list-page/response-fields.adoc[]
+
+
+
+
+[[resources-index-access]]
+=== Listing accounts
+A `GET` request is used to list first available accounts
+
+==== Response structure
+include::{snippets}/account-list/response-fields.adoc[]
+
+==== Example curl request
+include::{snippets}/account-list/curl-request.adoc[]
+
+==== Example httpie request
+include::{snippets}/account-list/httpie-request.adoc[]
+
+==== Example response
+include::{snippets}/account-list/http-response.adoc[]
+
+
+
+[[resources-account-retrieve]]
+=== Retrieve an account
+A `GET` request will retrieve the details of an account
+
+==== Response structure
+include::{snippets}/account-get/response-fields.adoc[]
+
+==== Example request
+include::{snippets}/account-get/curl-request.adoc[]
+
+==== Example response
+include::{snippets}/account-get/http-response.adoc[]
+
+
+
+[[resources-accountTransactions]]
+== AccountTransactions
+The AccountTransaction resource is used to create and list accountTransactions
+
+[[resources-accountTransaction-list]]
+=== Listing accountTransactions
+A `GET` request will list all of the service's accountTransactions.
+
+==== Response structure
+include::{snippets}/accountTransaction-list/response-fields.adoc[]
+
+==== Example request
+include::{snippets}/accountTransaction-list/curl-request.adoc[]
+
+==== Example response
+include::{snippets}/accountTransaction-list/http-response.adoc[]
+
+
+[[resources-accountTransaction-list-limit]]
+=== Listing accountTransactions
+A `GET` request will list all of the service's accountTransactions.
+
+==== Response structure
+include::{snippets}/accountTransaction-list-limit/response-fields.adoc[]
+
+==== Example request
+include::{snippets}/accountTransaction-list-limit/curl-request.adoc[]
+
+==== Example response
+include::{snippets}/accountTransaction-list-limit/http-response.adoc[]
+
+
+
+[[resources-account-create]]
+=== Creating an account
+A `POST` request is used to create a account
+
+==== Request structure
+include::{snippets}/account-create/request-fields.adoc[]
+
+==== Example request
+include::{snippets}/account-create/curl-request.adoc[]
+
+==== Example httpie request
+include::{snippets}/account-create/httpie-request.adoc[]
+
+==== Example response
+include::{snippets}/account-create/http-response.adoc[]
+
+
+
+[[resources-account-update]]
+=== Update an account
+A `PATCH` request is used to update an account
+
+==== Request structure
+// include::{snippets}/account-update/request-fields.adoc[]
+
+==== Example request
+// include::{snippets}/account-update/curl-request.adoc[]
+
+==== Example response
+// include::{snippets}/account-update/http-response.adoc[]
