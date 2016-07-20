@@ -167,7 +167,7 @@ public class ApiDocumentation {
                                 fieldWithPath("balance").description(DESC_SALDO_CUENTA))));
     }
 
-
+    // TODO crear mensaje de error
     @Test
     public void testGetNotFound() throws Exception {
         this.mockMvc.perform(get("/notFound/")

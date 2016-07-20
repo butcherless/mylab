@@ -1,80 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="APP_NAME" value="mybank-restful-service"/>
-
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>target/${APP_NAME}.log</file>
-
-        <encoder>
-            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{20} [%file:%line] %msg%n</pattern>
-        </encoder>
-
-        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>service.%i.log</fileNamePattern>
-            <MaxIndex>2</MaxIndex>
-        </rollingPolicy>
-
-        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>32MB</maxFileSize>
-        </triggeringPolicy>
-    </appender>
-
-    <!--
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{20} [%file:%line] %msg%n</pattern>
-        </encoder>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
     </appender>
--->
-    <root level="DEBUG">
-        <appender-ref ref="FILE"/>
-        <!--appender-ref ref="STDOUT" /-->
+
+    <logger name="org.springframework" level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="com.cmartin.learn" level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="STDOUT" />
     </root>
 
-    <logger name="org.springframework">
-        <appender-ref ref="FILE" level="INFO"/>
-    </logger>
-
-    <logger name="org.apache">
-        <appender-ref ref="FILE" level="INFO"/>
-    </logger>
-
-    <logger name="com.cmartin" additivity="false">
-        <appender-ref ref="FILE" level="DEBUG"/>
-    </logger>
-
-
-    <!--
-    # application configuration
-
-    application.name=mybank-restful-service
-
-    # For the general syntax of property based configuration files see the
-    # documentation of org.apache.log4j.PropertyConfigurator.
-
-    log4j.rootLogger=DEBUG, logfile
-
-    # console appender configuration
-    log4j.appender.console=org.apache.log4j.ConsoleAppender
-    log4j.appender.console.layout=org.apache.log4j.PatternLayout
-    log4j.appender.console.layout.ConversionPattern=%d{ISO8601} %4L %-5p %c{2} %M - %m%n
-
-    # file appender configuration
-    log4j.appender.logfile=org.apache.log4j.RollingFileAppender
-    log4j.appender.logfile.File=target/${application.name}.log
-    log4j.appender.logfile.append=false
-    log4j.appender.logfile.MaxFileSize=64MB
-    log4j.appender.logfile.MaxBackupIndex=2
-    log4j.appender.logfile.layout=org.apache.log4j.PatternLayout
-    log4j.appender.logfile.layout.ConversionPattern=%t %d{ISO8601} %5L %-5p %c %M - %m%n
-
-    # Logger for application classes
-    log4j.logger.com.cmartin.learn=DEBUG
-
-    # Loggers for frameworks
-    log4j.logger.org.springframework=INFO
-    log4j.logger.org.apache=INFO
-    log4j.logger.org.springframework.remoting=ERROR
-    -->
 </configuration>
