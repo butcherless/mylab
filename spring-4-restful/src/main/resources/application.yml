@@ -1,0 +1,10 @@
+﻿﻿server:
+    port: 8080
+management:
+    port: 9100
+http:
+    mappers:
+       jsonPrettyPrint: true
+spring:
+      main:
+           banner-mode: OFF

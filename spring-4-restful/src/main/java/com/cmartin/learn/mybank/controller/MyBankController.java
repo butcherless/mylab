@@ -34,7 +34,7 @@ public class MyBankController {
 
     @RequestMapping(value = "/accounts/{accountId}/accountTransactions",
             method = RequestMethod.GET,
-            produces = "application/json")
+            produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseEntity<AccountTransactionListDTO> getAccountTransactionList(
             @RequestParam(required = false, defaultValue = "5") final Integer pageSize) {
@@ -51,7 +51,7 @@ public class MyBankController {
 
     @RequestMapping(value = "/accounts/{accountId}",
             method = RequestMethod.GET,
-            produces = "application/json")
+            produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseEntity<AccountDTO> getAccount(@PathVariable String accountId) {
         // TODO
@@ -68,7 +68,7 @@ public class MyBankController {
 
     @RequestMapping(value = "/accounts",
             method = RequestMethod.GET,
-            produces = "application/json")
+            produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseEntity<List<AccountDTO>> getAccounts(
             @RequestParam(required = false, defaultValue = "0") final Integer paginationSize) {
@@ -98,7 +98,7 @@ public class MyBankController {
 
     @RequestMapping(value = "/under-development",
             method = RequestMethod.GET,
-            produces = "application/json")
+            produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseEntity<List<AccountDTO>> getUnderDevelopment(
             @RequestParam(required = false, defaultValue = "0") final Integer paginationSize) {
