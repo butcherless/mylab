@@ -1,0 +1,17 @@
+﻿﻿server:
+    port: 9090
+management:
+    port: 9100
+http:
+    mappers: 
+       jsonPrettyPrint: true
+spring:
+      main:
+           banner-mode: OFF
+
+logging:
+    level:
+        org.springframework.web: ERROR
+        org.hibernate: ERROR
+        level.org.hibernate: ERROR
+        com.cmartin: DEBUG

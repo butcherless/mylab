@@ -5,17 +5,16 @@ import com.cmartin.learn.mybank.service.MyBankService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
-import static org.mockito.Matchers.anyInt;
+import java.nio.charset.Charset;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -26,29 +25,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by cmartin on 07/07/16.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(locations = "classpath:test-application-context.xml")
+
+@RunWith(MockitoJUnitRunner.class)
 public class ControllerTest {
 
-    @Autowired
+    @Mock
     private MyBankService bankService;
 
-    @Autowired
-    private WebApplicationContext applicationContext;
+    @InjectMocks
+    private MyBankController myBankController;
 
     private MockMvc mockMvc;
 
-    private static MediaType JSON_MEDIA_TYPE = MediaType.parseMediaType("application/json;charset=UTF-8");
+    private final MediaType contentTypeJson = new MediaType(
+            MediaType.APPLICATION_JSON.getType(),
+            MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
-    protected static final ResultMatcher contentTypeJson = content()
-            .contentType(JSON_MEDIA_TYPE);
+    private  final ResultMatcher contentTypeJsonResultMatcher = content().contentType(contentTypeJson);
+
+
+
+
 
 
     @Before
-    public void setup() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.applicationContext)
-                .build();
+    public void setUp() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(myBankController).build();
     }
 
     @Test
@@ -59,9 +61,10 @@ public class ControllerTest {
 
 
         this.mockMvc.perform(get("/under-development")
-                .accept(JSON_MEDIA_TYPE))
+                .accept(contentTypeJson))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(contentTypeJsonResultMatcher);
 
         verify(this.bankService).getAccounts(5);
     }
