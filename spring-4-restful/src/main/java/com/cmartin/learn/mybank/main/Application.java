@@ -21,5 +21,7 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
+        //do not show Spring boot banner when boot starts!!!!!
+        app.run(args);
     }
 }
