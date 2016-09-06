@@ -83,7 +83,7 @@ public class ApiDocumentation {
 
     @Before
     public void setUp() {
-        controller.setBankService(bankService);
+        controller.setMyBankService(bankService);
 
         this.mockMvc = MockMvcBuilders
                 .standaloneSetup(controller)

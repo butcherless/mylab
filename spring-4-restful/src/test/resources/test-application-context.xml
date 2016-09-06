@@ -15,7 +15,7 @@
 
     <mvc:annotation-driven/>
 
-    <bean class="org.mockito.Mockito" factory-method="mock">
+    <bean id="mockService" class="org.mockito.Mockito" factory-method="mock">
         <constructor-arg value="com.cmartin.learn.mybank.service.MyBankService"/>
     </bean>
 

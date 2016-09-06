@@ -30,7 +30,7 @@ public class MyBankController {
     private static final Integer PAGINATION_SIZE = 5;
 
     @Autowired
-    private MyBankService bankService;
+    private MyBankService myBankService;
 
     @RequestMapping(value = "/accounts/{accountId}/accountTransactions",
             method = RequestMethod.GET,
@@ -103,7 +103,7 @@ public class MyBankController {
     public ResponseEntity<List<AccountDTO>> getUnderDevelopment(
             @RequestParam(required = false, defaultValue = "0") final Integer paginationSize) {
         final Integer accountCounter = this.getValidPageSize(paginationSize);
-        return new ResponseEntity<List<AccountDTO>>(this.bankService.getAccounts(accountCounter), HttpStatus.OK);
+        return new ResponseEntity<List<AccountDTO>>(this.myBankService.getAccounts(accountCounter), HttpStatus.OK);
     }
 
     private void validateAccountDTO(final AccountDTO accountDTO) {
@@ -122,8 +122,8 @@ public class MyBankController {
     }
 
 
-    public void setBankService(MyBankService bankService) {
-        this.bankService = bankService;
+    public void setMyBankService(MyBankService myBankService) {
+        this.myBankService = myBankService;
     }
 }
 
