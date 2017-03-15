@@ -17,15 +17,15 @@
         <downloadSources>true</downloadSources>
         <downloadJavadocs>true</downloadJavadocs>
         <java.version>1.8</java.version>
-        <commons-lang3.version>3.4</commons-lang3.version>
+        <commons-lang3.version>3.5</commons-lang3.version>
         <hamcrest-junit.version>2.0.0.0</hamcrest-junit.version>
         <jackson-core.version>2.8.1</jackson-core.version>
         <jackson-databind.version>2.8.1</jackson-databind.version>
         <jetty.version>9.3.10.v20160621</jetty.version>
         <junit.version>4.12</junit.version>
-        <logback.version>1.1.7</logback.version>
-        <slf4j.version>1.7.21</slf4j.version>
-        <spring.version>4.3.1.RELEASE</spring.version>
+        <logback.version>1.2.1</logback.version>
+        <slf4j.version>1.7.24</slf4j.version>
+        <spring.version>4.3.7.RELEASE</spring.version>
 
 
         <aspectj.version>1.8.5</aspectj.version>
@@ -35,7 +35,7 @@
         <javax.annotation.version>1.0</javax.annotation.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <jaxb.api.version>2.2.12</jaxb.api.version>
-        <mockito.version>2.0.87-beta</mockito.version>
+        <mockito.version>2.7.17</mockito.version>
         <openpojo.version>0.7.3</openpojo.version>
         <spring-data-commons.version>1.10.0.RELEASE</spring-data-commons.version>
         <spring.data.version>1.8.0.RELEASE</spring.data.version>
@@ -129,19 +129,19 @@
         <dependency>
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
-            <version>1.1.0.RELEASE</version>
+            <version>1.1.2.RELEASE</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>spring-mock-mvc</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
