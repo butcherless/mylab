@@ -69,6 +69,18 @@ public class ApiDocumentation {
             fieldWithPath("[].alias").description(DESC_ALIAS_CUENTA),
             fieldWithPath("[].balance").description(DESC_SALDO_CUENTA));
 
+    protected ResponseFieldsSnippet accountTransactionListResponseFields = responseFields(
+            fieldWithPath("list").description("lista de movimientos de cuenta"),
+            fieldWithPath("list.[].id").description("identificador único del movimiento"),
+            fieldWithPath("list.[].amount").description("cantidad monetaria del movimiento"),
+            fieldWithPath("list.[].amount.value").description("cuantía del movimiento"),
+            fieldWithPath("list.[].amount.currency").description("divisa del movimiento"),
+            fieldWithPath("list.[].transactionDate").description("fecha del movimiento"),
+            fieldWithPath("list.[].date").description("fecha de consolidación del movimiento"),
+            fieldWithPath("list.[].description").description("descripción del movimiento"),
+            fieldWithPath("paginationKey").description("clave de paginación para recuperar la siguiente página de resultados"),
+            fieldWithPath("hasNextPage").description("indicador de datos adicionales disponibles"));
+
     @Rule
     public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation("target/generated-snippets");
 
@@ -189,16 +201,7 @@ public class ApiDocumentation {
                  * API Documentation
                  */
                 .andDo(document("accountTransaction-list",
-                        responseFields(
-                                fieldWithPath("list.[].id").description("identificador único del movimiento"),
-                                fieldWithPath("list.[].amount").description("cantidad monetaria del movimiento"),
-                                fieldWithPath("list.[].amount.value").description("cuantía del movimiento"),
-                                fieldWithPath("list.[].amount.currency").description("divisa del movimiento"),
-                                fieldWithPath("list.[].transactionDate").description("fecha del movimiento"),
-                                fieldWithPath("list.[].date").description("fecha de consolidación del movimiento"),
-                                fieldWithPath("list.[].description").description("descripción del movimiento"),
-                                fieldWithPath("paginationKey").description("clave de paginación para recuperar la siguiente página de resultados"),
-                                fieldWithPath("hasNextPage").description("indicador de datos adicionales disponibles"))));
+                        accountTransactionListResponseFields));
     }
 
     @Test
@@ -213,10 +216,7 @@ public class ApiDocumentation {
                  * API Documentation
                  */
                 .andDo(document("accountTransaction-list-limit",
-                        responseFields(
-                                fieldWithPath("list").description("lista de movimientos de cuenta"),
-                                fieldWithPath("paginationKey").description("clave de paginación para recuperar la siguiente página de resultados"),
-                                fieldWithPath("hasNextPage").description("indicador de datos adicionales disponibles"))));
+                        accountTransactionListResponseFields));
     }
 
 
