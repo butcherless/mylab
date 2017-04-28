@@ -1,7 +1,6 @@
 package com.cmartin.learn.service;
 
 import com.cmartin.learn.repository.DummyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,10 +8,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DummyService {
-    @Autowired
-    private DummyRepository repository;
 
-    public String upperMessage(String message) {
+    private final DummyRepository repository;
+
+    public DummyService(DummyRepository repository) {
+        this.repository = repository;
+    }
+
+    public String upperMessage(final String message) {
         return this.repository.getMessageByName(message);
     }
 
