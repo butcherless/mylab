@@ -1,11 +1,16 @@
 plugins {
-    id 'org.springframework.boot' version '1.5.3.RELEASE'
+    id "io.spring.dependency-management" version "1.0.0.RELEASE"
+    id 'org.springframework.boot' version '1.5.7.RELEASE'
     id 'java'
     id 'jacoco'
 }
 
+dependencyManagement.imports {
+       mavenBom("org.springframework.boot:spring-boot-dependencies:1.5.7.RELEASE")
+}
+
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 sourceCompatibility = 1.8

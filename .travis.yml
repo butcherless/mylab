@@ -2,5 +2,8 @@ language: java
 jdk:
   - oraclejdk8
 script:
+  - cd junit5
+  - ./gradlew build
+  - cd ..
   - cd spring-boot
-  - gradle bootRun
+  - ./gradlew bootRun
