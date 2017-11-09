@@ -11,7 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 		<aspectj.version>1.8.5</aspectj.version>
 		<commons.dbcp.version>1.4</commons.dbcp.version>
 		<commons.lang3.version>3.4</commons.lang3.version>
@@ -41,7 +41,7 @@
 	</properties>
 
 	<prerequisites>
-		<maven>3.0.2</maven>
+		<maven>3.5.0</maven>
 	</prerequisites>
 
 	<dependencyManagement>
@@ -479,8 +479,8 @@
 					<aggregate>true</aggregate>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>findbugs-maven-plugin</artifactId> 
-				<version>2.5.4</version> <configuration> <xmlOutput>true</xmlOutput> <effort>Max</effort> 
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.5.4</version> <configuration> <xmlOutput>true</xmlOutput> <effort>Max</effort>
 				<threshold>Low</threshold> </configuration> </plugin> -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

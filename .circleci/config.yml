@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+
+    working_directory: ~/mylab
+
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    steps:
+
+      - checkout
+
+      - restore_cache:
+          key: mylab-{{ checksum "pom.xml" }}
+
+      - run: mvn dependency:go-offline -f parent-pom/pom.xml
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: mylab-{{ checksum "pom.xml" }}
+
+      - run: mvn install -f parent-pom/pom.xml
+
+      - store_test_results:
+          path: target/surefire-reports
+
+      - store_artifacts:
+          path: target/mylab-0.0.1-SNAPSHOT.jar
