@@ -21,7 +21,10 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "parent-pom/pom.xml" }}
 
-      - run: mvn install -f parent-pom/pom.xml
+      - run:
+          command: |
+                   mvn install -f parent-pom/pom.xml
+                   mvn install -f test-tools/pom.xml
 
       - store_test_results:
           path: target/surefire-reports
