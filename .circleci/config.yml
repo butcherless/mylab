@@ -17,6 +17,7 @@ jobs:
       - run:
           command: |
                    mvn dependency:go-offline -f parent-pom/pom.xml
+                   mvn install -f parent-pom/pom.xml
                    mvn dependency:go-offline -f test-tools/pom.xml
                    mvn dependency:go-offline -f project-archetype/pom.xml
                    mvn dependency:go-offline -f project-myairline/pom.xml
@@ -30,7 +31,6 @@ jobs:
 
       - run:
           command: |
-                   mvn install -f parent-pom/pom.xml
                    mvn install -f test-tools/pom.xml
                    mvn test -f project-archetype/pom.xml
                    mvn test -f project-myairline/pom.xml
