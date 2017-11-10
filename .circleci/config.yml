@@ -17,10 +17,6 @@ jobs:
       - run:
           command: |
                    mvn dependency:go-offline -f parent-pom/pom.xml
-                   mvn install -f parent-pom/pom.xml
-                   mvn dependency:go-offline -f test-tools/pom.xml
-                   mvn dependency:go-offline -f project-archetype/pom.xml
-                   mvn dependency:go-offline -f project-myairline/pom.xml
                    junit5/gradlew dependencies -b junit5/build.gradle
                    spring-boot/gradlew dependencies -b spring-boot/build.gradle
 
