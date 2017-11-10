@@ -14,12 +14,17 @@ jobs:
       - restore_cache:
           key: v1-dependencies-{{ checksum "parent-pom/pom.xml" }}
 
-      - run: mvn dependency:go-offline -f parent-pom/pom.xml
+      - run:
+        command: |
+                 mvn dependency:go-offline -f parent-pom/pom.xml
+                 junit5/gradlew dependencies -b junit5/build.gradle
 
       - save_cache:
           paths:
             - ~/.m2
-          key: v1-dependencies-{{ checksum "parent-pom/pom.xml" }}
+          key:
+          - v1-dependencies-{{ checksum "parent-pom/pom.xml" }}
+          - v1-dependencies-{{ checksum "test-tools/pom.xml" }}
 
       - run:
           command: |
@@ -28,3 +33,4 @@ jobs:
                    mvn test -f project-archetype/pom.xml
                    mvn test -f project-myairline/pom.xml
                    junit5/gradlew clean test -b junit5/build.gradle
+                   spring-boot/gradlew clean bootRun -b spring-boot/build.gradle
