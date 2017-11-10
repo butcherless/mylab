@@ -18,6 +18,7 @@ jobs:
           command: |
                    mvn dependency:go-offline -f parent-pom/pom.xml
                    junit5/gradlew dependencies -b junit5/build.gradle
+                   spring-boot/gradlew dependencies -b spring-boot/build.gradle
 
       - save_cache:
           paths:
