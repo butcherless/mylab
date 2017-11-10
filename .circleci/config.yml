@@ -27,6 +27,7 @@ jobs:
 
       - run:
           command: |
+                   mvn install -f parent-pom/pom.xml
                    mvn install -f test-tools/pom.xml
                    mvn test -f project-archetype/pom.xml
                    mvn test -f project-myairline/pom.xml
