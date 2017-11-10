@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
 
-    working_directory: ~/mylab
+    working_directory: ~/repo
 
     docker:
       - image: circleci/openjdk:8-jdk
@@ -12,14 +12,14 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: mylab-{{ checksum "pom.xml" }}
+          key: v1-dependencies-{{ checksum "parent-pom/pom.xml" }}
 
       - run: mvn dependency:go-offline -f parent-pom/pom.xml
 
       - save_cache:
           paths:
             - ~/.m2
-          key: mylab-{{ checksum "pom.xml" }}
+          key: v1-dependencies-{{ checksum "parent-pom/pom.xml" }}
 
       - run: mvn install -f parent-pom/pom.xml
 
