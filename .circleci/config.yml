@@ -15,9 +15,9 @@ jobs:
           key: v1-dependencies-{{ checksum "parent-pom/pom.xml" }}
 
       - run:
-        command: |
-                 mvn dependency:go-offline -f parent-pom/pom.xml
-                 junit5/gradlew dependencies -b junit5/build.gradle
+          command: |
+                   mvn dependency:go-offline -f parent-pom/pom.xml
+                   junit5/gradlew dependencies -b junit5/build.gradle
 
       - save_cache:
           paths:
