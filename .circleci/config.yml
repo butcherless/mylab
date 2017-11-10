@@ -22,7 +22,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key:
+          keys:
           - v1-dependencies-{{ checksum "parent-pom/pom.xml" }}
           - v1-dependencies-{{ checksum "test-tools/pom.xml" }}
 
