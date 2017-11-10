@@ -27,3 +27,4 @@ jobs:
                    mvn install -f test-tools/pom.xml
                    mvn test -f project-archetype/pom.xml
                    mvn test -f project-myairline/pom.xml
+                   junit5/gradlew clean test -b junit5/build.gradle
