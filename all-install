@@ -1,6 +1,6 @@
-PROJECTS="parent-pom project-archetype project-myairline testing-poc"
+PROJECTS="parent-pom test-tools project-archetype project-myairline testing-poc spring-4-restful"
 
 for p in ${PROJECTS}
 do
-  mvn install -f $p
+  mvn clean install -f $p
 done

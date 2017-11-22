@@ -8,6 +8,7 @@ script:
   - mvn install -f test-tools/pom.xml
   - mvn test -f project-archetype/pom.xml
   - mvn test -f project-myairline/pom.xml
+  - mvn test -f spring-4-restful/pom.xml
   - junit5/gradlew clean test -b junit5/build.gradle
   - spring-boot/gradlew clean bootRun -b spring-boot/build.gradle
   - spring-4-restful/gradlew build -b spring-4-restful/build.gradle
