@@ -116,7 +116,7 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.googlecode.openpojo</groupId>
+			<groupId>com.openpojo</groupId>
 			<artifactId>openpojo</artifactId>
 		</dependency>
 

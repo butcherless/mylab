@@ -14,7 +14,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.googlecode.openpojo</groupId>
+			<groupId>com.openpojo</groupId>
 			<artifactId>openpojo</artifactId>
 			<scope>compile</scope>
 		</dependency>

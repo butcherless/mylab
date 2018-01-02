@@ -38,7 +38,7 @@
         <javax.annotation.version>1.0</javax.annotation.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <jaxb.api.version>2.2.12</jaxb.api.version>
-        <openpojo.version>0.7.3</openpojo.version>
+        <openpojo.version>0.8.6</openpojo.version>
         <spring-data-commons.version>1.10.0.RELEASE</spring-data-commons.version>
         <spring.data.version>1.8.0.RELEASE</spring.data.version>
         <validation.api.version>1.1.0.Final</validation.api.version>

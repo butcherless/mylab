@@ -1,4 +1,4 @@
-PROJECTS="test-tools testing-poc project-myairline incubator/jar-manager project-archetype"
+PROJECTS="test-tools testing-poc project-myairline incubator/jar-analyzer project-archetype"
 
 for p in ${PROJECTS}
 do
