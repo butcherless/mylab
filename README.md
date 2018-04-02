@@ -1,11 +1,14 @@
 # mylab
 [![Build Status](https://travis-ci.org/butcherless/mylab.svg?branch=master)](https://travis-ci.org/butcherless/mylab)
 
-Proof of concept and research with colleagues and friends.
+
+[![Build Status](https://semaphoreci.com/api/v1/butcherless/mylab/branches/master/badge.svg)](https://semaphoreci.com/butcherless/mylab)
+
+# Proof of concept and research with colleagues and friends.
 
 - Java 8
 - Spring Boot
-- Gradle 3.4.x
+- Gradle 4.x
 
 ## New project basic structure
 ```python
