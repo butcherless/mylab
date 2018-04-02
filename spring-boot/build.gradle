@@ -1,12 +1,21 @@
-plugins {
-    id "io.spring.dependency-management" version "1.0.0.RELEASE"
-    id 'org.springframework.boot' version '1.5.8.RELEASE'
-    id 'java'
-    id 'jacoco'
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
 }
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'scala'
 
-dependencyManagement.imports {
-       mavenBom("org.springframework.boot:spring-boot-dependencies:1.5.8.RELEASE")
+jar {
+    baseName = 'boot-standalon-app'
+    version = '1.0.0'
 }
 
 repositories {
