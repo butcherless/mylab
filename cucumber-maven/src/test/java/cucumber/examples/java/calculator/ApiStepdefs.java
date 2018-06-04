@@ -10,8 +10,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+/*
+TODO
+- crear helpers para los tests
+ */
 public class ApiStepdefs {
-    private static final String BASE_URL = "http://localhost:8080/api-apinodb/api/v1/";
+    private static final String BASE_URL = "http://localhost:8081/api-nodatabase/api/v1/";
 
     private String resource;
     private String name;
@@ -39,13 +43,15 @@ public class ApiStepdefs {
         ResponseEntity<String> response = rest.getForEntity(BASE_URL + this.resource, String.class);
 
         Assert.assertEquals(code, Integer.valueOf(response.getStatusCodeValue()));
+
+        // TODO json path
     }
 
 
     // POST method
     @When("^I supply the departamento name ([a-z0-9\\-]+)$")
     public void when_post(String name) {
-        System.out.println("when_" + name);
+        System.out.println("when_" + name);//TODO eliminar
         this.name = name;
     }
 
@@ -67,9 +73,11 @@ public class ApiStepdefs {
         ResponseEntity<?> response = rest.postForEntity(BASE_URL + this.resource, entity, String.class);
 
         Assert.assertEquals(code, Integer.valueOf(response.getStatusCodeValue()));
+
+        // TODO json path
     }
 
-    // UPDATE
+    // TODO UPDATE
 
-    // DELETE
+    // TODO DELETE
 }

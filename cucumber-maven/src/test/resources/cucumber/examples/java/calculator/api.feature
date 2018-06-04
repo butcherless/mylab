@@ -4,8 +4,10 @@ Feature: Operaciones API Departamentos
   @api
   Scenario: Get colleción vacía de departamentos
     Given the resource departamentosFoo
-    When request departamento by name ""
-    Then the get http code should be 204
+    When request departamento by name dep-1
+    Then the get http code should be 200
+    # empty collection
+
 
   @api
   Scenario: Create departamento
