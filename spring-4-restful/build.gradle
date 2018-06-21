@@ -41,21 +41,20 @@ asciidoctor {
 }
 
 dependencies {
-    compile 'org.apache.commons:commons-lang3:3.+'
+    compile 'org.apache.commons:commons-lang3:3.7'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.5'
     compile 'com.fasterxml.jackson.core:jackson-core:2.7.5'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.5'
-    compile 'org.projectlombok:lombok:1.16.8'
-    compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'org.springframework:spring-webmvc:4.3.1.RELEASE'
-
+    compile 'org.projectlombok:lombok:1.18.0'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.springframework:spring-webmvc:4.3.18.RELEASE'
+    
     testCompile 'org.hamcrest:java-hamcrest:2.0.0.0'
-    testCompile 'com.jayway.jsonpath:json-path:2.2.0'
+    testCompile 'com.jayway.jsonpath:json-path:2.4.0'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:+'
-    testCompile 'org.springframework.restdocs:spring-restdocs-core:1.1.2.RELEASE'
-    testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:1.1.2.RELEASE'
+    testCompile 'org.springframework.restdocs:spring-restdocs-core:1.1.3.RELEASE'
+    testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:1.1.3.RELEASE'
 }
 
 jar {
