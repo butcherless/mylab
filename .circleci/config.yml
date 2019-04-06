@@ -20,6 +20,7 @@ jobs:
                    junit5/gradlew dependencies -b junit5/build.gradle
                    spring-boot/gradlew dependencies -b spring-boot/build.gradle
                    spring-4-restful/gradlew dependencies -b spring-4-restful/build.gradle
+                   sbt-scala-java/gradlew clean test jacocoTestReport -b sbt-scala-java/build.gradle
 
       - save_cache:
           paths:
@@ -34,4 +35,3 @@ jobs:
                    mvn test -f project-myairline/pom.xml
                    junit5/gradlew clean test -b junit5/build.gradle
                    spring-boot/gradlew clean bootRun -b spring-boot/build.gradle
-                   spring-4-restful/gradlew build -b spring-4-restful/build.gradle
