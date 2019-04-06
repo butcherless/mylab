@@ -2,6 +2,7 @@ bin/
 build/
 out/
 target/
+.vscode/
 .classpath
 .gradle
 .idea
