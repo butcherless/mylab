@@ -8,3 +8,4 @@ spring-4-restful/gradlew build -b spring-4-restful/build.gradle
 spring-boot/gradlew clean bootRun -b spring-boot/build.gradle
 mvn test -f spring-4-restful/pom.xml
 mvn clean test -f testing-poc/pom.xml
+sbt-scala-java/gradlew clean test jacocoTestReport -b sbt-scala-java/build.gradle
