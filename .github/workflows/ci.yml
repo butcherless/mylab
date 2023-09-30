@@ -20,10 +20,10 @@ jobs:
             distribution: 'zulu'
             java-version: '21'
       - name: check versions
-        run: mvnw -v
+        run: ./mvnw -v
       - name: compile
-        run: mvnw compile
+        run: ./mvnw compile
       - name: test
-        run: mvnw test
+        run: ./mvnw test
       - name: package
-        run: mvnw package
+        run: ./mvnw package
