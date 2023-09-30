@@ -1,5 +1,9 @@
 # mylab repository
 
+## Status
+
+![Github CI](https://github.com/butcherless/mylab/workflows/CI/badge.svg)
+
 # Proof of concept and research with colleagues and friends.
 
 - Java 21
