@@ -8,6 +8,7 @@
 
 - Java 21
 - Spring Boot 3
+- Kotlin
 
 ## New project basic structure
 
