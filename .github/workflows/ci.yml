@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  test:
+  build:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
 
@@ -20,10 +20,10 @@ jobs:
             distribution: 'zulu'
             java-version: '21'
       - name: check versions
-        run: mvn -v
+        run: mvnw -v
       - name: compile
-        run: mvn compile
+        run: mvnw compile
       - name: test
-        run: mvn test
+        run: mvnw test
       - name: package
-        run: mvn package
+        run: mvnw package
