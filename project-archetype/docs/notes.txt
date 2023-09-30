@@ -1,8 +1,0 @@
-maven commands
-
-- mvn clean install javadoc:aggregate javadoc:test-aggregate
-- mvn versions:display-dependency-updates
-- mvn versions:display-plugin-updates
-
-yed graph editor
-- http://www.yworks.com/en/products_yed_about.html
