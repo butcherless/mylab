@@ -1,18 +1,19 @@
-# mylab
-[![Build Status](https://travis-ci.org/butcherless/mylab.svg?branch=master)](https://travis-ci.org/butcherless/mylab)
-
-
-[![Build Status](https://semaphoreci.com/api/v1/butcherless/mylab/branches/master/badge.svg)](https://semaphoreci.com/butcherless/mylab)
+# mylab repository
 
 # Proof of concept and research with colleagues and friends.
 
-- Java 8
-- Spring Boot
-- Gradle 4.x
+- Java 21
+- Spring Boot 3
 
 ## New project basic structure
-```python
-mkdir my-new-project
-echo "apply plugin: 'java'" > build.gradle
+
+Check Java and Maven versions:
+
+    mvn -v
+    
+```bash
+mkdir my-multi-module-project
+mvn archetype:generate -DgroupId=dev.cmartin -DartifactId=learn-spring-cloud -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn archetype:generate -DgroupId=dev.cmartin -DartifactId=microservice-one -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 mkdir -p src/{main,test}/{java,resources} src/main/java/com/cmartin/learn
 ```

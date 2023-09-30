@@ -1,13 +1,5 @@
-bin/
-build/
-out/
-target/
-.vscode/
-.classpath
-.gradle
-.idea
-.project
-.settings
-*.iml
 .DS_Store
-.class
+.idea
+.vscode/
+target/
+*.iml

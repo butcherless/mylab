@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    types: [ opened ]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v3
+        with:
+            distribution: 'zulu'
+            java-version: '21'
+      - name: check versions
+        run: mvn -v
+      - name: compile
+        run: mvn compile
+      - name: test
+        run: mvn test
+      - name: package
+        run: mvn package
