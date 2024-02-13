@@ -47,3 +47,5 @@ jobs:
     steps:
       - name: gcloud-cli-version
         run: gcloud --version
+      - name: environment  
+        run: echo $DOCKER_USERNAME
