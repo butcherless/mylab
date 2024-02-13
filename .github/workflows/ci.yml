@@ -36,7 +36,9 @@ jobs:
         run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$DOCKER_IMAGE   
       - name: docker-login
         run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username ${{secrets.DOCKER_USERNAME}} --password-stdin
-      - name: docker-version
+      - name: docker-list-images
+        run: docker images
+      - name: docker-push
         run: docker push $DOCKER_IMAGE
 
   deploy-image:
