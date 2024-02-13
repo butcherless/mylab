@@ -28,4 +28,4 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: compile
-        run: ./mvnw -v
+        run: ./mvnw -V validate
