@@ -29,14 +29,14 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: compile
         run: ./mvnw -V validate
+      - name: build-image
+        run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=sibyplay
 
   push-image:
     runs-on: ubuntu-22.04
     #container: docker:20.10.16
 
     steps:
-      - name: os-version
-        run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=sibyplay
       - name: docker-login
         run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username ${{secrets.DOCKER_USERNAME}} --password-stdin
       - name: docker-version
