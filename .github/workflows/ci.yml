@@ -32,11 +32,11 @@ jobs:
 
   push-image:
     runs-on: ubuntu-22.04
-    container: node:latest
+    #container: docker:20.10.16
 
     steps:
       - name: os-version
         run: uname -a
-      - name: node-version
-        run: node --version
+      - name: docker-version
+        run: docker -v
 
