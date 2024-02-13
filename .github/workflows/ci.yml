@@ -9,7 +9,7 @@ on:
     types: [ opened ]
 
 env:
-  DOCKER_IMAGE: sibyplay
+  DOCKER_IMAGE: butcherless/sibyplay:1.0.3
 
 jobs:
 
