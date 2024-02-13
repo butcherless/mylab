@@ -36,7 +36,9 @@ jobs:
 
     steps:
       - name: os-version
-        run: uname -a
+        run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=sibyplay
+      - name: docker-login
+        run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username ${{secrets.DOCKER_USERNAME}} --password-stdin
       - name: docker-version
         run: docker push --help
 
