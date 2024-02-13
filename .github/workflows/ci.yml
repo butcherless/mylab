@@ -29,3 +29,14 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: compile
         run: ./mvnw -V validate
+
+  push-image:
+    runs-on: ubuntu-22.04
+    container: node:latest
+
+    steps:
+      - name: os-version
+        run: uname -a
+      - name: node-version
+        run: node --version
+
