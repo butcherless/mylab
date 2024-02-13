@@ -48,4 +48,4 @@ jobs:
       - name: gcloud-cli-version
         run: gcloud --version
       - name: environment  
-        run: echo $DOCKER_USERNAME
+        run: echo username: {{ env.DOCKER_USERNAME }}
