@@ -48,4 +48,4 @@ jobs:
       - name: gcloud-cli-version
         run: gcloud --version
       - name: environment 
-        run: echo "username $DOCKER_USERNAME variable"
+        run: echo "username $DOCKER_USERNAME - variable, $GITHUB_ACTION - action"
