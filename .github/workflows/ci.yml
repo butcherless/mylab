@@ -38,5 +38,12 @@ jobs:
       - name: os-version
         run: uname -a
       - name: docker-version
-        run: docker -v
+        run: docker push --help
 
+  deploy-image:
+    runs-on: ubuntu-22.04
+    #container: google/cloud-sdk
+
+    steps:
+      - name: gcloud-cli-version
+        run: gcloud --version
