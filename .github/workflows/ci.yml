@@ -30,4 +30,4 @@ jobs:
     steps:
       - name: Display DIM Variable
         run: |
-          echo "Using final GRP2: ${{ steps.init.outputs.GRP2 }}"
+          echo "group: ${{ steps.env-setup.outputs.grp }} EOL"
