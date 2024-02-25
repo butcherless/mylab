@@ -11,24 +11,101 @@ on:
 env:
   DOCKER_IMAGE: butcherless/sibyplay:1.0.4
 
-
 jobs:
-  set-global-variable:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set global variable
-        run: echo "MY_VAR=1234" >> $GITHUB_ENV
-        shell: bash
 
-      - name: access var
-        run: |
-          echo "my var: $MY_VAR eol"
-
-  use-global-variable:
-    needs: set-global-variable
-    runs-on: ubuntu-latest
+  init:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    outputs:
+      group_id: ${{ steps.my-init.outputs.group_id }}
+      artifact_id: ${{ steps.my-init.outputs.artifact_id }}
+      version: ${{ steps.my-init.outputs.version }}
+      
     steps:
-      - name: Use global variable
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: set environment variables
+        id: my-init
         run: |
-          echo "Global variable MY_VAR: ${{env}}"
-  
+          echo "group_id=$(./mvnw help:evaluate -Dexpression=project.groupId -q -DforceStdout)" >> "${GITHUB_OUTPUT}"
+          echo "artifact_id=$(./mvnw help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> "${GITHUB_OUTPUT}"
+
+  build:
+    needs: init
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: compile
+        run: ./mvnw -V validate
+
+  push-image:
+    needs: init
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: create local variables
+        run: |
+          echo "MY_VERSION=${{ steps.my-init.outputs.version }}" >> ${GITHUB_OUTPUT}
+          echo "group_id=${{ needs.init.outputs.group_id }} EOL"
+          echo "artifact_id=${{ needs.init.outputs.artifact_id }} EOL"
+          echo "version=$PEPE EOL"
+        shell: bash  
+      - name: build-image
+        run: |
+          echo $MY_VERSION
+          echo "after variable $MY_VERSION eol"
+          ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ steps.my-init.outputs.version }}
+      - name: docker-login
+        run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username ${{secrets.DOCKER_USERNAME}} --password-stdin
+      - name: docker-list-images
+        run: docker images
+      - name: docker-push
+        run: docker push $DOCKER_IMAGE
+    
+
+  deploy-image:
+    needs: push-image
+    runs-on: ubuntu-22.04
+    #container: google/cloud-sdk
+
+    steps:
+      - name: gcloud-cli-version
+        run: gcloud --version
+      - name: environment 
+        run: echo "username $DOCKER_USERNAME - variable, $GITHUB_ACTION - action ${{secrets.DOCKER_USERNAME}} "
