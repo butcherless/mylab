@@ -29,4 +29,4 @@ jobs:
     steps:
       - name: Display DIM Variable
         run: |
-          echo "GRP2 Variable Value is $GRP2"
+          echo "Using final GRP2: ${{ steps.init.outputs.GRP2 }}"
