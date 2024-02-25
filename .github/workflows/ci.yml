@@ -21,7 +21,7 @@ jobs:
       - name: print local vars
         run: |
           echo "group: $GRP"
-          echo "GRP2=$GRP" >> $GITHUB_OUTPUT
+          echo "GRP2={{ env.$GRP }}" >> $GITHUB_OUTPUT
 
   image:
     needs: init
