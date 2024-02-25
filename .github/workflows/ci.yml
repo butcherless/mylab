@@ -75,7 +75,8 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: check-outputs
-        run: echo "Artifact ID from previous job: ${{ needs.set-value.outputs.artifact_id }}"
+        run: |
+          echo "Artifact ID from previous job: ${{ needs.set-value.outputs.artifact_id }}"
       - name: build-image
         run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$DOCKER_IMAGE   
       - name: docker-login
