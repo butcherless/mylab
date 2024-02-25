@@ -20,6 +20,10 @@ jobs:
         run: echo "MY_VAR=1234" >> $GITHUB_ENV
         shell: bash
 
+      - name: access var
+        run: |
+          echo "my var: $MY_VAR eol"
+
   use-global-variable:
     needs: set-global-variable
     runs-on: ubuntu-latest
