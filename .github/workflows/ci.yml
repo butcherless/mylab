@@ -8,30 +8,26 @@ on:
   pull_request:
     types: [ opened ]
 
-env:
-  DOCKER_IMAGE: butcherless/sibyplay:1.0.4
-
 
 jobs:
-  set-global-variable:
+  init:
     runs-on: ubuntu-latest
     steps:
-      - name: Set global variable
+      - name: Set environment variables
         run: |
-          echo "MY_VER=1234" >> $GITHUB_ENV
-          echo "MY_ART=my-art" >> $GITHUB_ENV
-        shell: bash
+          echo "GRP=com.profile" >> $GITHUB_ENV
+          echo "ART=demo" >> $GITHUB_ENV
+          echo "VER=1.0.0" >> $GITHUB_ENV    
 
-      - name: access var
-        run: |
-          MY_STR="$MY_ART..$MY_VER"
-          echo "my var: $MY_STR eol"
-
-  use-global-variable:
-    needs: set-global-variable
+  image:
+    needs: init  # Ensure init job runs first
     runs-on: ubuntu-latest
     steps:
-      - name: Use global variable
+      - name: Create DIM variable
         run: |
-          echo "Global variable MY_VAR: $MY_VAR"
-  
+          echo "DIM=${{ env.GRP }}.${{ env.ART }}.${{ env.VER }}" >> $GITHUB_ENV
+
+      - name: Use DIM variable
+        run: |
+          echo ${{ env.DIM }}  # Access and use the DIM variable
+          # ... other steps that use ${{ env.DIM }}
