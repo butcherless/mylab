@@ -11,10 +11,10 @@ on:
 
 jobs:
   init:
-    - id: env-setup
     runs-on: ubuntu-latest
     steps:
       - name: Set Environment Variables
+        id: env-setup
         run: |
           echo "grp=com.profile" >> $GITHUB_OUTPUT
           echo "ART=demo" >> $GITHUB_STATE
