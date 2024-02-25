@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     outputs:
-      myvar: ${{ steps.my-init.outputs.myvar }}
+      artifact_id: ${{ steps.my-init.outputs.artifact_id }}
 
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +34,8 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: set environment variables
         id: my-init
-        run: echo "myvar=my-artifact.jar" >> "${GITHUB_OUTPUT}"
+        run: |
+          echo "artifact_id=$(./mvnw help:evaluate -Dexpression=project.groupId -q -DforceStdout)" >> "${GITHUB_OUTPUT}"
 
   build:
     needs: init
@@ -77,7 +78,7 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: check-outputs
         run: |
-          echo "myvar=${{ needs.init.outputs.myvar }} EOL"
+          echo "artifact_id=${{ needs.init.outputs.artifact_id }} EOL"
       - name: build-image
         run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$DOCKER_IMAGE   
       - name: docker-login
