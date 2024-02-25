@@ -73,7 +73,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: check-environment-variables
-        run: printf '%s\n' "$action_state" # This will output 'yellow'
+        run: echo "color? => $action_state" # This will output 'yellow'
       - name: build-image
         run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$DOCKER_IMAGE   
       - name: docker-login
