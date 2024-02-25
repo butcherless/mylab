@@ -33,4 +33,4 @@ jobs:
       - name: access var
         run: |
           echo "access var"
-          echo "${{needs.init.outputs.o1}} EOL"
+          echo "${{steps.init.outputs.o1}} EOL"
