@@ -9,7 +9,7 @@ on:
     types: [ opened ]
 
 env:
-  DOCKER_IMAGE: butcherless/sibyplay:1.0.3
+  DOCKER_IMAGE: butcherless/sibyplay:1.0.4
 
 jobs:
 
@@ -32,6 +32,25 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: compile
         run: ./mvnw -V validate
+
+  push-image:
+    needs: build
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
       - name: build-image
         run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$DOCKER_IMAGE   
       - name: docker-login
@@ -40,8 +59,10 @@ jobs:
         run: docker images
       - name: docker-push
         run: docker push $DOCKER_IMAGE
+    
 
   deploy-image:
+    needs: push-image
     runs-on: ubuntu-22.04
     #container: google/cloud-sdk
 
