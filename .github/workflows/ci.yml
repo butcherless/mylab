@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Set Environment Variables
         run: |
-          echo "GRP=com.profile" >> $GITHUB_STATE
+          echo "GRP=com.profile" >> $GITHUB_OUTPUT
           echo "ART=demo" >> $GITHUB_STATE
           echo "VER=1.0.0" >> $GITHUB_STATE
       - name: print local vars
