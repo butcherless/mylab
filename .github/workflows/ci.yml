@@ -91,7 +91,7 @@ jobs:
         run: |
           echo $PEPE
           echo "after variable"
-          ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$DOCKER_IMAGE   
+          ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ steps.my-init.outputs.version }}
       - name: docker-login
         run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username ${{secrets.DOCKER_USERNAME}} --password-stdin
       - name: docker-list-images
