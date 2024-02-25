@@ -12,23 +12,21 @@ on:
 jobs:
   init:
     runs-on: ubuntu-latest
-    outputs:
-      GRP: ${{ steps.set-env.outputs.GRP }}
-      ART: ${{ steps.set-env.outputs.ART }}
-      VER: ${{ steps.set-env.outputs.VER }}
     steps:
       - name: Set Environment Variables
-        id: set-env
         run: |
-          echo "::set-output name=GRP::com.profile"
-          echo "::set-output name=ART::demo"
-          echo "::set-output name=VER::1.0.0"
+          echo "GRP=com.profile" >> $GITHUB_STATE
+          echo "ART=demo" >> $GITHUB_STATE
+          echo "VER=1.0.0" >> $GITHUB_STATE
+      - name: print local vars
+        run: |
+          echo "group: $GRP"
+          echo "GRP2=$GRP" >> $GITHUB_OUTPUT
 
   image:
     needs: init
     runs-on: ubuntu-latest
-    env:
-      DIM: ${{ format('{0}.{1}:{2}', needs.init.outputs.GRP, needs.init.outputs.ART, needs.init.outputs.VER) }}
     steps:
       - name: Display DIM Variable
-        run: echo "DIM Variable Value is $DIM"
+        run: |
+          echo "GRP2 Variable Value is $GRP2"
