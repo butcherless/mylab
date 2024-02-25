@@ -16,6 +16,8 @@ jobs:
   init:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
+    outputs:
+      artifact_id: ${{ steps.set-output.outputs.artifact_id }}
 
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +33,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: set environment variables
-        run: echo "action_state=yellow" >> "$GITHUB_ENV"
+        run: echo "::set-output name=artifact_id::my-artifact.jar"
 
   build:
     needs: init
@@ -72,8 +74,8 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
-      - name: check-environment-variables
-        run: echo "color? => $action_state" # This will output 'yellow'
+      - name: check-outputs
+        run: echo "Artifact ID from previous job: ${{ needs.set-value.outputs.artifact_id }}"
       - name: build-image
         run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$DOCKER_IMAGE   
       - name: docker-login
