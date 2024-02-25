@@ -81,7 +81,7 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: check-outputs
         env:
-          PEPE: 1
+          PEPE: ${{ steps.my-init.outputs.version }}
         run: |
           echo "myversion=${{ steps.my-init.outputs.version }}" >> "${GITHUB_OUTPUT}"
           echo "group_id=${{ needs.init.outputs.group_id }} EOL"
