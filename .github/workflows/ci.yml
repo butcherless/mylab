@@ -28,7 +28,7 @@ jobs:
     needs: init
     runs-on: ubuntu-latest
     env:
-      DIM: ${{ format('{0}.{1}.{2}', needs.init.outputs.GRP, needs.init.outputs.ART, needs.init.outputs.VER) }}
+      DIM: ${{ format('{0}.{1}:{2}', needs.init.outputs.GRP, needs.init.outputs.ART, needs.init.outputs.VER) }}
     steps:
       - name: Display DIM Variable
         run: echo "DIM Variable Value is $DIM"
