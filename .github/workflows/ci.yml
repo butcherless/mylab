@@ -26,5 +26,5 @@ jobs:
     steps:
       - name: Use global variable
         run: |
-          echo "Global variable MY_VAR: ${env.MY_VAR}"
+          echo "Global variable MY_VAR: ${{vars.MY_VAR}}"
   
