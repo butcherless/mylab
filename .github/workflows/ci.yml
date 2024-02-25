@@ -17,12 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set global variable
-        run: echo "MY_VAR=1234" >> $GITHUB_ENV
+        run: |
+          echo "MY_VER=1234" >> $GITHUB_ENV
+          echo "MY_ART=my-art" >> $GITHUB_ENV
         shell: bash
 
       - name: access var
         run: |
-          echo "my var: $MY_VAR eol"
+          MY_STR="$MY_ART..$MY_VER"
+          echo "my var: $MY_STR eol"
 
   use-global-variable:
     needs: set-global-variable
