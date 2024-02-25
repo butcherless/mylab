@@ -11,17 +11,18 @@ on:
 
 jobs:
   init:
+    - id: env-setup
     runs-on: ubuntu-latest
     steps:
       - name: Set Environment Variables
         run: |
-          echo "GRP=com.profile" >> $GITHUB_OUTPUT
+          echo "grp=com.profile" >> $GITHUB_OUTPUT
           echo "ART=demo" >> $GITHUB_STATE
           echo "VER=1.0.0" >> $GITHUB_STATE
       - name: print local vars
         run: |
-          echo "group: ${{ env.GRP }}"
-          echo "GRP2=${{ env.GRP }}" >> $GITHUB_OUTPUT
+          echo "group: ${{ steps.env-setup.outputs.grp }} EOL"
+          # echo "GRP2=${{ env.GRP }}" >> $GITHUB_OUTPUT
 
   image:
     needs: init
