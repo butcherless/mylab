@@ -12,22 +12,16 @@ on:
 jobs:
   init:
     runs-on: ubuntu-latest
+    outputs: 
+      o1: ${{ steps.env_setup.outputs.o1 }}
     steps:
-      - name: Set Environment Variables
-        id: env-setup
+      - id: env_setup
+        name: Set Environment Variables
         run: |
           echo "grp=com.profile" >> $GITHUB_OUTPUT
-          echo "ART=demo" >> $GITHUB_STATE
-          echo "VER=1.0.0" >> $GITHUB_STATE
+          echo "o1=demo"
+          echo "VER=1.0.0"
       - name: print local vars
         run: |
-          echo "group: ${{ steps.env-setup.outputs.grp }} EOL"
+          echo "group: ${{ steps.env_setup.outputs.grp }} EOL"
           # echo "GRP2=${{ env.GRP }}" >> $GITHUB_OUTPUT
-
-  image:
-    needs: init
-    runs-on: ubuntu-latest
-    steps:
-      - name: Display DIM Variable
-        run: |
-          echo "group: ${{ steps.env-setup.outputs.grp }} EOL"
