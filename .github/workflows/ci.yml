@@ -67,8 +67,6 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - env:
-          VERSION: ${{ needs.init.outputs.version }}
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
@@ -83,6 +81,7 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: check-outputs
         run: |
+          VERSION=${{ steps.my-init.outputs.version }}
           echo "group_id=${{ needs.init.outputs.group_id }} EOL"
           echo "artifact_id=${{ needs.init.outputs.artifact_id }} EOL"
           echo "version=${VERSION} EOL"
