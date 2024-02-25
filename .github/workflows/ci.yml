@@ -12,22 +12,23 @@ on:
 jobs:
   init:
     runs-on: ubuntu-latest
+    outputs:
+      GRP: ${{ steps.set-env.outputs.GRP }}
+      ART: ${{ steps.set-env.outputs.ART }}
+      VER: ${{ steps.set-env.outputs.VER }}
     steps:
-      - name: Set environment variables
+      - name: Set Environment Variables
+        id: set-env
         run: |
-          echo "GRP=com.profile" >> $GITHUB_ENV
-          echo "ART=demo" >> $GITHUB_ENV
-          echo "VER=1.0.0" >> $GITHUB_ENV    
+          echo "::set-output name=GRP::com.profile"
+          echo "::set-output name=ART::demo"
+          echo "::set-output name=VER::1.0.0"
 
   image:
-    needs: init  # Ensure init job runs first
+    needs: init
     runs-on: ubuntu-latest
+    env:
+      DIM: ${{ format('{0}.{1}.{2}', needs.init.outputs.GRP, needs.init.outputs.ART, needs.init.outputs.VER) }}
     steps:
-      - name: Create DIM variable
-        run: |
-          echo "DIM=${{ env.GRP }}.${{ env.ART }}.${{ env.VER }}" >> $GITHUB_ENV
-
-      - name: Use DIM variable
-        run: |
-          echo ${{ env.DIM }}  # Access and use the DIM variable
-          # ... other steps that use ${{ env.DIM }}
+      - name: Display DIM Variable
+        run: echo "DIM Variable Value is $DIM"
