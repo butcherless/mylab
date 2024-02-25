@@ -20,8 +20,8 @@ jobs:
           echo "VER=1.0.0" >> $GITHUB_STATE
       - name: print local vars
         run: |
-          echo "group: $GRP"
-          echo "GRP2={{ env.$GRP }}" >> $GITHUB_OUTPUT
+          echo "group: ${{ env.GRP }}"
+          echo "GRP2=${{ env.GRP }}" >> $GITHUB_OUTPUT
 
   image:
     needs: init
