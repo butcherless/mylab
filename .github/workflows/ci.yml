@@ -80,16 +80,11 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: create local variables
-        run: |
-          echo "MY_VERSION=1234" >> $GITHUB_ENV
-          echo "group_id=${{ needs.init.outputs.group_id }} EOL"
-          echo "artifact_id=${{ needs.init.outputs.artifact_id }} EOL"
-          echo "version=$PEPE EOL"
+        run: echo "MY_VAR=1234" >> $GITHUB_ENV
         shell: bash
       - name: build-image
         run: |
-          echo $MY_VERSION
-          echo "after variable $MY_VERSION eol"
+          echo "my var: $MY_VAR eol"
           ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ steps.my-init.outputs.version }}
       - name: docker-login
         run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username ${{secrets.DOCKER_USERNAME}} --password-stdin
