@@ -81,11 +81,11 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: create local variables
         run: |
-          echo "MY_VERSION=${{ steps.my-init.outputs.version }}" >> $GITHUB_ENV
+          echo "MY_VERSION=1234" >> $GITHUB_ENV
           echo "group_id=${{ needs.init.outputs.group_id }} EOL"
           echo "artifact_id=${{ needs.init.outputs.artifact_id }} EOL"
           echo "version=$PEPE EOL"
-        shell: bash  
+        shell: bash
       - name: build-image
         run: |
           echo $MY_VERSION
