@@ -65,10 +65,10 @@ jobs:
     needs: init
     runs-on: ubuntu-22.04
     timeout-minutes: 10
-    env:
-      VERSION: ${{ needs.init.outputs.version }}
 
     steps:
+      - env:
+          VERSION: ${{ needs.init.outputs.version }}
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
