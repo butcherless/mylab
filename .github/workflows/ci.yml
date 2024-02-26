@@ -13,14 +13,16 @@ jobs:
   init:
     runs-on: ubuntu-latest
     outputs: 
-      o1: ${{ steps.env_setup.outputs.art }}
+      group_id: ${{ steps.env_setup.outputs.group }}
+      artifact_id: ${{ steps.env_setup.outputs.artifact }}
+      version: ${{ steps.env_setup.outputs.version }}
     steps:
       - id: env_setup
         name: Set Environment Variables
         run: |
-          echo "grp=com.profile" >> $GITHUB_OUTPUT
-          echo "art=demo" >> $GITHUB_OUTPUT
-          echo "VER=1.0.0"
+          echo "group=com.profile" >> $GITHUB_OUTPUT
+          echo "artifact=demo" >> $GITHUB_OUTPUT
+          echo "version=1.0.0" >> $GITHUB_OUTPUT
       - name: print local vars
         run: |
           echo "group: ${{ steps.env_setup.outputs.grp }} EOL"
@@ -31,7 +33,9 @@ jobs:
     needs: init
     steps:
       - env:
-          OUT1: ${{needs.init.outputs.o1}}
+          GROUP_ID: ${{needs.init.outputs.group_id}}
+          ARTIFACT_ID: ${{needs.init.outputs.artifact_id}}
+          VERSION: ${{needs.init.outputs.version}}
         run: |
           echo "access var"
-          echo "$OUT1 EOL"
+          echo "$GROUP_ID.$VERSION_ID:$VERSION EOL"
