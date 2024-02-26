@@ -13,13 +13,13 @@ jobs:
   init:
     runs-on: ubuntu-latest
     outputs: 
-      o1: ${{ steps.env_setup.outputs.o1 }}
+      o1: ${{ steps.env_setup.outputs.art }}
     steps:
       - id: env_setup
         name: Set Environment Variables
         run: |
           echo "grp=com.profile" >> $GITHUB_OUTPUT
-          echo "o1=demo"
+          echo "art=demo" >> $GITHUB_OUTPUT
           echo "VER=1.0.0"
       - name: print local vars
         run: |
@@ -30,7 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: init
     steps:
-      - name: access var
+      - env:
+          OUT1: ${{needs.init.outputs.o1}}
         run: |
           echo "access var"
-          echo "${{steps.init.outputs.o1}} EOL"
+          echo "$OUT1 EOL"
