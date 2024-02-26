@@ -38,4 +38,4 @@ jobs:
           VERSION: ${{needs.init.outputs.version}}
         run: |
           echo "access var"
-          echo "$GROUP_ID.$VERSION_ID:$VERSION EOL"
+          echo "$GROUP_ID.$ARTIFACT_ID:$VERSION EOL"
