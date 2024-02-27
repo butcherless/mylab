@@ -5,37 +5,19 @@ on:
     branches:
       - 'main'
       - 'feature/pipeline-deployment'
-  pull_request:
-    types: [ opened ]
 
 
 jobs:
-  init:
+  compile:
     runs-on: ubuntu-latest
-    outputs: 
-      group_id: ${{ steps.env_setup.outputs.group }}
-      artifact_id: ${{ steps.env_setup.outputs.artifact }}
-      version: ${{ steps.env_setup.outputs.version }}
     steps:
-      - id: env_setup
-        name: Set Environment Variables
-        run: |
-          echo "group=com.profile" >> $GITHUB_OUTPUT
-          echo "artifact=demo" >> $GITHUB_OUTPUT
-          echo "version=1.0.0" >> $GITHUB_OUTPUT
-      - name: print local vars
-        run: |
-          echo "group: ${{ steps.env_setup.outputs.grp }} EOL"
-          # echo "GRP2=${{ env.GRP }}" >> $GITHUB_OUTPUT
+      - uses: ./maven.yml # Include the common configuration
+      # Additional job-specific steps
 
-  build:
+  package:
     runs-on: ubuntu-latest
-    needs: init
+    needs: compile
     steps:
-      - env:
-          GROUP_ID: ${{needs.init.outputs.group_id}}
-          ARTIFACT_ID: ${{needs.init.outputs.artifact_id}}
-          VERSION: ${{needs.init.outputs.version}}
-        run: |
-          echo "access var"
-          echo "$GROUP_ID.$ARTIFACT_ID:$VERSION EOL"
+      - uses: ./maven.yml # Include the common configuration
+      # Additional job-specific steps
+    
