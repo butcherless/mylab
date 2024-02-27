@@ -11,13 +11,17 @@ jobs:
   compile:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./maven.yml # Include the common configuration
-      # Additional job-specific steps
+      - uses: maven.yml # Include the common configuration
+      - name: compile
+        run: |
+          echo "compiling"
 
   package:
     runs-on: ubuntu-latest
     needs: compile
     steps:
-      - uses: ./maven.yml # Include the common configuration
-      # Additional job-specific steps
+      - uses: maven.yml # Include the common configuration
+      - name: compile
+        run: |
+          echo "packaging"
     
